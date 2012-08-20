@@ -249,7 +249,7 @@ $_SGLOBAL['msglang'] = array(
 	'getpasswd_account_notmatch' => '您的账户资料中没有完整的Email地址，不能使用取回密码功能，如有疑问请与管理员联系。',
 	'getpasswd_email_notmatch' => '输入的Email地址与用户名不匹配，请重新确认。',
 	'getpasswd_send_succeed' => '取回密码的方法已经通过 Email 发送到您的信箱中，<br />请在 3 天之内修改您的密码。',
-	'user_does_not_exist' => '该用户不存',
+	'user_does_not_exist' => '该用户不存在',
 	'getpasswd_illegal' => '您所用的 ID 不存在或已经过期，无法取回密码。',
 	'profile_passwd_illegal' => '密码空或包含非法字符，请返回重新填写。',
 	'getpasswd_succeed' => '您的密码已重新设置，请使用新密码登录。',
@@ -442,6 +442,18 @@ $_SGLOBAL['msglang'] = array(
 	'topic_list_none' => '目前还没有可以参与的热闹',
 
 	'space_has_been_locked' => '空间已被锁定无法访问，如有疑问请联系管理员',
+
+	'connect_register_bind_success' => '您的帐号与QQ帐号绑定成功',
+	'connect_register_bind_already' => '抱歉，该用户已绑定过另一个QQ用户，无法再次绑定',
+	'qqconnect_closed' => '抱歉，QQ互联功能尚未开启',
+	'connect_register_uinlimit' => '抱歉，每个QQ帐号只能注册 {limit} 个帐号',
+	'connect_get_access_token_failed' => '抱歉，当前存在网络问题或服务器繁忙，请您稍候再试。谢谢。',
+	'connect_get_request_token_failed' => '抱歉，当前存在网络问题或服务器繁忙，请您稍候再试。谢谢。',
+	'connect_register_bind_uin_already' => '抱歉，该QQ用户已绑定了本站的另一个用户，无法再次绑定',
+	'connect_header_login' => 'QQ登录',
+	'connect_header_login_tip' => '只需一步，快速开始',
+	'connect_register_bind' => '绑定我的帐号',
+	'connect_register_has_id' => '已有帐号？',
 
 	
 );

@@ -13,6 +13,7 @@
 		<li><a href="#upload"><span>上传图片设置</span></a></li>
 		<li><a href="#remote"><span>远程上传设置</span></a></li>
 		<li><a href="#email"><span>邮件设置</span></a></li>
+		<li><a href="#qqconnect"><span>QQ互联设置</span></a></li>
 	</ul>
 </div>
 	
@@ -869,6 +870,36 @@
 	</tr>
 
 	</table>
+
+	<br />
+	<div class="title" id="qqconnect">
+		<a class="r_option" href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
+		<h3>QQ 互联设置</h3>
+		<p>请正确填写 APPID 与 APPKEY，如果还没有请 <a href="http://connect.qq.com/manage/" target="_blank">点击此处</a> 申请。</p>
+	</div>
+
+	<table class="formtable">
+	<tr>
+		<th style="width:15em;">启用 QQ 互联设置</th>
+		<td><input type="radio" name="config[cloud_open]" value="1"<!--{if $configs[cloud_open] == 1}--> checked<!--{/if}-->>是
+			<input type="radio" name="config[cloud_open]" value="0"<!--{if $configs[cloud_open] != '1'}--> checked<!--{/if}-->>否
+		</td>
+	</tr>	
+	<tr>
+		<th>APP 设置</th>
+		<td>
+			<table>
+			<tr><td width="150">APPID</td>
+			<td><input type="text" name="config[cloud_site_id]" value="$configs[cloud_site_id]"></td>
+			</tr>
+			<tr><td width="150">APPKEY</td>
+			<td><input type="text" name="config[cloud_site_key]" value="$configs[cloud_site_key]"></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
 	</div>
 
 	<div class="footactions">

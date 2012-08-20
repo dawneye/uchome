@@ -109,6 +109,11 @@
 		</td>
 	</tr>
 	<tr><th>&nbsp;</th><td id="__registerform" style="color:red; font-weight:bold;"></td></tr>
+
+	<!--{if $_SGLOBAL[connect]}-->
+	<tr><th>快捷登录：</th><td><a href="connect.php?ac=login&op=init"><img src="image/qq_login.gif"></img></a></td></tr>
+	<!--{/if}-->
+
 </table>
 <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" /></form>
 
