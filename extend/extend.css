@@ -1,0 +1,14 @@
+.video-play {
+margin: 24px 0 22px -76px;
+filter: alpha(opacity=50);
+-moz-opacity: 0.5;
+opacity: 0.5;
+cursor: pointer;
+vertical-align: text-bottom;
+}
+
+.video-play:hover {
+filter: 0;
+-moz-opacity: 1;
+opacity: 1;
+}
