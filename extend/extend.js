@@ -13,7 +13,12 @@ JQ(document).ready(function () {
 		JQ.get('./extend/video-screenshot.php?id=' + id, function(url){
 			if(url.indexOf('http') == 0){
 				img.attr('src', url);
+				img.after('<img src="./extend/video-play.gif" class="video-play" onclick="video_siblings(this)" />');
 			}
 		});
 	});
 });
+
+function video_siblings (obj){
+	JQ(obj).siblings().click();
+}
