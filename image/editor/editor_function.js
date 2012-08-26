@@ -9,6 +9,10 @@ function uploadEdit(obj) {
 //提交保存
 function edit_save() {
 	var p = window.frames['uchome-ifrHtmlEditor'];
+	if(!p){
+		backupContent($('uchome-ttHtmlEditor').value = editor.html());
+		return;
+	}
 	var obj = p.window.frames['HtmlEditor'];
 	var status = p.document.getElementById('uchome-editstatus').value;
 	if(status == 'code') {
@@ -92,6 +96,9 @@ function backupContent(sHTML) {
 //向编辑器插入代码
 function edit_insert(html) {
 	var p = window.frames['uchome-ifrHtmlEditor'];
+	if(!p){
+		return;
+	}
 	var obj = p.window.frames['HtmlEditor'];
 	var status = p.document.getElementById('uchome-editstatus').value;
 	if(status != 'html') {
