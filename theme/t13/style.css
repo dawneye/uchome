@@ -4,11 +4,11 @@ Powered by Ucenter Home
  */
 a{ color: #5778A1; }
 
-body { padding: 0 0 50px; background: #6A8FA1; color: #666; }
+body { padding:  60px 0 50px; background: #6A8FA1; color: #666; }
 #wrap { padding: 15px 10px; border: 3px solid #9DB7C1; background: #FFF; }
 #header { margin: 0; background: url(images/top_bg.jpg) repeat-x; color: #CCC; }
 #header a { color: #6A8FA1; }
-.headerwarp { height: 140px; background: url(images/header.gif) no-repeat 0 40px; color: #5A7B8C; }
+.headerwarp { height: 40px; background: url(images/header.gif) no-repeat 0 40px; color: #5A7B8C; }
 #header .logo a { width: 82px; height: 40px; background: url(images/logo.gif) no-repeat left center; overflow: hidden; display: block; }
 #header .logo a img { margin: -200px; }
 .login_thumb { background-image: url(images/login_bg.gif); }

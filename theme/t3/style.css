@@ -2,7 +2,7 @@
 [name]淡淡清香[/name]
 Powered by Ucenter Home
 */
-body { padding: 0 0 50px; background: url(images/body_bg.gif) fixed repeat left top; color: #666; }
+body { padding: 60px 0 50px; background: url(images/body_bg.gif) fixed repeat left top; color: #666; }
 #wrap { padding: 15px; border: 1px solid #CED4CA; background: #FFF; }
 #header { margin: 0; color: #CCC; }
 .headerwarp { background: none; }
