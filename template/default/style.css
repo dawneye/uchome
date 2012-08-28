@@ -89,7 +89,8 @@ a.c_link { background-position: 0 -64px; }
 .ybg { margin-bottom: 2px; padding: 10px; border: 1px solid #EBE6C9; background: #FCF9E6; }
     .ybg table { width: 100%; }
 
-body { background: #FFF; padding-top: 60px;}
+body { background: #FFF; padding-top: 60px; text-align: center;}
+body div {margin: 0 auto; text-align: left;}
 #wrap, .wrap { margin: 0 auto; width: 970px; }
 #ad_header { margin: 0 auto; padding: 1px; width: 966px; background: #FCF9E6; border: 1px solid #FF8E00; line-height:150%; }
     #ad_header a{ color: #000; }
@@ -97,7 +98,7 @@ body { background: #FFF; padding-top: 60px;}
 #ad_contentbottom { margin: 10px 0 0 0; padding: 10px 0 0 0; width: 100%; border-top: 1px solid #EBE6C9; overflow: hidden; }
 
 /*************************************************HEADER***/
-#header { margin: 0 0 20px; background-color: #FF8E00; position: fixed; width: 100%; z-index: 1030; top: 0;}
+#header { margin: 0 0 20px; background-color: #FF8E00; position: fixed; width: 100%; z-index: 45; top: 0; left: 0; text-align: center;}
   .headerwarp { margin: 0 auto; padding: 0 20px; width: 930px; height: 40px; background-color: #FF8E00; color: #FFF; }
     .headerwarp a { color: #FFF; }
       .headerwarp .logo { float: left; margin: 0 30px 0 0; }
@@ -106,8 +107,9 @@ body { background: #FFF; padding-top: 60px;}
   .menu li { float: left; padding: 10px; line-height: 20px; vertical-align: top; }
     .menu .edit { padding-left: 4px; color: #FFF; font-size: 12px; font-weight: normal; }
 
-.nav_account { float: right; width: 200px; white-space:nowrap; overflow: hidden; }
-  .login_thumb { float: left; margin: 1px 6px 0; padding: 2px; width: 40px; height: 40px; background: url(image/thumb20bg.gif) no-repeat; display: block; }
+.nav_account { float: right; white-space:nowrap; vertical-align: middle; line-height: 45px;}
+  .nav_account .dropmenu_drop{line-height: 18px; display:none; clip: rect(auto auto auto auto); +top: 40px;}
+  .login_thumb { float: left; margin: 3px 6px 0; +margin-top: 0; padding: 2px 2px 0; width: 40px; height: 40px; background: url(image/thumb20bg.gif) no-repeat; display: block; }
   .login_thumb img{ width: 35px; height: 35px; }
   .login_thumb img:hover{ filter: alpha(opacity=50); -moz-opacity: 0.5; opacity: 0.5; cursor: pointer; vertical-align: text-bottom;}
     li.notify { margin: 9px 0 0; padding: 0 0 0 18px; width: 72px; height: 20px; background: url(image/notify_bg.gif); color: #FFF; font-size: 12px; font-weight: normal; }

@@ -1,14 +1,10 @@
-.video-play {
-margin: 24px 0 22px -76px;
-filter: alpha(opacity=50);
--moz-opacity: 0.5;
-opacity: 0.5;
-cursor: pointer;
-vertical-align: text-bottom;
-}
-
-.video-play:hover {
-filter: 0;
--moz-opacity: 1;
-opacity: 1;
-}
+.video-play {margin: 24px 0 22px -76px;filter: alpha(opacity=50);-moz-opacity: 0.5;opacity: 0.5;cursor: pointer;vertical-align: text-bottom;}
+.video-play:hover {filter: 0;-moz-opacity: 1;opacity: 1;}
+.hide {display:none;}
+.hover_outer {position: relative; overflow: visible}
+.hover_outer .hover_inner{display:none; right: 0; position: absolute; z-index: 500; }
+.hover_outer:hover .hover_inner{display:block;}
+.right_bottom {position: absolute;bottom: 5px;right: 5px;}
+.app_list em {display:none}
+.app_list li:hover em{display:inline-block}
+.hand:hover{cursor: pointer;}

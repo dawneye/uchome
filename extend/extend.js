@@ -20,5 +20,5 @@ JQ(document).ready(function () {
 });
 
 function video_siblings (obj){
-	JQ(obj).siblings().click();
+	JQ(obj).prev().click();
 }
