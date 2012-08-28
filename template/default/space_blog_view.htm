@@ -110,7 +110,7 @@
 		<!--{/if}-->
 
 		<!--{if $_SGLOBAL[supe_uid] == $blog[uid] || checkperm('manageblog')}-->
-		<a href="cp.php?ac=topic&op=join&id=$blog[blogid]&idtype=blogid" id="a_topicjoin_$blog[blogid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
+		<a href="cp.php?ac=topic&op=join&id=$blog[blogid]&idtype=blogid" id="a_topicjoin_$blog[blogid]" onclick="ajaxmenu(event, this.id)">发表话题</a><span class="pipe">|</span>
 		<a href="cp.php?ac=blog&blogid=$blog[blogid]&op=edit">编辑</a><span class="pipe">|</span>
 		<a href="cp.php?ac=blog&blogid=$blog[blogid]&op=delete" id="blog_delete_$blog[blogid]" onclick="ajaxmenu(event, this.id)">删除</a><span class="pipe">|</span>
 		<!--{/if}-->
@@ -187,7 +187,7 @@
 	<!--{if $topic}-->
 	<div class="affiche">
 		<img src="image/app/topic.gif" align="absmiddle">
-		<strong>凑个热闹</strong>：
+		<strong>发表话题</strong>：
 		<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a>
 	</div>
 	<!--{/if}-->

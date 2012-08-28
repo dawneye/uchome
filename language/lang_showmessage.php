@@ -438,8 +438,8 @@ $_SGLOBAL['msglang'] = array(
 	'not_open_updatestat' => '站点没有开启趋势统计功能',
 	
 	'topic_subject_error' => '标题长度不要少于4个字符',
-	'topic_no_found' => '指定要查看的热闹不存在',
-	'topic_list_none' => '目前还没有可以参与的热闹',
+	'topic_no_found' => '指定要查看的话题不存在',
+	'topic_list_none' => '目前还没有可以参与的话题',
 
 	'space_has_been_locked' => '空间已被锁定无法访问，如有疑问请联系管理员',
 
