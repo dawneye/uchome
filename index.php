@@ -19,6 +19,8 @@ if(!isset($_GET['do']) && $_SCONFIG['allowdomain']) {
 	}
 }
 
+include_once('./source/inc_landing.php');
+
 if($_SGLOBAL['supe_uid']) {
 	//已登录，直接跳转个人首页
 	showmessage('enter_the_space', 'space.php?do=home', 0);
@@ -64,9 +66,8 @@ if(empty($_SCONFIG['networkpublic'])) {
 	realname_get();
 	
 	$_TPL['css'] = 'network';
-	include_once template("index");
+	include_once template("network");
 } else {
 	include_once(S_ROOT.'./source/network.php');
 }
-
 ?>

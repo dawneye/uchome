@@ -1,0 +1,51 @@
+<!--{eval $_TPL['titles'] = array($tag['tagname'], '标签');}-->
+<!--{template header}-->
+<div class="span10">
+<h3 class="title">标签 - $tag[tagname]</h3>
+<!--
+<div class="tabs_header">
+	<a href="cp.php?ac=share&type=tag&id=$tag[tagid]" id="a_share" onclick="ajaxmenu(event, this.id, 1)" class="a_share pull-right">分享</a>
+	<ul class="tabs nav nav-tabs">
+		<li class="active"><a href="space.php?do=tag&id=$tag[tagid]"><span>日志列表</span></a></li>
+		<li><a href="space.php?do=tag"><span>返回标签列表</span></a></li>
+	</ul>
+</div>
+-->
+<div class="album_list hottags well">
+	标签过滤：
+	<!--{template space_tag_form}-->
+</div>
+<h4>$tag[blognum] 篇日志</h4>
+<div class="topic_list">
+	<table cellspacing="0" cellpadding="0" class="infotable table table-bordered table-hover">
+		<thead>
+			<tr>
+				<td class="subject">标题</td>
+				<td class="author">作者(回复数)</td>
+				<td class="lastpost">发布时间</td>
+			</tr>
+		</thead>
+		<!--{loop $list $key $value}-->
+		<tr<!--{if $key%2==1}--> class="alt"<!--{/if}-->>
+			<td class="subject"><a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank">$value[subject]</a></td>
+			<td class="author"><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a><em>($value[replynum])</em></td>
+			<td class="lastpost"><!--{date('m-d H:i',$value[dateline],1)}--></td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+	
+	<!--{if $prinum}-->
+	<div class="notice">本页有 $prinum 篇日志因隐私设置而隐藏</div>
+	<!--{/if}-->
+	
+	<div class="page">$multi</div>
+</div>
+<h4>0 个用户</h4>
+。。。
+<h4>0 个相册</h4>
+。。。
+<h4>0 个话题</h4>
+。。。
+</div>
+
+<!--{template footer}-->

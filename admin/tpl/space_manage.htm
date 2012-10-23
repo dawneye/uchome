@@ -10,7 +10,7 @@
 		<div class="title">
 			<h3>$member[username] 基本信息</h3>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:12em;">用户名</th>
 			<td><a href="space.php?uid=$member[uid]" target="_blank">$member[username]</a></td></tr>
 		
@@ -40,8 +40,8 @@
 			<td>
 			
 			<!--{if $member['flag'] != 1 && checkperm('managedelspace')}-->
-				<a href="admincp.php?ac=space&op=close&uid=$member[uid]" <!--{if $member[flag]!=-1}--> onclick="return confirm('锁定后该空间将被禁止访问，确认锁定吗？');" <!--{/if}--> class="submit"><!--{if $member[flag]!=-1}-->锁定空间(不会删除数据)<!--{else}-->解除锁定状态<!--{/if}--></a> &nbsp;
-				<a href="admincp.php?ac=space&op=delete&uid=$member[uid]" onclick="return confirm('危险，这将删除该空间所有数据，并且本操作不可恢复，确认删除？');">删除该空间(删除数据并不可恢复)</a>&nbsp;&nbsp;&nbsp;
+				<a href="admincp.php?ac=space&op=close&uid=$member[uid]" <!--{if $member[flag]!=-1}--> onclick="return confirm('锁定后该空间将被禁止访问，确认锁定吗？');" <!--{/if}--> class="submit btn btn-primary"><!--{if $member[flag]!=-1}-->锁定空间(不会删除数据)<!--{else}-->解除锁定状态<!--{/if}--></a> &nbsp;
+				<a href="admincp.php?ac=space&op=delete&uid=$member[uid]" class="btn btn-danger" onclick="return confirm('危险，这将删除该空间所有数据，并且本操作不可恢复，确认删除？');">删除该空间(删除数据并不可恢复)</a>&nbsp;&nbsp;&nbsp;
 			<!--{else}-->
 				本用户被保护，不能删除、不能锁定
 			<!--{/if}-->
@@ -56,7 +56,7 @@
 		<div class="title">
 			<h3>$member[username] 个人资料</h3>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:12em;">头像</th><td><a href="space.php?uid=$member[uid]" target="_blank"><!--{avatar($member[uid],big)}--></a>
 		<br>[<a href="admincp.php?ac=space&op=deleteavatar&uid=$uid">删除头像</a>]
 		</td></tr>
@@ -64,8 +64,8 @@
 		<!--{if $_SCONFIG['videophoto']}-->
 		<tr><th>视频认证</th><td>
 			<p>
-				<input type="radio" name="videostatus" value="0"$videostatusarr[0]>未通过
-				<input type="radio" name="videostatus" value="1"$videostatusarr[1]>已通过(需要有视频照片)
+				<label class="radio inline"><input type="radio" name="videostatus" value="0"$videostatusarr[0]>未通过</label>
+				<label class="radio inline"><input type="radio" name="videostatus" value="1"$videostatusarr[1]>已通过(需要有视频照片)</label>
 			</p>
 			<!--{if $videopic}--><img src="$videopic" width="400"><br><!--{/if}-->
 			上传一张该用户照片，更新视频认证照片:<br>
@@ -77,8 +77,8 @@
 			<th style="width:12em;">常用邮箱</th>
 			<td>
 				<input type="text" id="email" class="t_input" name="email" value="$member[email]" />
-				<input type="radio" name="emailcheck" value="0"<!--{if $member[emailcheck]==0}--> checked<!--{/if}-->> 未激活
-				<input type="radio" name="emailcheck" value="1"<!--{if $member[emailcheck]==1}--> checked<!--{/if}-->> 已经验证激活
+				<label class="radio inline"><input type="radio" name="emailcheck" value="0"<!--{if $member[emailcheck]==0}--> checked<!--{/if}-->> 未激活</label>
+				<label class="radio inline"><input type="radio" name="emailcheck" value="1"<!--{if $member[emailcheck]==1}--> checked<!--{/if}-->> 已经验证激活</label>
 			</td>
 		</tr>
 		<!--{if $_SCONFIG['allowdomain'] && $_SCONFIG['domainroot']}-->
@@ -88,16 +88,16 @@
 		
 		
 		<tr><th>清空自定义CSS</th><td>
-			<input type="radio" name="clearcss" value="0" checked> 不处理
-			<input type="radio" name="clearcss" value="1"> 清空
+			<label class="radio inline"><input type="radio" name="clearcss" value="0" checked> 不处理</label>
+			<label class="radio inline"><input type="radio" name="clearcss" value="1"> 清空</label>
 			<p>用户自定义的CSS如果存在恶意代码，可以选择清空。</p>
 		</td></tr>
 		
 		<tr>
 			<th>性别</th>
 			<td>
-				<label for="sexm"><input id="sexm" type="radio" value="1" name="sex"$sexarr[1] />男</label> 
-				<label for="sexw"><input id="sexw" type="radio" value="2" name="sex"$sexarr[2] />女</label>
+				<label for="sexm" class="radio inline"><input id="sexm" type="radio" value="1" name="sex"$sexarr[1] />男</label> 
+				<label for="sexw" class="radio inline"><input id="sexw" type="radio" value="2" name="sex"$sexarr[2] />女</label>
 			</td>
 		</tr>
 		<tr>
@@ -114,15 +114,15 @@
 		<tr>
 			<th>生日</th>
 			<td>
-				<select id="birthyear" name="birthyear">
+				<select id="birthyear" name="birthyear" class="span2">
 					<option value="0">无</option>
 					$birthyeayhtml
 				</select> 年 
-				<select id="birthmonth" name="birthmonth">
+				<select id="birthmonth" name="birthmonth" class="span2">
 					<option value="0">无</option>
 					$birthmonthhtml
 				</select> 月 
-				<select id="birthday" name="birthday">
+				<select id="birthday" name="birthday" class="span2">
 					<option value="0">无</option>
 					$birthdayhtml
 				</select> 日
@@ -196,10 +196,10 @@
 		<div class="title">
 			<h3>$member[username] 实名认证</h3>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:12em;">姓名</th><td><input type="text" class="t_input" name="name" value="$member[name]">
-			<input type="radio" name="namestatus" value="0"<!--{if $member[namestatus]==0}--> checked<!--{/if}-->> 认证失败
-			<input type="radio" name="namestatus" value="1"<!--{if $member[namestatus]==1}--> checked<!--{/if}-->> 认证通过
+			<label class="radio inline"><input type="radio" name="namestatus" value="0"<!--{if $member[namestatus]==0}--> checked<!--{/if}-->> 认证失败</label>
+			<label class="radio inline"><input type="radio" name="namestatus" value="1"<!--{if $member[namestatus]==1}--> checked<!--{/if}-->> 认证通过</label>
 		</td></tr>
 		</table>
 	</div>
@@ -210,7 +210,7 @@
 		<div class="title">
 			<h3>$member[username] 积分、经验值、空间大小管理</h3>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:12em;">额外空间大小</th><td><input type="text" class="t_input" name="addsize" value="$member[addsize]" size="10"> M</td></tr>
 		<tr><th>积分数</th><td><input type="text" name="credit" class="t_input" value="$member[credit]" size="10"></td></tr>
 		<tr><th>经验值</th><td><input type="text" class="t_input" name="experience" value="$member[experience]" size="10"></td></tr>
@@ -223,7 +223,7 @@
 		<div class="title">
 			<h3>$member[username] 保护信息</h3>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		
 		<tr><th style="width:12em;">用户组</th><td>
 		<select name="groupid" onchange="showDateSet(this.value);">
@@ -241,8 +241,8 @@
 		</td></tr>
 		<!--{if $member[flag] != -1}-->
 		<tr><th>删除保护</th><td>
-			<input type="radio" name="flag" value="0"<!--{if $member[flag]==0}--> checked<!--{/if}-->> 不保护
-			<input type="radio" name="flag" value="1"<!--{if $member[flag]==1}--> checked<!--{/if}-->> 保护
+			<label class="radio inline"><input type="radio" name="flag" value="0"<!--{if $member[flag]==0}--> checked<!--{/if}-->> 不保护</label>
+			<label class="radio inline"><input type="radio" name="flag" value="1"<!--{if $member[flag]==1}--> checked<!--{/if}-->> 保护</label>
 			<p>保护状态下，该用户将不能够在UCenter、以及本应用中删除。</p>
 			</td></tr>
 		</td></tr>
@@ -259,7 +259,7 @@
 
 	<div class="footactions">
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
-		<input type="submit" name="usergroupsubmit" value="提交" class="submit">
+		<input type="submit" name="usergroupsubmit" value="提交" class="submit btn">
 	</div>
 	</form>
 <!--{elseif $_POST['optype'] == 4}-->
@@ -271,7 +271,7 @@
 			<h3>批量发送邮件</h3>
 			<p>您可以对选定的用户进行批量发送邮件。注意，本操作将会增加服务器负载。</p>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th style="width:8em;">收件人(UID)</th>
 			<td><input type="text" name="uids" value="$uids" size="60"> 多个UID间用 "," 分隔</td>
@@ -289,7 +289,7 @@
 	
 	<div class="footactions">		
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
-		<input type="submit" name="sendemailsubmit" value="发送邮件" class="submit">
+		<input type="submit" name="sendemailsubmit" value="发送邮件" class="submit btn">
 	</div>
 	</form>
 	
@@ -302,7 +302,7 @@
 			<h3>批量打招呼</h3>
 			<p>您可以对选定的用户进行批量打招呼，以对其简单说明一些事情。注意，本操作将会增加服务器负载。</p>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th style="width:8em;">收件人(UID)</th>
 			<td><input type="text" name="uids" value="$uids" size="60"> 多个UID间用 "," 分隔</td>
@@ -316,7 +316,7 @@
 	
 	<div class="footactions">		
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
-		<input type="submit" name="pokesubmit" value="打招呼" class="submit">
+		<input type="submit" name="pokesubmit" value="打招呼" class="submit btn">
 	</div>
 	</form>	
 	
@@ -329,7 +329,7 @@
 			<h3>批量赠送道具</h3>
 			<p>您可以给选定的用户批量赠送道具。注意，本操作将会增加服务器负载。</p>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th style="width:8em;">受赠者(UID)</th>
 			<td><input type="text" name="uids" value="$uids" size="60"> 多个UID间用 "," 分隔</td>
@@ -381,7 +381,7 @@
 	
 	<div class="footactions">
 		<input type="hidden" name="refer" value="$_SGLOBAL[refer]">
-		<input type="submit" name="magicsubmit" value="赠送道具" class="submit">
+		<input type="submit" name="magicsubmit" value="赠送道具" class="submit btn">
 	</div>
 	</form>
 <!--{/if}-->

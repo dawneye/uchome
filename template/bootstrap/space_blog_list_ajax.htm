@@ -1,0 +1,25 @@
+<div id="space_blog" class="feed">
+	<h3 class="feed_header">
+		<a href="cp.php?ac=blog" class="r_option pull-right" target="_blank">发表日志</a>
+		日志(共 $count 篇)
+	</h3>
+	<!--{if $count}-->
+	<ul class="line_list">
+	<!--{loop $list $value}-->
+		<li>
+			<span class="r_option pull-right gray"><!--{date('m-d H:i',$value[dateline],1)}--></span>
+			<h4><a href="space.php?uid=$space[uid]&do=blog&id=$value[blogid]" target="_blank" <!--{if $value[magiccolor]}--> class="magiccolor$value[magiccolor]"<!--{/if}-->>$value[subject]</a></h4>
+			<div class="detail">
+				$value[message]
+			</div>
+		</li>
+	<!--{/loop}-->
+	</ul>
+	<!--{if $pricount}-->
+	<div class="c_form">本页有 $pricount 篇日志因作者的隐私设置而隐藏</div>
+	<!--{/if}-->
+	<div class="page">$multi</div>
+	<!--{else}-->
+	<div class="c_form">还没有相关的日志。</div>
+	<!--{/if}-->
+</div>

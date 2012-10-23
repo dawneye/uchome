@@ -1,0 +1,76 @@
+<!--{eval $_TPL['titles'] = array('记录');}-->
+<!--{template header}-->
+<div class="span10">
+<!--{if $space[self]}-->
+<!--{template space_doing_menu}-->
+<!--{else}-->
+<!--{eval 
+	$_TPL['spacetitle'] = "记录";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=doing&view=me\">TA的所有记录</a>";
+}-->
+<!--{template space_menu}-->
+<div class="h_status">按照发布时间排序</div>
+<!--{/if}-->
+</div>
+
+<div id="content" class="span7">	
+
+	<!--{if $space[self]}-->
+	<!--{template space_doing_form}-->
+	<br>
+	<!--{/if}-->
+	
+
+	<!--{if $dolist}-->
+	<div class="doing_list">
+		<ol class="nav nav-list nav-thumbnail">
+		<!--{loop $dolist $dv}-->
+		<!--{eval $doid = $dv[doid];}-->
+			<li id="dl{$doid}">
+				<a href="space.php?uid=$dv[uid]" class="snail"><!--{avatar($dv[uid],small)}--></a>
+				<div class="doing">
+					<div class="doingcontent"><a href="space.php?uid=$dv[uid]">{$_SN[$dv[uid]]}</a>: <span>$dv[message]</span>
+					<span class="gray">(<!--{date('m-d H:i',$dv[dateline],1)}-->)</span>
+					<!--{if $dv[uid]==$_SGLOBAL[supe_uid]}--> <a href="cp.php?ac=doing&op=delete&doid=$doid&id=$dv[id]" id="doing_delete_{$doid}_{$dv[id]}" onclick="ajaxmenu(event, this.id)" class="re gray">删除</a> &nbsp;<!--{/if}-->
+					<a href="javascript:;" onclick="docomment_form($doid, 0);">回复</a>
+					</div>
+					
+					<!--{eval $list = $clist[$doid];}-->
+					<div class="sub_doing" id="docomment_$doid"<!--{if !$list}--> style="display:none;"<!--{/if}-->>
+						<span id="docomment_form_{$doid}_0"></span>
+						<!--{template space_doing_li}-->
+					</div>
+					
+				</div>
+			</li>
+		<!--{/loop}-->
+		</ol>
+		<div class="page">$multi</div>
+	</div>
+	
+	<!--{else}-->
+	<div class="c_form">现在还没有记录。<!--{if $space[self]}-->你可以用一句话记录下这一刻在做什么。<!--{/if}--></div>
+	<!--{/if}-->
+	
+</div>
+
+<div id="sidebar" class="span3">
+	<!--{if $moodlist}-->
+	<div class="sidebox">
+		<h5 class="title">
+			<p class="r_option pull-right"><a href="space.php?uid=$space[uid]&do=mood">全部</a></p>
+			跟<!--{if $space[self]}-->我<!--{else}-->{$_SN[$space[uid]]}<!--{/if}-->同心情的朋友
+		</h5>
+		<ul class="avatar_list">
+			<!--{loop $moodlist $key $value}-->
+			<li>
+				<div class="avatar48"><a href="space.php?uid=$value[uid]&do=doing"><!--{avatar($value[uid],small)}--></a></div>
+				<p><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a></p>
+				<p class="gray"><!--{date('n月j日',$value[updatetime],1)}--></p>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<!--{/if}-->
+</div>
+<!--{template footer}-->

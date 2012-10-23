@@ -5,7 +5,7 @@
 
 <!--{if $_GET[op] == 'view'}-->
 		<div class="bdrcontent">	
-			<table cellspacing="0" cellpadding="0" class="formtable" border="0">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" border="0">
 			<tr>				
 				<th width="80">时间</th>
 				<td>$log[dateline]</td>
@@ -40,7 +40,7 @@
 			</table>
 		</div>
 		<div class="footactions">
-			<button onclick="location.href='$_SGLOBAL[refer]'" class="submit">返回</button>
+			<button onclick="location.href='$_SGLOBAL[refer]'" class="submit btn">返回</button>
 		</div>
 		
 <!--{else}-->
@@ -48,7 +48,7 @@
 		<form method="get" action="admincp.php">
 			<input type="hidden" name="ac" value="log">
 			<div class="block style4">				
-				<table cellspacing="3" cellpadding="3">				
+				<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 				<tr>
 					<th>选择log文件</th>
 					<td colspan="3">
@@ -82,7 +82,7 @@
 					<th>关键词</th>
 					<td colspan="3">
 						<input type="text" name="keysearch" value="$_GET[keysearch]" />
-						<input type="submit" name="searchsubmit" value="搜索" class="submit">
+						<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 					</td>
 				</tr>
 				</table>
@@ -90,7 +90,7 @@
 		</form>
 	<!--{if $list}-->		
 		<div class="bdrcontent">		
-			<table cellspacing="0" cellpadding="0" class="formtable" border="0">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" border="0">
 			<tr>				
 				<th width="160">时间</th>
 				<th width="120">IP</th>

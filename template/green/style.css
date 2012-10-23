@@ -20,8 +20,7 @@ a { color: #3B5998; }
 
 
 /*************************************************HEADER***/
-#header { background-color: #99C521;}
-  .headerwarp { background-color: #99C521; color: #3B5998; }
+  .headerwarp { background: #3B5998 url(image/header_bg.gif); color: #3B5998; }
 
 .menu { font-size: 12px; }
 

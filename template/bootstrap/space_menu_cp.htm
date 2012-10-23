@@ -1,0 +1,36 @@
+<div class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle" href="#">操作<b class="caret"></b> </a>
+<ul class="spacemenu_list dropmenu_drop dropdown-menu">
+<!--{if $space[self] || $do == 'feed'}-->
+<li><a href="cp.php?ac=avatar">我的头像</a></li>
+<li><a href="cp.php?ac=profile">个人资料</a></li>
+<li><a href="cp.php?ac=theme">主页风格</a></li>
+<li><a href="cp.php?ac=credit">我的积分</a></li>
+	<!--{if $_SCONFIG[sendmailday]}-->
+<li><a href="cp.php?ac=sendmail">邮件提醒</a></li>
+	<!--{/if}-->
+<li><a href="cp.php?ac=privacy">隐私筛选</a></li>
+<!--{else}-->
+	<!--{if !$space['isfriend']}-->
+<li><a href="cp.php?ac=friend&op=add&uid=$space[uid]" id="a_friend_li" onclick="ajaxmenu(event, this.id, 1)">加为好友</a></li>
+	<!--{/if}-->
+<li><a href="#comment">给我留言</a></li>
+<li><a href="cp.php?ac=poke&op=send&uid=$space[uid]" id="a_poke" onclick="ajaxmenu(event, this.id, 1)">打个招呼</a></li>
+<li><a href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 1)">发送消息</a></li>
+	<!--{if $space['isfriend']}-->
+<li><a href="cp.php?ac=friend&op=ignore&uid=$space[uid]" id="a_ignore" onclick="ajaxmenu(event, this.id)">解除好友</a></li>
+	<!--{/if}-->
+<li><a href="cp.php?ac=common&op=report&idtype=uid&id=$space[uid]" id="a_report" onclick="ajaxmenu(event, this.id, 1)">违规举报</a></li>
+	<!--{if checkperm('managename')||checkperm('managespacegroup')||checkperm('managespaceinfo')||checkperm('managespacecredit')||checkperm('managespacenote')}-->
+<li><a href="admincp.php?ac=space&op=manage&uid=$space[uid]" id="a_manage">管理用户</a></li>
+	<!--{/if}-->
+<!--{/if}-->
+
+<!--{if checkperm('admin')}-->
+<li><a href="admincp.php">站点管理</a></li>
+<!--{/if}-->
+<!--{if checkperm('allowstat')}-->
+<li><a href="do.php?ac=stat">趋势统计</a></li>
+<!--{/if}-->
+</ul>
+</div>

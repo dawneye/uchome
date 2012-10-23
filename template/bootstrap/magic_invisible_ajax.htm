@@ -1,0 +1,21 @@
+<!--{if $op == "use"}-->
+<form method="post" id="magicuse_form_$mid" action="magic.php?mid=$mid&idtype=$idtype&id=$id">
+<!--{if !$frombuy}-->
+<h5 class="title modal-header">使用道具
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<!--{/if}-->
+<div class="toolly modal-body" id="__magicuse_form_$mid">
+	<h5><img src="image/magic/{$mid}.gif" alt="$magic[name]" />$magic[name]</h5>
+	<p class="gray">$magic[description]</p>
+	<p>拥有个数: $usermagic[count]</p>
+</div>
+<div class="modal-footer">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash()}-->" />
+	<input type="hidden" name="refer" value="$_SGLOBAL[refer]"/>
+	<input type="hidden" name="usesubmit" value="1" />
+	<input type="submit" name="usesubmit_btn" value="使用" class="submit btn" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+</div>
+</form>
+<!--{/if}-->

@@ -1,0 +1,24 @@
+<div id="space_poll">
+	<h5 class="feed_header">
+		<a href="cp.php?ac=poll" class="r_option pull-right" target="_blank">发起投票</a>
+		投票(共 $count 个)</h5>
+	<!--{if $list}-->
+	<ul class="line_list">
+	<!--{loop $list $value}-->
+		<li>
+			<span class="r_option pull-right gray">{$value[voternum]}人投票</span>
+			<h4><a href="space.php?uid=$space[uid]&do=poll&pid=$value[pid]" target="_blank">$value[subject]</a></h4>
+			<div class="detail">
+			 <!--{loop $value['option'] $val}-->
+				<p><input type="<!--{if $value[multiple]}-->checkbox<!--{else}-->radio<!--{/if}-->" disabled name="poll_$value[pid]"/> $val</p>
+			 <!--{/loop}-->
+			</div>
+		</li>
+	<!--{/loop}-->
+	</ul>
+	<div class="page">$multi</div>
+	
+	<!--{else}-->
+	<div class="c_form">还没有相关的投票。</div>
+	<!--{/if}-->
+</div>

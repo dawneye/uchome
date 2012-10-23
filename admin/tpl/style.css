@@ -8,12 +8,14 @@ URL: http://www.comsenz.com
 .mainarea { float: right; width: 100%; margin-left: -150px; }
 	.maininner { margin-left: 140px; }
 .side { float: left; width: 130px; }
+	.side h2 {border-bottom: 1px solid #ECA;}
 
 #cp_content { margin: 1em 0;}
 
 /*细线边框区域*/
 .bdrcontent { padding: 1em; border: 1px solid #FF8E00; zoom: 1; }
 	.bdrcontent th { font-weight:bold; }
+	.bdrcontent label { display:inline; }
 
 /*粗边框区域*/
 .block { margin-bottom: 10px; padding: 0.5em 1em; border: 1px solid #EFF5F8; }
@@ -73,11 +75,13 @@ URL: http://www.comsenz.com
 	.title h1, .title h3 { padding: 0.6em 0 0.2em 0; font-size: 1.17em; }
 
 #footer { clear: both; padding: 1em 0; color: #939393; text-align: center; }
-	#footer p { font-size: 0.83em; }
+	#footer p { font-size: 1em; }
 	#footer .menu a { padding: 0 1em; }
 
 /*目录列表*/
-.folder li { padding-left: 1em; }
-	.folder .active { font-weight:bold; padding-left: 1em; }
+.folder { margin-left: 15px; font-size: 12px; }
+.folder li { padding-left: 0.5em; }
+	.folder .active { font-weight:bold; padding-left: 0.5em; }
 	
 .message { width:100%; text-align:center;  font-size:14px; padding:1em; }
+

@@ -107,6 +107,7 @@ if($_GET['view'] == 'me' || $_GET['view'] == 'hot') {
 	}
 } else {
 	//要折叠的动态
+	//pauli, $_GET['view'] == we, all
 	$hidden_icons = array();
 	if($_SCONFIG['feedhiddenicon']) {
 		$_SCONFIG['feedhiddenicon'] = str_replace(' ', '', $_SCONFIG['feedhiddenicon']);

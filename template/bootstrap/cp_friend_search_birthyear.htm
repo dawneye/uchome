@@ -1,0 +1,27 @@
+<form action="cp.php" method="get">
+<table>
+<tr>
+	<td align="right" width="150">生日：</td>
+	<td>
+	<select class="span1" id="birthyear" name="birthyear" onchange="showbirthday();">
+		<option value="0">&nbsp;</option>
+		$birthyeayhtml
+	</select> 年 
+	<select class="span1" id="birthmonth" name="birthmonth" onchange="showbirthday();">
+		<option value="0">&nbsp;</option>
+		$birthmonthhtml
+	</select> 月 
+	<select class="span1" id="birthday" name="birthday">
+		<option value="0">&nbsp;</option>
+		$birthdayhtml
+	</select> 日
+	</td>
+</tr>
+<tr><td align="right">姓名：</td><td><input type="text" name="name" value="" class="t_input"></td></tr>
+<tr><td align="right">用户名：</td><td><input type="text" name="username" value="" class="t_input"></td></tr>
+<tr><td></td><td><input type="submit" name="searchsubmit" value="查找" class="submit btn"></td></tr>
+</table>
+<input type="hidden" name="ac" value="friend">
+<input type="hidden" name="op" value="search">
+<input type="hidden" name="type" value="base">
+</form>

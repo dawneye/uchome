@@ -5,7 +5,7 @@
 	
 		<form method="post" action="admincp.php?ac=$ac">
 			<div class="bdrcontent">
-				<table cellspacing="0" cellpadding="0" class="formtable">
+				<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 					<tr>
 						<td colspan="2">
 							<!--{if $ac == 'defaultuser'}-->
@@ -33,7 +33,7 @@
 					
 				</table>
 				<!--{if $ac == 'defaultuser'}-->
-				<table cellspacing="0" cellpadding="0" class="formtable">
+				<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 					<tr>
 						<th style="width:10em;">默认打招呼内容</th>
 						<td><input type="text" class="t_input" name="config[defaultpoke]" value="$configs[defaultpoke]" size="50"> (不要超过25个汉字)
@@ -44,7 +44,7 @@
 				<!--{/if}-->
 			</div>
 			<div class="footactions">
-				<input type="submit" name="thevaluesubmit" value="提交" class="submit">
+				<input type="submit" name="thevaluesubmit" value="提交" class="submit btn">
 			</div>
 			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 		</form>

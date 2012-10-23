@@ -8,7 +8,7 @@
 <div class="maininner">
 
 	<div class="tabs_header">
-		<ul class="tabs">
+		<ul class="tabs nav nav-tabs">
 			<li$actives[view]><a href="admincp.php?ac=eventclass"><span>浏览全部分类</span></a></li>
 			<li class="null"><a href="admincp.php?ac=eventclass&op=add">添加新活动分类</a></li>
 		</ul>
@@ -21,7 +21,7 @@
 
 <!--{if "add" == $_GET['op'] || "edit" == $_GET['op']}-->
 
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 				<th style="width:15em;">分类名称</th>
 				<td><input type="text" name="classname" value="$thevalue[classname]"></td>
@@ -55,7 +55,7 @@
 
 	<div class="footactions">
 		<input type="hidden" name="classid" value="$thevalue[classid]" />
-		<input type="submit" name="eventclasssubmit" value="提交" class="submit">
+		<input type="submit" name="eventclasssubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>
@@ -65,7 +65,7 @@
 		<div class="topactions">
 			该活动分类删除后，请选择该活动分类下面已有的活动会归类到那个新活动分类。
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 				<th width="150">活动分类下的新归类</th>
 				<td>
@@ -83,14 +83,14 @@
 
 	<div class="footactions">
 		<input type="hidden" name="classid" value="$thevalue[classid]" />
-		<input type="submit" name="deletesubmit" value="确认" class="submit">
+		<input type="submit" name="deletesubmit" value="确认" class="submit btn">
 	</div>
 
 	</form>
 
 <!--{else}-->
 
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 				<th>名称</th>
 				<th>设置海报</th>
@@ -113,7 +113,7 @@
 	</div>
 
 	<div class="footactions">
-		<input type="submit" name="ordersubmit" value="更新排序" class="submit">
+		<input type="submit" name="ordersubmit" value="更新排序" class="submit btn">
 	</div>
 
 	</form>

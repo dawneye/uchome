@@ -6,7 +6,7 @@
 	<form method="get" action="admincp.php">
 	<div class="block style4">
 		
-		<table cellspacing="3" cellpadding="3">
+		<table cellspacing="3" cellpadding="3" class=" table table-striped table-bordered table-hover">
 		<!--{if $allowmanage}-->
 		<tr><th>作者UID</th><td><input type="text" name="uid" value="$_GET[uid]"></td>
 			<th>作者名</th><td><input type="text" name="username" value="$_GET[username]"></td>
@@ -71,7 +71,7 @@
 		<option value="1000"$perpages[1000]>一次处理1000个</option>
 		</select>
 		<input type="hidden" name="ac" value="blog">
-		<input type="submit" name="searchsubmit" value="搜索" class="submit">
+		<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 		</td>
 		</tr>
 		</table>
@@ -92,8 +92,8 @@
 		<!--{/loop}-->
 	
 	<!--{else}-->
-		<table cellspacing="0" cellpadding="0" class="formtable">
-		<tr><td width="25">&nbsp;</td><th>标题</th><th width="80">操作</th></tr>
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
+		<tr><td width="25">&nbsp;</td><th>标题</th><th width="200">操作</th></tr>
 		<!--{loop $list $value}-->
 		<tr>
 			<td>
@@ -103,14 +103,15 @@
 				<a href="space.php?uid=$value[uid]&do=blog&id=$value[blogid]" target="_blank">$value[subject]</a>
 				<!--{if $value[friend]}-->[<a href="admincp.php?ac=blog&friend=$value[friend]">$value[friend]</a>]<!--{/if}-->
 				<p class="gray">
-					<a href="admincp.php?ac=blog&uid=$value[uid]">$value[username]</a><!--{if $value[postip]}-->(<a href="admincp.php?ac=blog&postip=$value[postip]">$value[postip]</a>)<!--{/if}-->
+					<a href="admincp.php?ac=blog&uid=$value[uid]">$value[username]</a> (<a href="space.php?uid=$value[uid]">空间</a>) <!--{if $value[postip]}-->(<a href="admincp.php?ac=blog&postip=$value[postip]">$value[postip]</a>)<!--{/if}-->
 					&nbsp; <!--{date('Y-m-d H:i',$value[dateline])}-->
 					<br>热度({$value[hot]}) / 回复({$value[replynum]}) / 查看({$value[viewnum]})
 				</p>
 			</td>
 			<td>
-				<a href="cp.php?ac=blog&op=edit&blogid=$value[blogid]" target="_blank">编辑</a>&nbsp;
-				<a href="admincp.php?ac=comment&id=$value[blogid]&idtype=blogid">评论</a>
+				<a href="cp.php?ac=blog&op=edit&blogid=$value[blogid]" class="btn" target="_blank">编辑</a>&nbsp;
+				<a href="admincp.php?ac=comment&id=$value[blogid]&idtype=blogid" class="btn">评论</a>
+				<a href="admincp.php?ac=space&op=delete&uid=$value[uid]" target="_blank" class="btn btn-danger" onclick="return confirm('危险，这将删除该空间所有数据，并且本操作不可恢复，确认删除？');">删除空间</a>
 			</td>
 		</tr>
 		<!--{/loop}-->
@@ -121,7 +122,7 @@
 	<div class="footactions">
 		<!--{if $allowbatch && $perpage<=100}--><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选<!--{/if}-->
 		<input type="hidden" name="mpurl" value="$mpurl">
-		<input type="submit" name="batchsubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit">
+		<input type="submit" name="batchsubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit btn">
 	
 		<div class="pages">$multi</div>
 	</div>

@@ -1,0 +1,34 @@
+<div class="searchbar floatright pull-right input-append">
+<!--{if $_GET[view]=='me'}-->
+<form method="get" action="space.php">
+	<input name="searchkey" value="" size="15" class="t_input" type="text">
+	<input type="hidden" name="do" value="friend">
+	<input type="hidden" name="searchmode" value="1" />
+	<input name="searchsubmit" value="找好友" class="submit btn" type="submit">
+</form>
+<!--{else}-->
+<form method="get" action="cp.php">
+	<input name="searchkey" value="" size="15" class="t_input" type="text">
+	<input type="hidden" name="ac" value="friend" />
+	<input type="hidden" name="op" value="search" />
+	<input type="hidden" name="searchmode" value="1" />
+	<input name="searchsubmit" value="找人" class="submit btn" type="submit">
+</form>
+<!--{/if}-->
+</div>
+<h3 class="title">好友</h3>
+<div class="tabs_header">
+	<ul class="tabs nav nav-tabs">
+		<li$actives[me]><a href="space.php?uid=$space[uid]&do=friend">好友列表</a></li>
+		<li$actives[search]><a href="cp.php?ac=friend&op=search">查找好友</a></li>
+		<li$actives[find]><a href="cp.php?ac=friend&op=find">可能认识的人</a></li>
+		<!--{if empty($_SCONFIG['closeinvite'])}-->
+		<li$actives[invite]><a href="cp.php?ac=invite">邀请好友</a></li>
+		<!--{/if}-->
+		<li$actives[request]><a href="cp.php?ac=friend&op=request">好友请求</a></li>
+		<li$actives[top]><a href="space.php?do=top">排行榜</a></li>
+		<!--{if $op=='group'}-->
+		<li$actives[group]><a href="cp.php?ac=friend&op=group">好友分组</a></li>
+		<!--{/if}-->
+	</ul>
+</div>

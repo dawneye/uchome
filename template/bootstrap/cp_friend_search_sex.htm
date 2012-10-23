@@ -1,0 +1,50 @@
+<form action="cp.php" method="get">
+<table>
+<tr>
+	<td align="right" width="100">性别：</td>
+	<td>
+		<select id="sex" name="sex">
+			<option value="0">任意</option>
+			<option value="1"$sexarr[1]>男</option>
+			<option value="2"$sexarr[2]>女</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td align="right">婚恋：</td>
+	<td>
+		<select id="marry" name="marry">
+			<option value="0">任意</option>
+			<option value="1"$marryarr[1]>单身</option>
+			<option value="2"$marryarr[2]>非单身</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td align="right">年龄段：</td>
+	<td>
+		<input type="text" name="startage" value="" size="10" class="t_input span1" /> ~ <input type="text" name="endage" value="" size="10" class="t_input span1" />
+	</td>
+</tr>
+<!--{if $_SCONFIG['videophoto']}-->
+<tr>
+	<td align="right" width="100">视频认证：</td>
+	<td>
+		<input type="checkbox" name="videostatus" value="1">通过视频认证
+	</td>
+</tr>
+<!--{/if}-->
+<tr>
+	<td align="right" width="100">上传头像：</td>
+	<td>
+		<input type="checkbox" name="avatar" value="1">已经上传头像
+	</td>
+</tr>
+<tr><td align="right">姓名：</td><td><input type="text" name="name" value="" class="t_input"></td></tr>
+<tr><td align="right">用户名：</td><td><input type="text" name="username" value="" class="t_input"></td></tr>
+<tr><td></td><td><input type="submit" name="searchsubmit" value="查找" class="submit btn"></td></tr>
+</table>
+<input type="hidden" name="ac" value="friend">
+<input type="hidden" name="op" value="search">
+<input type="hidden" name="type" value="base">
+</form>

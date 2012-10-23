@@ -9,6 +9,8 @@ include_once('./common.php');
 //是否关闭站点
 checkclose();
 
+include_once('./source/inc_landing.php');
+
 //空间被锁定
 if($_SGLOBAL['supe_uid']) {
 	$space = getspace($_SGLOBAL['supe_uid']);

@@ -7,7 +7,7 @@
 	<!--{if $_SCONFIG['my_status']}-->
 	<p></p>
 	
-	<table width="100%">
+	<table width="100%" class=" table table-striped table-bordered table-hover">
 		<tr>
 			<td>
 				<strong>本站MYOP应用管理</strong><br>
@@ -20,13 +20,13 @@
 				<form method="post" action="admincp.php?ac=userapp">
 					<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 					<input type="hidden" name="my_hidden" value="1">
-					<input type="submit" name="mysubmit" value="同步信息" class="submit">
+					<input type="submit" name="mysubmit" value="同步信息" class="submit btn">
 				</form>
 				</td><td>
 				<form method="post" action="admincp.php?ac=userapp">
 					<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 					<input type="hidden" name="my_hidden" value="1">
-					<input type="submit" name="closemysubmit" value="关闭用户应用功能" class="submit">
+					<input type="submit" name="closemysubmit" value="关闭用户应用功能" class="submit btn">
 				</form>
 				</td></tr></table>
 			</td>
@@ -35,7 +35,7 @@
 	<!--{else}-->
 	<form method="post" action="admincp.php?ac=userapp">
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-	<table width="100%">
+	<table width="100%" class=" table table-striped table-bordered table-hover">
 		<tr><td>
 			<strong>MYOP用户多应用功能简介</strong><br>
 			开启用户应用功能后，用户可以自由选择各种不同的或好玩有趣、或实用的等应用（诸如停车位、好友买卖、电影、送礼物......）在站内进行使用。<br>
@@ -50,7 +50,7 @@
 		</td></tr>
 		<tr><td>
 		<input type="hidden" name="my_hidden" value="1">
-		<input type="submit" name="mysubmit" value="启用服务" class="submit">
+		<input type="submit" name="mysubmit" value="启用服务" class="submit btn">
 		</td></tr>
 	</table>
 	</form>

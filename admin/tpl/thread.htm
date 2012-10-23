@@ -6,7 +6,7 @@
 	<form method="get" action="admincp.php">
 	<div class="block style4">
 		
-		<table cellspacing="3" cellpadding="3">
+		<table cellspacing="3" cellpadding="3" class=" table table-striped table-bordered table-hover">
 		<tr><th>群组ID</th><td><input type="text" name="tagid" value="$_GET[tagid]"></td>
 			<th>标题*</th><td><input type="text" name="subject" value="$_GET[subject]"></td>
 		</tr>
@@ -65,7 +65,7 @@
 		<option value="1000"$perpages[1000]>一次处理1000个</option>
 		</select>
 		<input type="hidden" name="ac" value="thread">
-		<input type="submit" name="searchsubmit" value="搜索" class="submit">
+		<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 		</td>
 		</tr>
 		</table>
@@ -86,7 +86,7 @@
 
 <!--{else}-->
 	
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th width="25">&nbsp;</th>
 		<th>标题</td>
@@ -117,7 +117,7 @@
 	<div class="footactions">
 	<!--{if $perpage>100}-->
 		<input type="hidden" name="optype" value="delete">
-		<input type="submit" name="opsubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit">
+		<input type="submit" name="opsubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit btn">
 	<!--{else}-->
 		<!--{if $allowbatch}-->
 		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选
@@ -135,7 +135,7 @@
 		<option value="0">取消置顶</option>
 		</select>
 		<!--{/if}-->
-		<input type="submit" name="opsubmit" value="执行操作" onclick="return confirm('本操作不可恢复，确认继续？');" class="submit">
+		<input type="submit" name="opsubmit" value="执行操作" onclick="return confirm('本操作不可恢复，确认继续？');" class="submit btn">
 	<!--{/if}-->
 		
 		<input type="hidden" name="mpurl" value="$mpurl">

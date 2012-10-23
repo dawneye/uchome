@@ -1,0 +1,150 @@
+<!--{template header}-->
+<div class="span10">
+
+<!--{if $_GET['op'] == 'delete'}-->
+
+<form id="topicform_{$topicid}" name="topicform_{$topicid}" method="post" action="cp.php?ac=topic&op=delete&topicid=$topicid">
+<h5 class="title modal-header">删除话题
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="popupmenu_inner modal-body" id="__topicform_{$topicid}">
+	<p>确定删除指定的话题吗？</p>
+	<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</div>
+<div class="modal-footer">
+	<input type="submit" name="deletesubmit" value="确定" class="submit btn" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+</div>
+</form>
+	
+<!--{elseif $_GET['op'] == 'ignore'}-->
+<form id="topicform_{$topicid}" name="topicform_{$topicid}" method="post" action="cp.php?ac=topic&op=join&topicid=$_GET[topicid]&id=$_GET[id]&idtype=$_GET[idtype]">
+<h5 class="title modal-header">剔除信息
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="popupmenu_inner modal-body" id="__topicform_{$topicid}">
+	<p>确定要将其从此话题中剔除吗？<br>这并不会删除该数据。</p>
+	<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+	<input type="hidden" name="newtopicid" value="0">
+	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</div>
+<div class="modal-footer">
+	<input type="submit" name="joinsubmit" value="确定" class="submit btn" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+</div>
+</form>
+	
+	
+<!--{elseif $_GET['op'] == 'join'}-->
+<form id="topicjoinform" name="topicjoinform" method="post" action="cp.php?ac=topic&op=join&id=$_GET[id]&idtype=$_GET[idtype]">
+<h5 class="title modal-header">发表话题
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+	<div class="popupmenu_inner modal-body" id="__topicjoinform">
+		<p>
+			选择个话题：<br>
+			<select name="newtopicid">
+			<option value="">&nbsp;</option>
+			<!--{loop $tlist $value}-->
+			<option value="$value[topicid]">$value[subject]</option>
+			<!--{/loop}-->
+			</select>
+		</p>
+		<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</div>
+<div class="modal-footer">
+	<input type="submit" name="joinsubmit" value="确定" class="submit btn" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+</div>
+</form>
+
+<!--{else}-->
+
+	<h3 class="title">话题</h3>
+	<div class="tabs_header">
+		<ul class="tabs nav nav-tabs">
+			<li class="active"><a href="cp.php?ac=topic"><span>添加新话题</span></a></li>
+			<li><a href="space.php?do=topic"><span>返回话题列表</span></a></li>
+		</ul>
+		<!--{if $_SGLOBAL[refer]}-->
+		<div class="r_option pull-right">
+			<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+		</div>
+		<!--{/if}-->
+	</div>
+	
+	<div class="c_form">
+		<form method="post" action="cp.php?ac=topic&topicid=$topicid" enctype="multipart/form-data">
+		<table cellspacing="4" cellpadding="4" width="100%" class="infotable">
+			<tr>
+				<th width="100">标题</th>
+				<td>
+					<input type="text" name="subject" value="$topic[subject]" size="80" />
+				</td>
+			</tr>
+			<tr>
+				<th>图片</th>
+				<td>
+					<table><tr>
+					<!--{if $topic['pic']}-->
+					<td><img src="$topic[pic]" width="150"></td>
+					<!--{/if}-->
+					<td><input type="file" name="pic" value="" /></td>
+					</tr></table>
+				</td>
+			</tr>
+			<tr>
+				<th>说明</th>
+				<td>
+					<textarea name="message" rows="8" cols="80">$topic[message]</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>允许参与方式</th>
+				<td>
+					<label class="inline checkbox"><input type="checkbox" name="jointype[]" value="blog"$jointypes[blog]>日志</label>
+					<label class="inline checkbox"><input type="checkbox" name="jointype[]" value="pic"$jointypes[pic]>图片</label>
+					<label class="inline checkbox"><input type="checkbox" name="jointype[]" value="thread"$jointypes[thread]>话题</label>
+					<label class="inline checkbox"><input type="checkbox" name="jointype[]" value="poll"$jointypes[poll]>投票</label>
+					<label class="inline checkbox"><input type="checkbox" name="jointype[]" value="event"$jointypes[event]>活动</label>
+					<label class="inline checkbox"><input type="checkbox" name="jointype[]" value="share"$jointypes[share]>分享</label>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>允许参与的用户组</th>
+				<td>
+				<!--{eval $i=0;}-->
+				<!--{loop $usergroups $groups}-->
+					<!--{loop $groups $gid $value}-->
+					<label class="inline checkbox"><input type="checkbox" name="joingid[]" value="$gid"$joingids[$gid]>$value[grouptitle]</label>
+					<!--{/loop}-->
+				<!--{/loop}-->
+				</td>
+			</tr>
+			
+			<tr>
+				<th>允许参与结束日期</th>
+				<td>
+					<script type="text/javascript" src="template/bootstrap/script/script_calendar.js" charset="$_SC[charset]"></script>
+					<input type="text" name="endtime" value="$topic[endtime]" id="endtime" onclick="showcalendar(event,this,1,'$topic[endtime]', '$topic[endtime]')">
+					<br>为空则不限制。到期后，该话题将只能浏览，不再允许参与。
+				</td>
+			</tr>
+
+
+			<tr>
+				<th>&nbsp;</th>
+				<td><input type="submit" name="topicsubmit" value="提交" class="submit btn" /></td>
+			</tr>
+		</table>
+		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+		</form>
+	</div>
+	
+	
+<!--{/if}-->
+</div>
+<!--{template footer}-->

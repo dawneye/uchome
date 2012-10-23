@@ -4,7 +4,7 @@
 <div class="maininner">
 
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li$actives[view]><a href="admincp.php?ac=click"><span>浏览全部动作</span></a></li>
 		<li$actives[blogid]><a href="admincp.php?ac=click&idtype=blogid"><span>日志动作</span></a></li>
 		<li$actives[picid]><a href="admincp.php?ac=click&idtype=picid"><span>图片动作</span></a></li>
@@ -20,7 +20,7 @@
 	<form method="post" action="admincp.php?ac=click">
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	<div class="bdrcontent">
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th>图标</th>
 			<th>动作名称</th>
@@ -43,7 +43,7 @@
 		</table>
 	</div>
 	<div class="footactions">
-		<input type="submit" name="ordersubmit" value="提交" class="submit">
+		<input type="submit" name="ordersubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>
@@ -55,7 +55,7 @@
 	
 	<div class="bdrcontent">
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:12em;">动作名称</th>
 			<td><input type="text" name="name" value="$click[name]"></td></tr>
 		<tr><th>动作图标</th>
@@ -79,7 +79,7 @@
 	
 	<div class="footactions">
 		<input type="hidden" name="clickid" value="$click[clickid]">
-		<input type="submit" name="clicksubmit" value="提交" class="submit">
+		<input type="submit" name="clicksubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>

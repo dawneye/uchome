@@ -4,7 +4,7 @@
 <div class="maininner">
 
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li$actives[view]><a href="admincp.php?ac=task"><span>浏览全部任务</span></a></li>
 		<li class="null"><a href="admincp.php?ac=task&op=add">添加新任务</a></li>
 	</ul>
@@ -21,7 +21,7 @@
 		
 <!--{if $_GET['op']=='edit' || $_GET['op']=='add'}-->
 	
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:12em;">有奖任务名</th>
 		<td><input size="25" name="name" value="$thevalue[name]" type="text">
@@ -107,11 +107,11 @@
 	
 	</div>
 	<div class="footactions">
-	<input type="submit" name="tasksubmit" value="提交" class="submit">
+	<input type="submit" name="tasksubmit" value="提交" class="submit btn">
 	
 	
 <!--{else}-->
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th width="80">图片</th>
 		<th>有奖任务名/有奖任务脚本</th>

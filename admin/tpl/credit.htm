@@ -20,7 +20,7 @@
 <div class="mainarea">
 	<div class="maininner">
 		<div class="tabs_header">
-			<ul class="tabs">
+			<ul class="tabs nav nav-tabs">
 				<li$actives[1]><a href="admincp.php?ac=credit&rewardtype=1"><span>奖励规则</span></a></li>
 				<li$actives[0]><a href="admincp.php?ac=credit&rewardtype=0"><span>惩罚规则</span></a></li>
 			</ul>
@@ -32,7 +32,7 @@
 				<div class="title">
 					<h3>规则设置</h3>
 				</div>
-				<table cellspacing="0" cellpadding="0" class="formtable">
+				<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 					<tr>
 						<th style="width:10em;">规则名称</th>
 						<td>$rule[rulename]</td>
@@ -87,7 +87,7 @@
 					<!--{/if}-->
 				</table>
 				<br/>
-				<input type="submit" name="creditsubmit" value="提交" class="submit">
+				<input type="submit" name="creditsubmit" value="提交" class="submit btn">
 				<input type="hidden" name="rid" value="$_GET[rid]" />
 				<script type="text/javascript">
 					function showoption(id) {
@@ -113,7 +113,7 @@
 		</div>
 		<!--{else}-->
 		<div class="bdrcontent">
-			<table cellspacing="0" cellpadding="0" class="formtable">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 				<tr>
 					<th>动作名称</th>
 					<!--{if $_GET[rewardtype]!='0'}-->

@@ -28,6 +28,8 @@ if($_GET['op'] == 'checknewpm') {
 			updatetable('space', array('newpm'=>$ucnewpm), array('uid'=>$_SGLOBAL['supe_uid']));
 		}
 	}
+	//pauli, fix bug, Resource interpreted as Script but transferred with MIME type text/html: 
+	header('Content-type: application/javascript');
 	ssetcookie('checkpm', 1, 30);
 	exit();
 

@@ -1,0 +1,6 @@
+<div class="input-append fill-input">
+  <input id="hottags-box" type="text" value="$tag[tagname]"><button class="btn" type="button">搜索</button>
+</div>
+<!--{loop $taglist $value}-->
+	<a href="space.php?do=tag&id=$value[tagid]" class="btn" title="$value[tagname] ($value[blognum])">$value[tagname]</a> 
+<!--{/loop}-->

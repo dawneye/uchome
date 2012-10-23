@@ -1,0 +1,16 @@
+<div id="space_photo">
+	<h5 class="feed_header">
+		<a href="cp.php?ac=thread" class="r_option pull-right" target="_blank">发表话题</a>
+		群组话题(共 $count 个)</h5>
+	<!--{if $list}-->
+	<ul class="line_list">
+	<!--{loop $list $key $value}-->
+		<li><a href="space.php?uid=$value[uid]&do=thread&id=$value[tid]" target="_blank">$value[subject]</a>
+		<span class="gray">&nbsp;<a href="space.php?do=mtag&tagid=$value[tagid]" target="_blank">$value[tagname]</a></span></li>
+	<!--{/loop}-->
+	</ul>
+	<div class="page">$multi</div>
+	<!--{else}-->
+	<div class="c_form">还没有话题列表。</div>
+	<!--{/if}-->
+</div>

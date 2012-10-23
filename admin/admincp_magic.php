@@ -10,6 +10,16 @@ if(!checkperm('managemagic')) {
 }
 
 $_GET['view'] = ($_GET['view'] == 'disabled') ? $_GET['view'] : 'enabled';
+
+//pauli
+if($_GET['op'] == 'all') {
+	updatetable('magic', array('close' => $_GET['view']=='disabled' ? 1 : 0));
+	//¸üÐÂ»º´æ
+	include_once(S_ROOT.'./source/function_cache.php');
+	magic_cache();
+	cpmessage('do_success', "admincp.php?ac=magic&view=$_GET[view]", 2);
+}
+
 $actives = array();
 $actives[$_GET['view']] = ' class="active"';
 

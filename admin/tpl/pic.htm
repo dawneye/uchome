@@ -6,7 +6,7 @@
 		<form method="get" action="admincp.php">
 		<div class="block style4">
 
-			<table cellspacing="3" cellpadding="3">
+			<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 			<tr>
 				<th>所在相册ID</th><td><input type="text" name="albumid" value="$_GET[albumid]"></td>
 				<!--{if $allowmanage}-->
@@ -54,7 +54,7 @@
 				<option value="1000"$perpages[1000]>一次处理1000个</option>
 				</select>
 				<input type="hidden" name="ac" value="pic">
-				<input type="submit" name="searchsubmit" value="搜索" class="submit">
+				<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 				</td>
 			</tr>
 			</table>
@@ -75,7 +75,7 @@
 	
 <!--{else}-->
 			
-			<table cellspacing="0" cellpadding="0" class="formtable">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 			<!--{loop $list $key $value}-->
 				<td width="105">
@@ -102,7 +102,7 @@
 		<div class="footactions">
 			<!--{if $allowbatch && $perpage<=100}--><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选<!--{/if}-->
 			<input type="hidden" name="mpurl" value="$mpurl">
-			<input type="submit" name="batchsubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit">
+			<input type="submit" name="batchsubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit btn">
 		
 			<div class="pages">$multi</div>
 		</div>

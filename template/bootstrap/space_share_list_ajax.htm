@@ -1,0 +1,17 @@
+<div id="space_share">
+	<h5 class="feed_header">
+		<a href="space.php?do=share&view=me" class="r_option pull-right" target="_blank">添加分享</a>
+		分享(共 $count 个)</h5>
+	
+	<!--{if $list}-->
+	<ul class="line_list">
+		<!--{loop $list $value}-->
+			<!--{template space_share_li}-->
+		<!--{/loop}-->
+		<div class="page">$multi</div>
+	</ul>
+	<!--{else}-->
+	<div class="c_form">现在还没有分享</div>
+	<!--{/if}-->
+	
+</div>

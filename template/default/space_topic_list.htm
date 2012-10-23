@@ -1,14 +1,14 @@
-<!--{eval $_TPL['titles'] = array('话题');}-->
+<!--{eval $_TPL['titles'] = array('热闹');}-->
 <!--{template header}-->
 
-<h2 class="title"><img src="image/app/topic.gif" />话题</h2>
+<h2 class="title"><img src="image/app/topic.gif" />热闹</h2>
 <div class="tabs_header">
 	<ul class="tabs">
 		<li$actives[new]><a href="space.php?do=topic&view=new"><span>最新参与</span></a></li>
 		<li$actives[hot]><a href="space.php?do=topic&view=hot"><span>最热参与</span></a></li>
-		<li$actives[me]><a href="space.php?do=topic&view=me"><span>我参与的话题</span></a></li>
+		<li$actives[me]><a href="space.php?do=topic&view=me"><span>我参与的热闹</span></a></li>
 		<!--{if checkperm('allowtopic')}-->
-		<li class="null"><a href="cp.php?ac=topic">添加新话题</a></li>
+		<li class="null"><a href="cp.php?ac=topic">添加新热闹</a></li>
 		<!--{/if}-->
 	</ul>
 	<!--{if $_SGLOBAL[refer]}-->

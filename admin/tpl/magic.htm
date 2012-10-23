@@ -4,7 +4,11 @@
 <div class="maininner">
 
 	<div class="tabs_header">
-		<ul class="tabs">
+		<span class="pull-right">
+			<a class="btn" href="admincp.php?ac=magic&view=enabled&op=all">开启所有</a>
+			<a class="btn" href="admincp.php?ac=magic&view=disabled&op=all">关闭所有</a>
+		</span>
+		<ul class="tabs nav nav-tabs">
 			<li$actives[enabled]><a href="admincp.php?ac=magic&view=enabled"><span>已启用道具</span></a></li>
 			<li$actives[disabled]><a href="admincp.php?ac=magic&view=disabled"><span>已禁用道具</span></a></li>
 		</ul>
@@ -17,7 +21,7 @@
 
 	<div class="bdrcontent">
 	
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 				<th style="width:15em;">名称</th>
 				<td>$thevalue[name]</td>
@@ -31,14 +35,14 @@
 			<tr>
 				<th style="width:15em;">道具单价</th>
 				<td>
-					<input type="text" name="charge" value="$thevalue[charge]" />
+					<input type="text" class="span1" name="charge" value="$thevalue[charge]" />
 					购买时单个需要花费的积分值，需小于65535
 				</td>
 			</tr>
 			<tr>
 				<th style="width:15em;">经验成长</th>
 				<td>
-					<input type="text" name="experience" value="$thevalue[experience]" />
+					<input type="text" class="span1" name="experience" value="$thevalue[experience]" />
 					购买单个可以增长的经验值，需小于65535
 				</td>
 			</tr>
@@ -57,7 +61,7 @@
 			<tr>
 				<th style="width:15em;">补给数目</th>
 				<td>
-					<input type="text" name="providecount" value="$thevalue[providecount]" maxlength="6" />
+					<input type="text" class="span1" name="providecount" value="$thevalue[providecount]" maxlength="6" />
 					若道具商店中此道具已售光，自动补给一次的数目，需小于65535
 				</td>
 			</tr>
@@ -76,7 +80,7 @@
 			<tr>
 				<th style="width:15em;">使用数目</th>
 				<td>
-					<input type="text" name="usecount" value="$thevalue[usecount]" maxlength="6" />
+					<input type="text" class="span1" name="usecount" value="$thevalue[usecount]" maxlength="6" />
 					设定用户在使用周期内最多能使用此道具的个数，需小于65535
 				</td>
 			</tr>
@@ -96,13 +100,13 @@
 			<tr>
 				<th style="width:15em;">库存数目</th>
 				<td>
-					<input type="text" name="storage" value="$thevalue[storage]" size="5" maxlength="5" />
+					<input type="text" class="span1" name="storage" value="$thevalue[storage]" size="5" maxlength="5" />
 				</td>
 			</tr>
 			<tr>
 				<th style="width:15em;">显示顺序</th>
 				<td>
-					<input type="text" name="displayorder" value="$thevalue[displayorder]" size="5" maxlength="5" />
+					<input type="text" class="span1" name="displayorder" value="$thevalue[displayorder]" size="5" maxlength="5" />
 				</td>
 			</tr>
 			<tr>
@@ -343,7 +347,7 @@
 
 	<div class="footactions">
 		<input type="hidden" name="mid" value="$thevalue[mid]" />
-		<input type="submit" name="editsubmit" value="提交" class="submit">
+		<input type="submit" name="editsubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>
@@ -353,7 +357,7 @@
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 
 	<div class="bdrcontent">
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 				<th width="100">图标</th>
 				<th>道具</th>
@@ -371,8 +375,8 @@
 					<p>$value[description]</p>				
 				</td>
 				<!--{if $_GET[view] != 'disabled'}-->
-				<td><input type="text" name="charge[$key]" value="$value[charge]" size="5" maxlength="5" /></td>
-				<td><input type="text" name="displayorder[$key]" value="$value[displayorder]" size="5" maxlength="5" /></td>
+				<td><input type="text" class="span1" name="charge[$key]" value="$value[charge]" size="5" maxlength="5" /></td>
+				<td><input type="text" class="span1" name="displayorder[$key]" value="$value[displayorder]" size="5" maxlength="5" /></td>
 				<!--{/if}-->
 				<td><a href="admincp.php?ac=magic&op=edit&mid=$key&view=$_GET[view]">编辑</a></td>
 			</tr>
@@ -382,7 +386,7 @@
 
 	<!--{if $_GET[view] != 'disabled'}-->
 	<div class="footactions">
-		<input type="submit" name="ordersubmit" value="更新数据" class="submit">
+		<input type="submit" name="ordersubmit" value="更新数据" class="submit btn">
 	</div>
 	<!--{/if}-->
 

@@ -4,7 +4,7 @@
 <div class="maininner">
 
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li$actives[view]><a href="admincp.php?ac=usergroup"><span>浏览用户组</span></a></li>
 		<li class="null"><a href="admincp.php?ac=usergroup&op=add">添加新用户组</a></li>
 	</ul>
@@ -20,7 +20,7 @@
 	<p>普通用户组的用户级别，随着其经验值的变化而自动升级或者降级</p>
 	</div>
 
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr>
 	<th>组头衔</th>
 	<td>经验值大于</td>
@@ -44,7 +44,7 @@
 	</table>
 	</div>
 	<div class="footactions">
-		<input type="submit" name="updatesubmit" value="提交更新" class="submit">
+		<input type="submit" name="updatesubmit" value="提交更新" class="submit btn">
 	</div>
 	</form>
 
@@ -55,7 +55,7 @@
 	<p>归属于特殊用户组的用户级别身份，不受经验值的影响，始终保持不变</p>
 	</div>
 
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<!--{loop $list[1] $value}-->
 	<tr>
 	<th><span<!--{eval g_color($value[gid]);}-->>$value[grouptitle]</span><!--{eval g_icon($value[gid]);}--></th>
@@ -74,7 +74,7 @@
 	<p>系统内置，用户组不能被编辑或删除；用户级别身份，不受经验值的变化的影响</p>
 	</div>
 
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<!--{loop $list[-1] $value}-->
 	<tr>
 	<th><span<!--{eval g_color($value[gid]);}-->>$value[grouptitle]</span><!--{eval g_icon($value[gid]);}--></th>
@@ -98,7 +98,7 @@
 				<h3>权限复制</h3>
 				<p>这里可以把目标用户组权限应用给选中的用户组</p>
 			</div>
-			<table cellspacing="0" cellpadding="0" class="formtable">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 				<tr>
 					<th style="width:12em;">源用户组</th>
 					<td>$from</td>
@@ -119,7 +119,7 @@
 
 		<div class="footactions">
 		<input type="hidden" name="gid" value="$gid">
-		<input type="submit" name="copysubmit" value="提交" class="submit">
+		<input type="submit" name="copysubmit" value="提交" class="submit btn">
 		</div>
 
 	</form>
@@ -159,7 +159,7 @@
 		<p>这里设置该用户组成员对自己的个人空间的操作权限许可</p>
 	</div>
 
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr><th style="width:12em;">名称</th><td><input type="text" name="set[grouptitle]" value="$thevalue[grouptitle]"></td></tr>
 
 	<!--{if !isset($thevalue['system'])}-->
@@ -472,7 +472,7 @@
 	<p>设置该用户组成员是否拥有站点管理权限，这可能会影响到站点数据安全，请谨慎选择</p>
 	</div>
 
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:12em;">管理员身份</th>
 		<td>
@@ -796,7 +796,7 @@
 
 	<div class="footactions">
 	<input type="hidden" name="set[gid]" value="$thevalue[gid]">
-	<input type="submit" name="thevaluesubmit" value="提交" class="submit">
+	<input type="submit" name="thevaluesubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>

@@ -20,6 +20,9 @@ ckstart($start, $perpage);
 $list = array();
 $count = 0;
 
+//pauli
+$actives = array('mood' => ' class="active"');
+
 if($space['mood']) {
 	$theurl = "space.php?uid=$space[uid]&do=mood";
 	$count = $_SGLOBAL['db']->result($_SGLOBAL['db']->query("SELECT COUNT(*) FROM ".tname('space')." s WHERE s.mood='$space[mood]'"), 0);

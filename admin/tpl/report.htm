@@ -4,7 +4,7 @@
 	<div class="maininner">
 	
 		<div class="tabs_header">
-			<ul class="tabs">
+			<ul class="tabs nav nav-tabs">
 				<li$actives[1]><a href="admincp.php?ac=$ac&perpage=20&status=1&searchsubmit=1"><span>待处理举报</span></a></li>
 				<li$actives[0]><a href="admincp.php?ac=$ac&perpage=20&status=0&searchsubmit=1"><span>已禁止举报</span></a></li>
 			</ul>
@@ -13,7 +13,7 @@
 		<form method="get" action="admincp.php">
 			<div class="block style4">
 				
-				<table cellspacing="3" cellpadding="3">
+				<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 				
 				<tr>
 					<th>举报类型</th><td>
@@ -64,7 +64,7 @@
 				<option value="1000"$perpages[1000]>一次处理1000个</option>
 				</select>
 				<input type="hidden" name="ac" value="report">
-				<input type="submit" name="searchsubmit" value="搜索" class="submit">
+				<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 				</td>
 				</tr>
 				</table>
@@ -85,7 +85,7 @@
 			<!--{/loop}-->
 		
 		<!--{else}-->
-			<table cellspacing="0" cellpadding="0" class="formtable" border="0">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" border="0">
 			<tr>
 				<td width="25">&nbsp;</td>
 				<th>内容</th>
@@ -207,7 +207,7 @@
 			<input type="radio" name="optype" value="1" checked>禁止举报
 			<input type="radio" name="optype" value="2">删除举报
 			<input type="radio" name="optype" value="3">删除举报及信息或者空间
-			<input type="submit" name="listsubmit" value="批量操作" class="submit" onclick="return confirm('本操作不可恢复，确认继续？');">
+			<input type="submit" name="listsubmit" value="批量操作" class="submit btn" onclick="return confirm('本操作不可恢复，确认继续？');">
 		
 			<div class="pages">$multi</div>
 		</div>

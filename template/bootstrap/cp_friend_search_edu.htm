@@ -1,0 +1,15 @@
+<form action="cp.php" method="get">
+<table>
+	<tr><td align="right" width="150">学校：</td><td><input type="text" name="title" value="" class="t_input"> <select name="startyear">
+		<option value="">入学年份</option>
+		$yearhtml
+		</select></td></tr>
+	<tr><td align="right">班级或院系：</td><td><input type="text" name="subtitle" value="" class="t_input"></td></tr>
+	<tr><td align="right">姓名：</td><td><input type="text" name="name" value="" class="t_input"></td></tr>
+	<tr><td align="right">用户名：</td><td><input type="text" name="username" value="" class="t_input"></td></tr>
+	<tr><td></td><td><input type="submit" name="searchsubmit" value="查找" class="submit btn"></td></tr>
+</table>
+<input type="hidden" name="ac" value="friend">
+<input type="hidden" name="op" value="search">
+<input type="hidden" name="type" value="edu">
+</form>

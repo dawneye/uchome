@@ -14,7 +14,7 @@ if($page<1) $page = 1;
 $start = ($page-1)*$perpage;
 //检查开始数
 ckstart($start, $perpage);
-	
+
 if(empty($_GET['op'])) {
 
 	//空间大小

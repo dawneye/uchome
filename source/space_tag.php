@@ -12,7 +12,7 @@ $id = empty($_GET['id'])?0:intval($_GET['id']);
 $name = empty($_GET['name'])?0:stripsearchkey($_GET['name']);
 $start = empty($_GET['start'])?0:intval($_GET['start']);
 
-$list = array();
+$taglist = $list = array();
 $count = 0;
 
 if($id || $name) {
@@ -43,6 +43,12 @@ if($id || $name) {
 		$count++;
 	}
 	
+	//pauli，增加相关 tag
+	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tag')." WHERE ".($id?"tagid != '$id'":"tagname != '$name'")." ORDER BY blognum DESC LIMIT 20");
+	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
+		$taglist[] = $value;
+	}
+	
 	//实名
 	realname_get();
 	
@@ -61,7 +67,7 @@ if($id || $name) {
 	//处理查询
 	$query = $_SGLOBAL['db']->query("SELECT * FROM ".tname('tag')." ORDER BY blognum DESC LIMIT $start,$perpage");
 	while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-		$list[] = $value;
+		$taglist[] = $list[] = $value;
 		$count++;
 	}
 	

@@ -1,0 +1,21 @@
+<form action="cp.php" method="get">
+<table>
+<tr>
+	<td align="right" width="150">出生地：</td>
+	<td id="birthcitybox"></td>
+</tr>
+<tr><td align="right">姓名：</td><td><input type="text" name="name" value="" class="t_input"></td></tr>
+<tr><td align="right">用户名：</td><td><input type="text" name="username" value="" class="t_input"></td></tr>
+<tr><td></td><td><input type="submit" name="searchsubmit" value="查找" class="submit btn"></td></tr>
+</table>
+<script type="text/javascript" src="template/bootstrap/script/script_city.js"></script>
+<script type="text/javascript">
+<!--
+showprovince('birthprovince', 'birthcity', '$space[birthprovince]', 'birthcitybox');
+showcity('birthcity', '$space[birthcity]', 'birthprovince', 'birthcitybox');
+//-->
+</script>
+<input type="hidden" name="ac" value="friend">
+<input type="hidden" name="op" value="search">
+<input type="hidden" name="type" value="base">
+</form>

@@ -27,6 +27,8 @@ if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {
 	unset($_GET['rewrite']);
 }
 
+include_once('./source/inc_landing.php');
+
 //允许动作
 $dos = array('feed', 'doing', 'mood', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'share', 'topic', 'home', 'pm', 'event', 'poll', 'top', 'info', 'videophoto');
 
@@ -36,6 +38,9 @@ $uid = empty($_GET['uid'])?0:intval($_GET['uid']);
 $username = empty($_GET['username'])?'':$_GET['username'];
 $domain = empty($_GET['domain'])?'':$_GET['domain'];
 $do = (!empty($_GET['do']) && in_array($_GET['do'], $dos))?$_GET['do']:'index';
+
+//pauli
+$side_actives = array($do => ' class="active"');
 
 if($do == 'home') {
 	$do = 'feed';
@@ -140,6 +145,10 @@ if($_SGLOBAL['supe_uid']) {
 if(!empty($_SCONFIG['cronnextrun']) && $_SCONFIG['cronnextrun'] <= $_SGLOBAL['timestamp']) {
 	include_once S_ROOT.'./source/function_cron.php';
 	runcron();
+}
+
+if ($_SCONFIG['template'] == 'bootstrap' && in_array($do, array('feed', 'home', 'index')) && !isset($_GET['uid'])){
+	$do = 'landing';
 }
 
 //处理

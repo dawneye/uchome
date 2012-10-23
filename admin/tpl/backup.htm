@@ -12,7 +12,7 @@
 			<h3>数据备份</h3>
 		</div>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr>
 				<th colspan="2"><input type="radio" name="type" value="uchomes" checked onclick="$('showtables').style.display='none'">UCenter Home 全部数据</th>
 			</tr>
@@ -26,10 +26,10 @@
 		</table>
 		
 		<div id="showtables" style="display:none">
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><td><input type="checkbox" name="chkall" onclick="checkAll(this.form, 'customtables')" checked>全选 <strong>UCenter Home表</strong></td>
 		</table>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 		<!--{loop $uchome_tablelist $key $value}-->
 		<!--{if $key%4 == 0}--></tr><tr><!--{/if}-->
@@ -41,7 +41,7 @@
 		
 		<div id="advanceoption" style="display:none">
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 		<th>备份方式</th>
 		</tr>
@@ -53,7 +53,7 @@
 		</tr>
 		</table>
 	
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 		<th colspan="2">备份选项</th>
 		</tr>
@@ -95,7 +95,7 @@
 
 	<div class="footactions">
 		<input type="hidden" name="setup" value="1">
-		<input type="submit" value="提 交" class="submit">
+		<input type="submit" value="提 交" class="submit btn">
 	</div>
 	
 	</form>
@@ -110,12 +110,12 @@
 			<h3>数据恢复</h3>
 		</div>
 			
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr><td>服务器备份文件名: ./data/<input type="text" name="datafile" value="$backupdir/" size="50"></td></tr>
 		</table>
 	</div>
 	<div class="footactions">
-		<input type="submit" name="importsubmit" value="提交" class="submit">
+		<input type="submit" name="importsubmit" value="提交" class="submit btn">
 	</div>
 	
 	</form>
@@ -130,7 +130,7 @@
 			<h3>数据备份记录</h3>
 		</div>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 		<th width="4%">&nbsp;</th>
 		<th>文件名</th>
@@ -176,7 +176,7 @@
 
 	<div class="footactions">
 		<input type="checkbox" name="chkall" onclick="checkAll(this.form, 'delexport')">全选
-		<input type="submit" name="delexportsubmit" value="批量删除" class="submit">
+		<input type="submit" name="delexportsubmit" value="批量删除" class="submit btn">
 	</div>
 
 	</form>
@@ -204,7 +204,7 @@
 		<input type="hidden" name="do" value="zip">
 		<input type="hidden" name="datafile" value="$datafile">
 		<input type="hidden" name="confirm" value="yes">
-		<input type="submit" name="confirmed" value="继续" class="submit">
+		<input type="submit" name="confirmed" value="继续" class="submit btn">
 		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'">
 	</div>
 	</form>
@@ -227,7 +227,7 @@
 		<input type="hidden" name="do" value="import">
 		<input type="hidden" name="datafile" value="$datafile_vol1">
 		<input type="hidden" name="delunzip" value="yes">
-		<input type="submit" name="confirmed" value="继续" class="submit">
+		<input type="submit" name="confirmed" value="继续" class="submit btn">
 		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'">
 	</div>
 	</form>
@@ -250,8 +250,8 @@
 		<input type="hidden" name="multivol" value="1">
 		<input type="hidden" name="datafile_vol1" value="$datafile">
 		<input type="hidden" name="confirm" value="yes">
-		<input type="submit" name="confirmed" value="继续" class="submit">
-		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'" class="submit">
+		<input type="submit" name="confirmed" value="继续" class="submit btn">
+		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'" class="submit btn">
 	</div>
 	</form>
 
@@ -278,8 +278,8 @@
 		<input type="hidden" name="do" value="import">
 		<input type="hidden" name="datafile" value="$backupdir/$importfile">
 		<input type="hidden" name="delunzip" value="yes">
-		<input type="submit" name="confirmed" value="继续" class="submit">
-		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'" class="submit">
+		<input type="submit" name="confirmed" value="继续" class="submit btn">
+		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'" class="submit btn">
 	</div>
 	</form>
 <!--{elseif $showform == 5}-->
@@ -302,8 +302,8 @@
 		<!--{if isset($_GET['unzip'])}-->
 		<input type="hidden" name="delunzip" value="yes">
 		<!--{/if}-->
-		<input type="submit" name="confirmed" value="继续" class="submit">
-		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'" class="submit">
+		<input type="submit" name="confirmed" value="继续" class="submit btn">
+		<input type="button" value="返回" onClick="location.href='admincp.php?ac=backup'" class="submit btn">
 	</div>
 	</form>
 

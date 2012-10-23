@@ -4,9 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=$_SC[charset]" />
 <meta http-equiv="x-ua-compatible" content="ie=7" />
-
 <meta property="qc:admins" content="27257776446032655" />
-
 <title><!--{if $_TPL['titles']}--><!--{loop $_TPL['titles'] $value}--><!--{if $value}-->$value - <!--{/if}--><!--{/loop}--><!--{/if}--><!--{if $_SN[$space[uid]]}-->{$_SN[$space[uid]]} - <!--{/if}-->$_SCONFIG[sitename]</title>
 <script language="javascript" type="text/javascript" src="source/script_cookie.js"></script>
 <script language="javascript" type="text/javascript" src="source/script_common.js"></script>
@@ -38,11 +36,13 @@ $_SGLOBAL[space_css]
 	<div id="header">
 	<!--{if $_SGLOBAL['ad']['header']}--><div id="ad_header"><!--{ad/header}--></div><!--{/if}-->
 	<div class="headerwarp">
-		<h1 class="logo"><a href="index.php"><img src="template/$_SCONFIG[template]/image/logo.gif" alt="$_SCONFIG[sitename]" /></a></h1>
+		<h1 class="logo"><a href="index.php"><img src="image/logo.png" alt="$_SCONFIG[sitename]" /></a></h1>
 		<ul class="menu">
 		<!--{if $_SGLOBAL[supe_uid]}-->
 			<li><a href="space.php?do=home">首页</a></li>
+			<li><a href="space.php">个人主页</a></li>
 			<li><a href="space.php?do=friend">好友</a></li>
+			<li><a href="network.php">随便看看</a></li>
 		<!--{else}-->
 			<li><a href="index.php">首页</a></li>
 		<!--{/if}-->
@@ -64,70 +64,59 @@ $_SGLOBAL[space_css]
 			<li><a href="help.php">帮助</a></li>
 		<!--{/if}-->
 		</ul>
-		
-<!--{if !$_SGLOBAL[connect]}-->
 
-		<div class="nav_account hover_outer">
-		<!--{if $_SGLOBAL[supe_uid]}-->
-			<a href="space.php?uid=$_SGLOBAL[supe_uid]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
-			<a href="space.php?uid=$_SGLOBAL[supe_uid]" class="loginName">{$_SN[$_SGLOBAL[supe_uid]]}</a>
-
-<img class="hand" src="./template/default/image/triangle.gif" align="absmiddle">
-<ul class="dropmenu_drop hover_inner">
-<!--{if $_SGLOBAL[member][credit]}-->
-<li><a href="cp.php?ac=credit">积分 <img src="image/credit.gif"> {$_SGLOBAL[member][credit]}</a></li>
-<!--{/if}-->
-<!--{if empty($_SCONFIG['closeinvite'])}-->
-<li><a href="cp.php?ac=invite">邀请</a></li> 
-<!--{/if}-->
-<li><a href="cp.php?ac=task">任务</a></li>
-<li><a href="cp.php?ac=magic">道具</a></li>
-<li><a href="cp.php">设置</a></li>
-<li><a href="cp.php?ac=common&op=logout&uhash=$_SGLOBAL[uhash]">退出</a></li>
-</ul>
-
+		<!--{if !$_SGLOBAL[connect]}-->
+			<div class="nav_account">
+			<!--{if $_SGLOBAL[supe_uid]}-->
+				<a href="space.php?uid=$_SGLOBAL[supe_uid]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
+				<a href="space.php?uid=$_SGLOBAL[supe_uid]" class="loginName">{$_SN[$_SGLOBAL[supe_uid]]}</a>
+				<!--{if $_SGLOBAL[member][credit]}-->
+				<a href="cp.php?ac=credit" style="font-size:11px;padding:0 0 0 5px;"><img src="image/credit.gif">{$_SGLOBAL[member][credit]}</a>
+				<!--{/if}-->
+				<br />
+				<!--{if empty($_SCONFIG['closeinvite'])}-->
+				<a href="cp.php?ac=invite">邀请</a> 
+				<!--{/if}-->
+				<a href="cp.php?ac=task">任务</a> 
+				<a href="cp.php?ac=magic">道具</a>
+				<a href="cp.php">设置</a> 
+				<a href="cp.php?ac=common&op=logout&uhash=$_SGLOBAL[uhash]">退出</a>
+			<!--{else}-->
+				<a href="do.php?ac=$_SCONFIG[register_action]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
+				欢迎您<br>
+				<a href="do.php?ac=$_SCONFIG[login_action]">登录</a> | 
+				<a href="do.php?ac=$_SCONFIG[register_action]">注册</a>
+			<!--{/if}-->
+			</div>
 		<!--{else}-->
-			<a href="do.php?ac=$_SCONFIG[register_action]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
-			欢迎您
-			<a href="do.php?ac=$_SCONFIG[login_action]">登录</a> | 
-			<a href="do.php?ac=$_SCONFIG[register_action]">注册</a>
+			<div class="nav_account" style="width:317px;">
+			<!--{if $_SGLOBAL[supe_uid]}-->
+				<span style=" display: block;float: left;height: 24px;margin: 6px 6px 0 0;padding:3px 0 0 3px;width: 110px;">
+				<!--{if !$_SCOOKIE[cloud_conuin]}--><a href="connect.php?ac=login&op=init" class="loginName"><img src="image/qq_bind.gif"></img></a><!--{/if}-->
+				</span>
+				<a href="space.php?uid=$_SGLOBAL[supe_uid]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
+				<a {if $_SCOOKIE[cloud_conuin]}style="padding-left:20px;background:url(image/qq.gif) no-repeat 0px 0px;" {/if}href="space.php?uid=$_SGLOBAL[supe_uid]" class="loginName">{$_SN[$_SGLOBAL[supe_uid]]}</a>
+				<!--{if $_SGLOBAL[member][credit]}-->
+				<a href="cp.php?ac=credit" style="font-size:11px;padding:0 0 0 5px;"><img src="image/credit.gif">{$_SGLOBAL[member][credit]}</a>
+				<!--{/if}-->
+				<br />
+				<!--{if empty($_SCONFIG['closeinvite'])}-->
+				<a href="cp.php?ac=invite">邀请</a> 
+				<!--{/if}-->
+				<a href="cp.php?ac=task">任务</a> 
+				<a href="cp.php?ac=magic">道具</a>
+				<a href="cp.php">设置</a> 
+				<a href="cp.php?ac=common&op=logout&uhash=$_SGLOBAL[uhash]">退出</a>
+			<!--{else}-->
+				<a style="display: block;float: left;height: 24px;margin: 6px 6px 0 60px;padding:3px 0 0 3px;width: 124px;" href="connect.php?ac=login&op=init"><img src="image/qq_login.gif"></img></a>
+				<a href="do.php?ac=$_SCONFIG[register_action]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
+				欢迎您<br>
+				<a href="do.php?ac=$_SCONFIG[login_action]">登录</a> | 
+				<a href="do.php?ac=$_SCONFIG[register_action]">注册</a>
+			<!--{/if}-->
+			</div>
 		<!--{/if}-->
-		</div>
-		
-<!--{else}-->
-		<div class="nav_account hover_outer">
-	<!--{if $_SGLOBAL[supe_uid]}-->
-			<span style=" display: block;float: left;height: 24px;margin: 6px 6px 0 0;padding:3px 0 0 3px;width: 110px;">
-			<!--{if !$_SCOOKIE[cloud_conuin]}--><a href="connect.php?ac=login&op=init" class="loginName"><img src="image/qq_bind.gif"></img></a><!--{/if}-->
-			</span>
-			<a href="space.php?uid=$_SGLOBAL[supe_uid]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
-			<a {if $_SCOOKIE[cloud_conuin]}style="padding-left:20px;background:url(image/qq.gif) no-repeat 0px 0px;" {/if}href="space.php?uid=$_SGLOBAL[supe_uid]" class="loginName">{$_SN[$_SGLOBAL[supe_uid]]}</a>
-
-<img class="hand" src="./template/default/image/triangle.gif" align="absmiddle">
-<ul class="dropmenu_drop hover_inner">
-<!--{if $_SGLOBAL[member][credit]}-->
-<li><a href="cp.php?ac=credit">积分 <img src="image/credit.gif"> {$_SGLOBAL[member][credit]}</a></li>
-<!--{/if}-->
-<!--{if empty($_SCONFIG['closeinvite'])}-->
-<li><a href="cp.php?ac=invite">邀请</a></li> 
-<!--{/if}-->
-<li><a href="cp.php?ac=task">任务</a></li>
-<li><a href="cp.php?ac=magic">道具</a></li>
-<li><a href="cp.php">设置</a></li>
-<li><a href="cp.php?ac=common&op=logout&uhash=$_SGLOBAL[uhash]">退出</a></li>
-</ul>
-
-	<!--{else}-->
-			<a style="display: block;float: left;height: 24px;margin: 6px 6px 0 60px;padding:3px 0 0 3px;width: 124px;" href="connect.php?ac=login&op=init"><img src="image/qq_login.gif"></img></a>
-			<a href="do.php?ac=$_SCONFIG[register_action]" class="login_thumb"><!--{avatar($_SGLOBAL[supe_uid])}--></a>
-			欢迎您
-			<a href="do.php?ac=$_SCONFIG[login_action]">登录</a> | 
-			<a href="do.php?ac=$_SCONFIG[register_action]">注册</a>
-	<!--{/if}-->
-		</div>
-<!--{/if}-->
-		
-		</div>
+	</div>
 	</div>
 
 	<div id="wrap">
@@ -144,7 +133,7 @@ $_SGLOBAL[space_css]
 				<li><img src="image/app/mtag.gif"><a href="space.php?do=mtag">群组</a><em><a href="cp.php?ac=thread" class="gray">话题</a></em></li>
 				<li><img src="image/app/event.gif"/><a href="space.php?do=event">活动</a><em><a href="cp.php?ac=event" class="gray">发起</a></em></li>
 				<li><img src="image/app/share.gif"><a href="space.php?do=share">分享</a></li>
-				<li><img src="image/app/topic.gif"><a href="space.php?do=topic">话题</a></li>
+				<li><img src="image/app/topic.gif"><a href="space.php?do=topic">热闹</a></li>
 			</ul>
 			
 			<ul class="app_list topline" id="my_defaultapp">
@@ -190,12 +179,10 @@ $_SGLOBAL[space_css]
 						<input type="submit" id="loginsubmit" name="loginsubmit" value="登录" class="submit" />
 						<input type="button" name="regbutton" value="注册" class="button" onclick="urlto('do.php?ac=$_SCONFIG[register_action]');">
 					</p>
-
-<!--{if $_SGLOBAL[connect]}-->
-<br />
-<p><a href="connect.php?ac=login&op=init"><img src="image/qq_login.gif"></img></a></p>
-<!--{/if}-->
-
+					<!--{if $_SGLOBAL[connect]}-->
+					<br />
+					<p><a href="connect.php?ac=login&op=init"><img src="image/qq_login.gif"></img></a></p>
+					<!--{/if}-->
 				</form>
 			</div>
 		<!--{/if}-->

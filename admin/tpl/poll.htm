@@ -6,7 +6,7 @@
 		<form method="get" action="admincp.php">
 		<div class="block style4">
 			
-			<table cellspacing="3" cellpadding="3">
+			<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 			<!--{if $allowmanage}-->
 			<tr><th>作者UID</th><td><input type="text" name="uid" value="$_GET[uid]"></td>
 				<th>作者名</th><td><input type="text" name="username" value="$_GET[username]"></td>
@@ -83,7 +83,7 @@
 			<option value="1000"$perpages[1000]>一次处理1000个</option>
 			</select>
 			<input type="hidden" name="ac" value="poll">
-			<input type="submit" name="searchsubmit" value="搜索" class="submit">
+			<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 			</td>
 			</tr>
 			</table>
@@ -104,7 +104,7 @@
 			<!--{/loop}-->
 		
 		<!--{else}-->
-			<table cellspacing="0" cellpadding="0" class="formtable">
+			<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 			<tr><td width="25">&nbsp;</td><th>标题</th><!--{if $allowmanage}--><th width="80">作者</th><!--{/if}--><th width="80">参与数/评论</th><th width="80">时间</th><th width="80">操作</th></tr>
 			<!--{loop $list $value}-->
 			<tr>
@@ -132,7 +132,7 @@
 		<div class="footactions">
 			<!--{if $allowbatch && $perpage<=100}--><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选<!--{/if}-->
 			<input type="hidden" name="mpurl" value="$mpurl">
-			<input type="submit" name="deletesubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit">
+			<input type="submit" name="deletesubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit btn">
 		
 			<div class="pages">$multi</div>
 		</div>

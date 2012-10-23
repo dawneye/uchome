@@ -23,7 +23,7 @@ if(D_BUG && ckfounder($_SGLOBAL['supe_uid'])) {
 	.firsttd {border-left:none !important;}
 	.bold {font-weight:bold;}
 	</style>
-	<div id="uchome_debug" style="display:;">
+	<div id="uchome_debug" class="modal hide">
 EOF;
 	$class = 'tclass2';
 	if(empty($_SGLOBAL['debug_query'])) $_SGLOBAL['debug_query'] = array();

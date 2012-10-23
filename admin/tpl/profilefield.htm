@@ -7,7 +7,7 @@
 <div class="maininner">
 
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li$actives[view]><a href="admincp.php?ac=profilefield"><span>浏览全部栏目</span></a></li>
 		<li class="null"><a href="admincp.php?ac=profilefield&op=add">添加新用户栏目</a></li>
 	</ul>
@@ -19,7 +19,7 @@
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	<div class="bdrcontent">
 
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th>用户栏目</th>
 			<th>栏目字段名</th>
@@ -42,7 +42,7 @@
 	</div>
 	
 	<div class="footactions">
-		<input type="submit" name="ordersubmit" value="更新排序" class="submit">
+		<input type="submit" name="ordersubmit" value="更新排序" class="submit btn">
 	</div>
 	
 	</form>
@@ -64,7 +64,7 @@
 	
 	<div class="bdrcontent">
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:15em;">栏目名称</th><td><input type="text" name="title" value="$thevalue[title]"></td></tr>
 		<tr><th>表单类型</th><td>
 			<select name="formtype" onchange="formtypeShow(this.value)">
@@ -92,7 +92,7 @@
 	</div>
 		
 	<div class="footactions">
-		<input type="submit" name="fieldsubmit" value="提交" class="submit">
+		<input type="submit" name="fieldsubmit" value="提交" class="submit btn">
 	</div>
 	
 	</form>

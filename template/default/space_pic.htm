@@ -48,7 +48,7 @@
 		<!--{if $topic}-->
 		<p>
 			<img src="image/app/topic.gif" align="absmiddle">
-			发表话题：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
+			凑个热闹：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
 		<!--{/if}-->
 
 		<!--{if $do!='event' && $event[title]}-->
@@ -98,7 +98,7 @@
 
 		<!--{if $_SGLOBAL[supe_uid] == $pic[uid] || checkperm('managealbum')}-->
 		<a href="cp.php?ac=album&op=edittitle&albumid=$pic[albumid]&picid=$pic[picid]" id="a_set_title" onclick="ajaxmenu(event, this.id)">编辑说明</a><span class="pipe">|</span>
-		<a href="cp.php?ac=topic&op=join&id=$pic[picid]&idtype=picid" id="a_topicjoin_$pic[picid]" onclick="ajaxmenu(event, this.id)">发表话题</a><span class="pipe">|</span>
+		<a href="cp.php?ac=topic&op=join&id=$pic[picid]&idtype=picid" id="a_topicjoin_$pic[picid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
 		<a href="admincp.php?ac=pic&picid=$pic[picid]" target="_blank">删除</a><span class="pipe">|</span>
 		<!--{/if}-->
 

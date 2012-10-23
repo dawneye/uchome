@@ -564,6 +564,9 @@ if($op == 'add') {
 	}
 } elseif($op == 'search') {
 
+	$type = empty($_GET['type'])?'base':$_GET['type'];
+	$type_actives = array($op=>' class="active"');
+
 	@include_once(S_ROOT.'./data/data_profilefield.php');
 	$fields = empty($_SGLOBAL['profilefield'])?array():$_SGLOBAL['profilefield'];
 		

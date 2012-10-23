@@ -1,0 +1,31 @@
+<div id="space_event">
+	<h3 class="feed_header">
+		<a href="cp.php?ac=event" class="r_option pull-right" target="_blank">组织活动</a>
+		活动(共 $count 个)</h3>
+	<!--{if $eventlist}-->
+	<ul class="line_list">
+	<!--{loop $eventlist $event}-->
+		<li>
+			<p class="r_option pull-right">
+				<!--{if $event[grade] == 0}-->
+				<span class="event_state">待审核</span>
+				<!--{/if}-->
+				<!--{if $event[endtime]<$_SGLOBAL[timestamp]}-->
+				<span class="event_state">已结束</span>
+				<!--{elseif $event[deadline]<$_SGLOBAL[timestamp]}-->
+				<span class="event_state">报名截止</span>
+				<!--{/if}-->
+			</p>
+			<h4><a href="space.php?do=event&id=$event[eventid]" target="_blank">$event[title]</a><span class="gray">[<!--{$_SGLOBAL[eventclass][$event[classid]][classname]}-->]</span></h4>
+
+			<p><span class="gray">活动时间:</span> 	<!--{eval echo sgmdate("m月d日 H:i", $event[starttime])}--> - <!--{eval echo sgmdate("m月d日 H:i", $event[endtime])}--></p>
+			<p><span class="gray">活动地点:</span> 	$event[province] $event[city] $event[location]</p>
+		</li>
+	<!--{/loop}-->
+	</ul>
+	<div class="page">$multi</div>
+	
+	<!--{else}-->
+	<div class="c_form">还没有相关的活动。</div>
+	<!--{/if}-->
+</div>

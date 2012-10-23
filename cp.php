@@ -18,6 +18,9 @@ $acs = array('space', 'doing', 'upload', 'comment', 'blog', 'album', 'relatekw',
 $ac = (empty($_GET['ac']) || !in_array($_GET['ac'], $acs))?'profile':$_GET['ac'];
 $op = empty($_GET['op'])?'':$_GET['op'];
 
+//pauli
+$side_actives = array($ac => ' class="active"');
+
 //权限判断
 if(empty($_SGLOBAL['supe_uid'])) {
 	if($_SERVER['REQUEST_METHOD'] == 'GET') {

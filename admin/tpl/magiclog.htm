@@ -4,7 +4,7 @@
 <div class="maininner">
 
 	<div class="tabs_header">
-		<ul class="tabs">
+		<ul class="tabs nav nav-tabs">
 			<li$actives[holdlog]><a href="admincp.php?ac=magiclog&view=holdlog"><span>道具持有记录</span></a></li>
 			<li$actives[inlog]><a href="admincp.php?ac=magiclog&view=inlog"><span>道具获取记录</span></a></li>
 			<li$actives[uselog]><a href="admincp.php?ac=magiclog&view=uselog"><span>道具使用记录</span></a></li>
@@ -17,7 +17,7 @@
 <!--{if $_GET[view] == 'inlog'}-->
 	<form method="get" action="admincp.php">
 	<div class="block style4">
-	<table cellspacing="3" cellpadding="3">
+	<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 		<tr>
 			<!--{if $allowmanage}-->
 			<th>用户名</th><td><input type="text" name="username" value="$_GET[username]"></td>
@@ -64,7 +64,7 @@
 				<input type="text" name="endtime" value="$_GET[endtime]"  onclick="showcalendar(event,this,1)" />
 				<input type="hidden" name="view" value="$_GET[view]">
 				<input type="hidden" name="ac" value="magiclog">
-				<input type="submit" name="searchsubmit" value="搜索" class="submit">
+				<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 			</td>
 		</tr>
 		</table>
@@ -73,7 +73,7 @@
 	
 	<!--{if $list}-->
 	<div class="bdrcontent">
-	<table width="100%">
+	<table width="100%" class="table table-striped table-bordered table-hover">
 		<tr>
 			<th>用户</th>
 			<th>方式</th>
@@ -120,7 +120,7 @@
 <!--{elseif $_GET[view] == 'uselog'}-->
 	<form method="get" action="admincp.php">
 	<div class="block style4">
-	<table cellspacing="3" cellpadding="3">
+	<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 		<tr>
 			<!--{if $allowmanage}-->
 			<th>用户名</th><td><input type="text" name="username" value="$_GET[username]"></td>
@@ -165,7 +165,7 @@
 				<input type="text" name="endtime" value="$_GET[endtime]"  onclick="showcalendar(event,this,1)" />
 				<input type="hidden" name="view" value="$_GET[view]">
 				<input type="hidden" name="ac" value="magiclog">
-				<input type="submit" name="searchsubmit" value="搜索" class="submit">
+				<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 			</td>
 		</tr>
 		</table>
@@ -174,7 +174,7 @@
 	
 	<!--{if $list}-->	
 	<div class="bdrcontent">	
-	<table width="100%">
+	<table width="100%" class="table table-striped table-bordered table-hover">
 		<tr>
 			<th>用户</th>
 			<th>道具</th>
@@ -210,7 +210,7 @@
 		共售出道具 $totalcount 件，回收 $totalcredit 积分
 	</h3>
 	<br />
-	<table width="100%">
+	<table width="100%" class="table table-striped table-bordered table-hover">
 		<tr>
 			<th>道具</th>
 			<th>售出数</th>
@@ -237,7 +237,7 @@
 <!--{else}-->
 	<form method="get" action="admincp.php">
 	<div class="block style4">
-	<table cellspacing="3" cellpadding="3">
+	<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 		<tr>
 			<!--{if $allowmanage}-->
 			<th>用户UID</th><td><input type="text" name="uid" value="$_GET[uid]"></td>
@@ -259,7 +259,7 @@
 				</select>	
 				<input type="hidden" name="view" value="$_GET[view]">
 				<input type="hidden" name="ac" value="magiclog">
-				<input type="submit" name="searchsubmit" value="搜索" class="submit">		
+				<input type="submit" name="searchsubmit" value="搜索" class="submit btn">		
 			</td>
 		</tr>
 		</table>

@@ -4,7 +4,7 @@
 <div class="maininner">
 
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li><a href="#base"><span>基本设置</span></a></li>
 		<li><a href="#register"><span>注册显示</span></a></li>
 		<li><a href="#uch"><span>系统功能</span></a></li>
@@ -22,7 +22,7 @@
 
 	<div class="bdrcontent">
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">站点名称</th>
 		<td><input type="text" name="config[sitename]" value="$configs[sitename]" size="50"></td>
@@ -187,7 +187,7 @@
 		<a class="r_option" href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
 		<h3>注册和显示</h3>
 	</div>
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">关闭新用户注册</th>
 		<td>
@@ -358,7 +358,7 @@
 		<a class="r_option" href="javascript:;" onclick="window.scrollTo(0,0);" id="a_top" title="TOP">TOP</a>
 		<h3>系统功能</h3>
 	</div>
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">好友用户组个数</th>
 		<td><input type="text" name="config[groupnum]" value="$configs[groupnum]" size="5"> (默认为 8)
@@ -473,7 +473,7 @@
 		<h3>实名认证设置</h3>
 	</div>
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">开启实名</th>
 		<td><input type="radio" name="config[realname]" value="1"<!--{if $configs[realname] == '1'}--> checked<!--{/if}-->>是
@@ -590,7 +590,7 @@
 		<h3>视频认证设置</h3>
 	</div>
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">开启视频认证</th>
 		<td>
@@ -706,7 +706,7 @@
 		<h3>上传图片设置</h3>
 	</div>
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">预览缩略图大小</th>
 		<td>宽<input type="text" name="data[thumbwidth]" value="$datas[thumbwidth]" size="5">px &nbsp;
@@ -758,7 +758,7 @@
 		<h3>远程上传设置</h3>
 	</div>
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">启用远程附件</th>
 		<td><input type="radio" name="config[allowftp]" value="1"<!--{if $configs[allowftp] == 1}--> checked<!--{/if}-->>是
@@ -815,7 +815,7 @@
 		<h3>邮件设置</h3>
 	</div>
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">邮件发送方式</th>
 		<td><input class="radio" name="mail[mailsend]" value="1"<!--{if $mails[mailsend] == 1}--> checked<!--{/if}--> onclick="$('tb_smtp1').style.display = 'none';$('tb_smtp2').style.display = 'none';" type="radio"> 通过 PHP 函数的 sendmail 发送(推荐此方式)<br>
@@ -878,7 +878,7 @@
 		<p>请正确填写 APPID 与 APPKEY，如果还没有请 <a href="http://connect.qq.com/manage/" target="_blank">点击此处</a> 申请。</p>
 	</div>
 
-	<table class="formtable">
+	<table class="formtable table table-striped table-bordered table-hover">
 	<tr>
 		<th style="width:15em;">启用 QQ 互联设置</th>
 		<td><input type="radio" name="config[cloud_open]" value="1"<!--{if $configs[cloud_open] == 1}--> checked<!--{/if}-->>是
@@ -903,7 +903,7 @@
 	</div>
 
 	<div class="footactions">
-		<input type="submit" name="thevaluesubmit" value="提交" class="submit">
+		<input type="submit" name="thevaluesubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>

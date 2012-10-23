@@ -1,0 +1,322 @@
+<!--{template header}-->
+<div class="span10">
+
+<!--{if $op == "buy"}-->
+<!--{if $ac=='magic'}-->	
+<form id="magicbuy_$mid" action="cp.php?ac=magic&mid=$mid&op=buy" method="post">
+<!--{else}-->		
+<form id="magicbuy_$mid" action="magic.php?mid=$mid&op=buy&idtype=$idtype&id=$id{$extra}" method="post">
+<!--{/if}-->
+<h5 class="title modal-header">购买道具
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="modal-body toolly" id="__magicbuy_$mid">
+	<h5><img src="image/magic/{$mid}.gif" alt="$magic[name]" />$magic[name]</h5>
+	<p class="gray">$magic[description]</p>
+	<!--{if $magic[experience]}-->
+	<p>增加经验: <span>$magic[experience]</span></p>
+	<!--{/if}-->
+	<p>
+		道具单价: <span>$magic[charge]</span> 积分
+		<!--{if $discount > 0}-->
+		（享受 $discount 折优惠 <span>$charge</span> 积分 ）
+		<!--{elseif $discount < 0}-->
+		（享受 <span>免费</span> 折扣 ）
+		<!--{/if}-->				
+	</p>
+	<p>现有库存: <span>$magicstore[storage]</span> 个</p>
+	<p>购买数量: <input class="t_input span1" type="text" name="buynum" value="1"/> 个（当前最多可购买 $magicstore[maxbuy] 个）</p>
+	<!--{if $coupon[count]}-->
+	<p>用代金券: <input class="t_input span1" type="text" name="coupon" value="0"/> 张（每张抵用 100 积分，拥有 {$coupon[count]} 张）</p>
+	<!--{/if}-->
+</div>
+<div class="modal-footer">
+	<input type="hidden" name="refer" value="$_SGLOBAL[refer]"/>
+	<input type="hidden" name="buysubmit" value="1" />
+<!--{if $_SGLOBAL[inajax]}-->
+	<!--{if $ac=='magic'}-->
+	<input type="button" class="submit btn" id="buysubmit_btn" value="购买" onclick="ajaxpost('magicbuy_$mid', 'magicBought', 2000)" />
+	<!--{else}-->
+	<input type="button" class="submit btn" id="buysubmit_btn" value="购买" onclick="ajaxpost('magicbuy_$mid')" />
+	<!--{/if}-->
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+<!--{else}-->
+	<input type="submit" class="submit btn" id="buysubmit_btn" value="购买">
+<!--{/if}-->
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+
+<!--{elseif $op == "present"}-->
+<form id="magicpresent_$mid" action="cp.php?ac=magic&mid=$mid" method="post">
+<h5 class="title modal-header">赠送道具
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="popupmenu_inner modal-body" id="__magicpresent_$mid">
+	<p>要赠送的道具：$magic[name]</p>
+	<p>好友的用户名：<input type="text" name="fusername" /></p>
+</div>
+<div class="modal-footer">
+	<!--{if $_SGLOBAL[inajax]}-->
+	<input type="button" class="submit btn" name="presentsubmit_btn" value="赠送" onclick="ajaxpost('magicpresent_$mid', 'magicPresent', 2000)" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+	<!--{else}-->
+	<input type="submit" class="submit btn" name="presentsubmit_btn" value="赠送">
+	<!--{/if}-->
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash()}-->" />
+<input type="hidden" name="refer" value="$_SGLOBAL[refer]"/>
+<input type="hidden" name="presentsubmit" value="1" />
+</form>
+
+<!--{elseif $op == "showusage"}-->
+
+<h4>道具使用示例图</h4>
+<a class="float_del" title="关闭" href="javascript:hideMenu();">关闭</a>
+<div class="popupmenu_inner">
+	<img src="image/magic/usage/{$mid}.gif" />		
+</div>
+
+<!--{elseif $op == 'appear'}-->
+<form action="cp.php?ac=magic&op=$op" method="post" id="appearform">
+<h5 class="title modal-header">恢复在线状态
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="popupmenu_inner modal-body" id="__appearform">
+	<p>您确定要取消隐身效果，恢复在线状态吗？</p>
+</div>
+<div class="modal-footer">
+	<input type="submit" class="submit btn" value="确定" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash()}-->" />
+<input type="hidden" name="refer" value="$_SGLOBAL[refer]"/>
+<input type="hidden" name="appearsubmit" value="1" />
+</form>
+
+<!--{elseif $op == 'retrieve'}-->
+<form action="cp.php?ac=magic&op=$op" method="post" id="retrieveform">
+<h5 class="title modal-header">回收红包
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="popupmenu_inner modal-body" id="__retrieveform">
+	<p>回收红包</p>
+</div>
+<div class="modal-footer">
+	<input type="submit" class="submit btn" value="确定" />
+	<a href="javascript:hideMenu();" class="btn">取消</a>
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash()}-->" />
+<input type="hidden" name="refer" value="$_SGLOBAL[refer]"/>
+<input type="hidden" name="retrievesubmit" value="1" />
+</form>
+
+<!--{elseif in_array($op, array('cancelsuperstar', 'cancelflicker', 'cancelcolor', 'cancelframe', 'cancelbgimage'))}-->
+<form action="cp.php?ac=magic&op=$op&id=$_GET[id]&idtype=$_GET[idtype]" method="post" id="cancelform">
+<h5 class="title modal-header">取消道具效果
+	<a href="javascript:hideMenu();" class="float_del pull-right" title="关闭"> 关闭 </a>
+</h5>
+<div class="popupmenu_inner modal-body" id="__cancelform">
+	<p>您确定要取消道具 $_SGLOBAL[magic][$mid] 的效果吗？</p>
+</div>
+<div class="modal-footer">
+	<input type="submit" class="submit btn" value="确定" />
+	<a class="btn" title="关闭" href="javascript:hideMenu();">关闭</a>
+</div>
+<input type="hidden" name="formhash" value="<!--{eval echo formhash()}-->" />
+<input type="hidden" name="refer" value="$_SGLOBAL[refer]"/>
+<input type="hidden" name="cancelsubmit" value="1" />
+</form>
+
+<!--{else}-->
+
+	<h3 class="title">道具中心</h3>
+	<div class="tabs_header">
+		<ul class="tabs nav nav-tabs">
+			<li$actives[store]><a href="cp.php?ac=magic&view=store"><span>道具商店</span></a></li>
+			<li$actives[me]><a href="cp.php?ac=magic&view=me"><span>我的道具</span></a></li>
+			<li$actives[log]><a href="cp.php?ac=magic&view=log"><span>道具记录</span></a></li>
+		</ul>
+	</div>
+
+	<div style="float:none;">
+
+	<!--{if $_GET['view'] == "me"}-->
+			
+		<!--{if $mid}-->
+		<p class="notice">
+			当前只显示与你操作相关的单个道具，
+			<a href="cp.php?ac=magic&view=$_GET[view]">点击此处查看全部道具</a>
+		</p>
+		<p>&nbsp;</p>
+		<!--{/if}-->
+
+		<!--{if $list}-->
+		<table id="magiclist" class="magic_list table table-bordered table-striped table-hover">
+		<!--{loop $list $key=>$value}-->
+			<tr id="magic_$key">
+				<td class="magic_img"><img src="image/magic/{$key}.gif" alt="$magics[$key][name]" /></td>
+				<td class="magic_info"><h5>$magics[$key][name]</h5></td>
+				<td class="gray">$magics[$key][description]</td>
+				<td><a id="a_present_$key" href="cp.php?ac=magic&op=present&mid=$key" onclick="ajaxmenu(event, this.id, 1)" class="btn btn-primary m_button<!--{if $key=='license'}--> m_off<!--{/if}-->">赠送</a>
+				</td>
+				<td>拥有 <span id="magiccount_$key">$value[count]</span> 个</td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+		<!--{else}-->
+		<p>您还没有购买任何道具，<a href="cp.php?ac=magic&view=store">去道具商店看看</a></p>
+		<!--{/if}-->
+	<!--{elseif $_GET['view'] == 'log'}-->
+
+		<ul class="h_status nav nav-pills">
+		<li$types[in]><a href="cp.php?ac=magic&view=$_GET['view']&type=in">获得记录</a></li>
+		<li$types[present]><a href="cp.php?ac=magic&view=$_GET['view']&type=present">赠送记录</a></li>
+		<li$types[out]><a href="cp.php?ac=magic&view=$_GET['view']&type=out">使用记录</a></li>
+		</ul>
+
+		<!--{if $_GET[type] == 'in'}-->
+			<!--{if $list}-->
+			<ul class="line_list">
+				<!--{loop $list $value}-->
+				<li>
+					
+					<!--{if $value[type] == '3'}-->
+					升级获得
+					<!--{elseif $value[type] == '2'}-->
+					获得了
+					<!--{if $value[fromid]}-->
+					<a href="space.php?uid=$value[fromid]" target="_blank">$_SN[$value[fromid]]</a>
+					<!--{else}-->
+					管理员
+					<!--{/if}-->
+					赠送的
+					<!--{else}-->
+					购买了
+					<!--{/if}-->
+					<a href="cp.php?ac=magic&view=store&mid=$value[mid]" target="_blank">
+						$_SGLOBAL[magic][$value[mid]]
+					</a>
+					$value[count]
+					个
+					<span class="gray">(<!--{eval echo sgmdate('m-d H:i', $value[dateline], true)}-->)</span>
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<div class="page">$multi</div>
+			<!--{else}-->
+			<p>您近期没有道具收入记录</p>
+			<!--{/if}-->
+		<!--{elseif $_GET[type] == 'present'}-->
+			<!--{if $list}-->
+			<ul class="line_list">
+				<!--{loop $list $value}-->
+				<li>
+					向
+					<a href="space.php?uid=$value[uid]">$_SN[$value[uid]]</a>
+					赠送了
+					<a href="cp.php?ac=magic&view=store&mid=$value[mid]" target="_blank">
+						$_SGLOBAL[magic][$value[mid]]
+					</a>
+					<span class="gray">(<!--{eval echo sgmdate('m-d H:i', $value[dateline], true)}-->)</span>
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<div class="page">$multi</div>
+			<!--{else}-->
+			<p>您近期没有向他人赠送道具的记录</p>
+			<!--{/if}-->		
+		<!--{else}-->
+			<!--{if $list}-->
+			<ul class="line_list">
+				<!--{loop $list $value}-->
+				<li>
+					使用了
+					<a href="cp.php?ac=magic&view=store&mid=$value[mid]" target="_blank">$_SGLOBAL[magic][$value[mid]]</a>
+					$value[count] 次
+				<!--{if $value['mid'] == 'invisible'}-->
+					; &nbsp;失效时间：<!--{eval echo sgmdate('m-d H:i', $value[expire])}-->
+				<!--{elseif $value['mid'] == 'gift'}-->
+					; &nbsp;剩余积分数：$value[data][left]
+				<!--{elseif $value['mid'] == 'superstar'}-->
+					; &nbsp;失效时间：<!--{eval echo sgmdate('m-d H:i', $value[expire])}-->
+				<!--{/if}-->
+					<span class="gray">(<!--{eval echo sgmdate('m-d H:i', $value[dateline], true)}-->)</span>
+				</li>
+				<!--{/loop}-->
+			</ul>
+			<div class="page">$multi</div>
+			<!--{else}-->
+			<p>您近期没有道具使用记录</p>
+			<!--{/if}-->
+		<!--{/if}-->
+
+	<!--{else}-->
+		<ul class="h_status nav nav-pills">
+			<li $orders['default']><a href="cp.php?ac=magic&view=$view&order=defalut">默认排序</a></li>
+			<li $orders['hot']><a href="cp.php?ac=magic&view=$view&order=hot">热门</a></li>
+		</ul>
+
+		<!--{if $mid}-->
+		<p class="notice">
+			当前只显示与你操作相关的单个道具，
+			<a href="cp.php?ac=magic&view=$_GET[view]">点击此处查看全部道具</a>
+		</p>
+		<p>&nbsp;</p>
+		<!--{/if}-->
+
+		<table id="magiclist" class="magic_list table table-bordered table-striped table-hover">
+		<!--{loop $list $key=>$value}-->
+			<tr id="magic_$key">
+				<td class="magic_img">
+					<a id="a_i_buy_$key" href="cp.php?ac=magic&op=buy&mid=$key" onclick="ajaxmenu(event, this.id, 1)">
+					<img src="image/magic/{$key}.gif" alt="$magics[$key][name]" />
+					</a>
+				</td>
+				<td class="magic_info">
+					<h5>$magics[$key][name]
+						<!--{if $_GET[order] == 'hot'}-->
+						<small class="gray" style="margin-left:10px;">已售出 $value[sellcount] 件</small>
+						<!--{/if}-->
+					</h5>
+				</td>
+				<td class="gray">$magics[$key][description]</td>
+				<td>
+					<!--{if in_array($space[groupid], $magics[$key][forbiddengid]) || in_array($mid, $blacklist)}-->
+					<a id="a_buy_$key" href="cp.php?ac=magic&op=buy&mid=$key" onclick="ajaxmenu(event, this.id, 1)" class="m_button btn m_off disabled">不能购买</a>
+					<!--{else}-->
+					<a id="a_buy_$key" href="cp.php?ac=magic&op=buy&mid=$key" onclick="ajaxmenu(event, this.id, 1)" class="m_button btn">购买</a>
+					<!--{/if}-->
+				</td>
+				<td><span>$magics[$key][charge]</span> 积分/个</td>
+			</tr>
+		<!--{/loop}-->
+		</table>
+	<!--{/if}-->
+
+	</div><!--//<div id="content" style="float:none;width:690px;">//-->
+	<script type="text/javascript">
+	<!--
+	function magicBought(id, result) {
+		var ids = explode('_', id);
+		var mid = ids[1];
+		if($('a_buy_'+mid)) {
+			$('a_buy_'+mid).innerHTML = '继续购买';
+		}
+	}
+	function magicPresent(id, result) {
+		var ids = explode('_', id);
+		var mid = ids[1];
+		if($('a_present_'+mid)) {
+			$('a_present_'+mid).innerHTML = '继续赠送';
+		}
+		if($('magiccount_'+mid)) {
+			$('magiccount_'+mid).innerHTML = parseInt($('magiccount_'+mid).innerHTML) - 1;
+		}
+	}
+	-->
+	</script>
+
+<!--{/if}-->
+</div>
+<!--{template footer}-->

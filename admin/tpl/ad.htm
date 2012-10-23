@@ -8,7 +8,7 @@
 <div class="maininner">
 
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li$actives[view]><a href="admincp.php?ac=ad"><span>浏览广告</span></a></li>
 		<li class="null"><a href="admincp.php?ac=ad&op=add">添加新广告</a></li>
 	</ul>
@@ -26,7 +26,7 @@
 			<p>广告位置已经内置，根据需要自己填写要显示的广告内容就可以了</p>
 		</div>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th>标题</th>
 			<th width="24%">页面位置</th>
@@ -50,7 +50,7 @@
 		</div>
 	
 
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th>标题</th>
 			<th width="32%">调用广告</th>
@@ -69,7 +69,7 @@
 	
 	<div class="footactions">
 		<input type="checkbox" name="chkall" onclick="checkAll(this.form, 'adid')">全选
-		<input type="submit" name="delsubmit" value="批量删除" class="submit">
+		<input type="submit" name="delsubmit" value="批量删除" class="submit btn">
 	</div>
 	
 	</form>
@@ -91,7 +91,7 @@
 	
 	<div class="bdrcontent">
 		
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:12em;">广告类型</th>
 		<td><input type="radio" name="system" value="1" $systems[1] onclick="$('style_system').style.display='';">系统内置广告 
 			<input type="radio" name="system" value="0" $systems[0] onclick="$('style_system').style.display='none';">用户自定义广告
@@ -195,7 +195,7 @@
 	
 	<div class="footactions">
 		<input type="hidden" name="adid" value="$advalue[adid]">
-		<input type="submit" name="adsubmit" value="提交" class="submit">
+		<input type="submit" name="adsubmit" value="提交" class="submit btn">
 	</div>
 
 	</form>

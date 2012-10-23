@@ -878,7 +878,7 @@ function obclean() {
 
 //模板调用
 function template($name) {
-	global $_SCONFIG, $_SGLOBAL;
+	global $_SCONFIG, $_SC, $_SGLOBAL;
 
 	if($_SGLOBAL['mobile']) {
 		$objfile = S_ROOT.'./api/mobile/tpl_'.$name.'.php';
@@ -889,10 +889,15 @@ function template($name) {
 		if(strexists($name,'/')) {
 			$tpl = $name;
 		} else {
+			//pauli
+			if($_SCONFIG['template'] == 'bootstrap' && $_SGLOBAL['inajax'] == 1 && file_exists(S_ROOT.'./template/bootstrap/'.$name.'_ajax'.'.htm')){
+				$name = $name.'_ajax';
+			}
+			
 			$tpl = "template/$_SCONFIG[template]/$name";
 		}
 		$objfile = S_ROOT.'./data/tpl_cache/'.str_replace('/','_',$tpl).'.php';
-		if(!file_exists($objfile)) {
+		if($_SC['envmode'] == 'develop' || !file_exists($objfile)) {	//如果是开发调试模式，不读取缓存，永远读取模板
 			include_once(S_ROOT.'./source/function_template.php');
 			parse_template($tpl);
 		}
@@ -1493,6 +1498,10 @@ function mkfeed($feed, $actors=array()) {
 	} else {
 		$feed['icon_image'] = "http://appicon.manyou.com/icons/{$feed['icon']}";
 	}
+
+//pauli
+$all_models = array('activity' => '活动', 'click' => '点击', 'debate' => '辩论', 'event' => '事件', 'goods' => '商品', 'mtag' => '群组', 'pm' => '私信', 'post' => '发表', 'reward' => '奖励', 'sitefeed' => '动态', 'thunder' => '雷鸣', 'video' => '视频', 'album' => '相册', 'comment' => '评论', 'discuz' => '论坛', 'file' => '文件', 'magic' => '道具', 'network' => '网络', 'poke' => 'poke?', 'profile' => '资料', 'share' => '分享', 'task' => '任务', 'trace' => '足迹', 'wall' => '心墙', 'blog' => '日志', 'credit' => '信誉', 'doing' => '记录', 'friend' => '好友', 'mood' => '心情', 'notice' => '通知', 'poll' => '投票', 'report' => '报告', 'show' => '显示', 'thread' => '主题', 'userapp' => '应用');
+$feed['icon_text'] = $all_models[$feed['icon']];
 
 	//阅读
 	$feed['style'] = $feed['target'] = '';

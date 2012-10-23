@@ -1,7 +1,8 @@
+
 <!--{if $menus[0]}-->
-	<div class="block style1">
-		<h2>基本设置</h2>
-		<ul class="folder">
+	<div class="block style1 accordion-group">
+		<h2 class="accordion-toggle" data-toggle="collapse" data-target="#collapse1"><i class="icon-pencil"></i> 基本设置 </h2>
+		<ul id="collapse1" class="accordion-body collapse <!--{if empty($_GET['ac']) || in_array($_GET['ac'], $acs[0])}-->in<!--{/if}--> folder">
 		<!--{loop $acs[0] $value}-->
 		<!--{if $menus[0][$value]}-->
 		<!--{if $ac==$value}--><li class="active"><!--{else}--><li><!--{/if}--><a href="admincp.php?ac=$value">{$_TPL[menunames][$value]}</a></li>
@@ -11,9 +12,9 @@
 	</div>
 <!--{/if}-->
 
-	<div class="block style1">
-		<h2>批量管理</h2>
-		<ul class="folder">
+	<div class="block style1 accordion-group">
+		<h2 class="accordion-toggle" data-toggle="collapse" data-target="#collapse2"><i class="icon-list"></i> 批量管理 </h2>
+		<ul id="collapse2" class="accordion-body collapse <!--{if in_array($_GET['ac'], $acs[3])}-->in<!--{/if}--> folder">
 		<!--{loop $acs[3] $value}-->
 		<!--{if $ac==$value}--><li class="active"><!--{else}--><li><!--{/if}--><a href="admincp.php?ac=$value">{$_TPL[menunames][$value]}</a></li>
 		<!--{/loop}-->
@@ -26,9 +27,9 @@
 	</div>
 	
 <!--{if $menus[2]}-->
-	<div class="block style1">
-		<h2>高级设置</h2>
-		<ul class="folder">
+	<div class="block style1 accordion-group">
+		<h2 class="accordion-toggle" data-toggle="collapse" data-target="#collapse3"><i class="icon-wrench"></i> 高级设置 </h2>
+		<ul id="collapse3" class="accordion-body collapse <!--{if in_array($_GET['ac'], $acs[2])}-->in<!--{/if}--> folder">
 		<!--{loop $acs[2] $value}-->
 		<!--{if $menus[2][$value]}-->
 		<!--{if $ac==$value}--><li class="active"><!--{else}--><li><!--{/if}--><a href="admincp.php?ac=$value">{$_TPL[menunames][$value]}</a></li>

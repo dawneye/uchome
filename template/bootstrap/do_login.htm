@@ -1,0 +1,123 @@
+<!--{eval $_TPL['nosidebar']=1;}-->
+<!--{template header}-->
+
+<div class="span6 offset3">
+<div class="well">
+<legend><h2>登录</h2></legend>
+<form id="loginform" name="loginform" action="do.php?ac=$_SCONFIG[login_action]&$url_plus&ref" method="post" class="c_form form-horizontal">
+<!--{if $invitearr}-->
+	<div class="control-group">
+		<label class="control-label">好友邀请</label>
+		<div class="controls">
+			<a href="space.php?$url_plus" target="_blank"><!--{avatar($invitearr[uid],small)}--></a>
+			<a href="space.php?$url_plus" target="_blank">{$_SN[$invitearr[uid]]}</a>
+		</div>
+	</div>
+<!--{/if}-->
+
+<!--{if $_SCONFIG['seccode_login']}-->
+<!--{if $_SCONFIG['questionmode']}-->
+	<div class="control-group">
+		请先回答问题：
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="seccode"><!--{eval question();}--></label>
+		<div class="controls">
+			<input type="text" id="seccode" name="seccode" value="" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;<span id="checkseccode">&nbsp;</span>
+		</div>
+	</div>
+<!--{else}-->
+	<div class="control-group">
+		请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="seccode">验证码</label>
+		<div class="controls">
+			<input type="text" id="seccode" name="seccode" value="" tabindex="1" class="t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />
+			<span class="help-inline" id="checkseccode">&nbsp;</span>
+		</div>
+	</div>
+<!--{/if}-->
+<!--{else}-->
+	<div class="control-group">
+		<label class="control-label" for="username">用户名</label>
+		<div class="controls">
+			<input type="text" name="username" id="username" class="t_input" value="$membername" tabindex="2" placeholder="用户名" />
+			<a class="help-inline" href="do.php?ac=$_SCONFIG[register_action]" >注册帐号</a>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="password">密码</label>
+		<div class="controls">
+			<input type="password" name="password" id="password" class="t_input" tabindex="3" value="$password" placeholder="密码">
+			<a class="help-inline" href="do.php?ac=lostpasswd">忘记密码</a>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<label class="checkbox"><input type="checkbox" id="cookietime" name="cookietime" tabindex="4" value="315360000" $cookiecheck >记住密码</label>
+		</div>
+	</div>
+	<div class="control-group">
+		<button type="submit" class="submit btn span3 offset1 btn-large btn-primary" tabindex="5" >登  录</button>
+	</div>
+	<div class="prettyprint">
+		<a href="javascript:void(0);"><img src="./template/bootstrap/image/connect-weibo.png" alt="无"></a>
+		<a href="connect.php?ac=login&op=init"><img src="./template/bootstrap/image/connect-qq.png" alt="无"></a>
+	</div>
+
+<!--{/if}-->
+<input type="hidden" id="loginsubmit" name="loginsubmit" value="登录" />
+<input type="hidden" name="refer" value="$refer" />
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+</form>
+</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+	var lastSecCode = '';
+	function checkSeccode() {
+		var seccodeVerify = $('seccode').value;
+		if(seccodeVerify == lastSecCode) {
+			return;
+		} else {
+			lastSecCode = seccodeVerify;
+		}
+		ajaxresponse('checkseccode', 'op=checkseccode&seccode=' + (is_ie && document.charset == 'utf-8' ? encodeURIComponent(seccodeVerify) : seccodeVerify));
+	}
+	function ajaxresponse(objname, data) {
+		var x = new Ajax('XML', objname);
+		x.get('do.php?ac=$_SCONFIG[register_action]&' + data, function(s){
+			var obj = $(objname);
+			s = trim(s);
+			if(s.indexOf('succeed') > -1) {
+				obj.style.display = '';
+				obj.innerHTML = '<img src="image/check_right.gif" width="13" height="13">';
+				obj.className = "warning";
+			} else {
+				warning(obj, s);
+			}
+		});
+	}
+	function warning(obj, msg) {
+		if((ton = obj.id.substr(5, obj.id.length)) != 'password2') {
+			$(ton).select();
+		}
+		obj.style.display = '';
+		obj.innerHTML = '<img src="image/check_error.gif" width="13" height="13"> &nbsp; ' + msg;
+		obj.className = "warning";
+	}
+
+</script>
+
+<!--{if $_SGLOBAL['input_seccode']}-->
+<script>
+$('seccode').style.background = '#FFFFCC';
+$('seccode').focus();
+</script>
+<!--{/if}-->
+
+<!--{template footer}-->

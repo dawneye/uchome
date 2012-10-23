@@ -82,6 +82,7 @@
 				<td>
 				<a id="doodleBox" href="magic.php?mid=doodle&showid=blog_doodle&target=uchome-ttHtmlEditor&from=editor" style="display:none"></a>
 				<textarea class="userData" name="message" id="uchome-ttHtmlEditor" style="height:100%;width:100%;display:none;border:0px">$blog[message]</textarea>
+				<iframe src="editor.php?charset=$_SC[charset]&allowhtml=$allowhtml&doodle=<!--{if isset($_SGLOBAL[magic][doodle])}-->1<!--{/if}-->" name="uchome-ifrHtmlEditor" id="uchome-ifrHtmlEditor" scrolling="no" border="0" frameborder="0" style="width:100%;border: 1px solid #C5C5C5;" height="400"></iframe>
 				</td>
 			</tr>
 		</table>
@@ -245,15 +246,6 @@
 		</tr>
 	</table>
 </div>
-<script type="text/javascript" charset="utf-8" src="./extend/editor/kindeditor.js"></script>
-<script type="text/javascript" charset="utf-8" src="./extend/editor/lang/zh_CN.js"></script>
-<script type="text/javascript">
-var editor;
-KindEditor.ready(function(K) {
-editor = K.create('textarea[name="message"]', {
-	allowFileManager : false
-});
-});
-</script>
+
 <!--{/if}-->
 <!--{template footer}-->

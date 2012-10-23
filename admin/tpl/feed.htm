@@ -5,7 +5,7 @@
 
 <!--{if $allowmanage}-->
 <div class="tabs_header">
-	<ul class="tabs">
+	<ul class="tabs nav nav-tabs">
 		<li$actives[all]><a href="admincp.php?ac=feed"><span>浏览全部动态</span></a></li>
 		<li$actives[site]><a href="admincp.php?ac=feed&uid=0"><span>浏览全局动态</span></a></li>
 		<li class="null"><a href="admincp.php?ac=feed&op=add">发布全局动态</a></li>
@@ -17,7 +17,7 @@
 	
 	<form method="get" action="admincp.php">
 	<div class="block style4">
-		<table cellspacing="3" cellpadding="3">
+		<table cellspacing="3" cellpadding="3" class="table table-striped table-bordered table-hover">
 
 		<!--{if $allowmanage}-->
 		<tr><th>作者UID</th><td><input type="text" name="uid" value="$_GET[uid]"></td>
@@ -55,7 +55,7 @@
 		<option value="1000"$perpages[1000]>一次处理1000个</option>
 		</select>
 		<input type="hidden" name="ac" value="feed">
-		<input type="submit" name="searchsubmit" value="搜索" class="submit">
+		<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
 		</td>
 		</tr>
 		</table>
@@ -74,13 +74,12 @@
 
 	<script language="javascript" src="image/editor/editor_function.js"></script>
 	<div class="bdrcontent">
-		<table cellspacing="3" cellpadding="3" width="100%">
+		<table cellspacing="3" cellpadding="3" width="100%" class="table table-striped table-bordered table-hover">
 
 		<!--{if empty($feed[uid])}-->
 		<tr><th width="150">动态标题</th><td><input type="text" name="title_template" value="$feed[title_template]" size="100"> <br>支持html，例如：加粗 &lt;b>&lt;/b>，变色 &lt;font color=red>&lt;/font></td></tr>
 		<tr><th>动态内容</th><td>
-			<textarea class="userData" name="body_template" id="uchome-ttHtmlEditor" style="height:100%;width:100%;display:none;border:0px">$feed[body_template]</textarea>
-			<iframe src="editor.php?charset=$_SC[charset]&allowhtml=1" name="uchome-ifrHtmlEditor" id="uchome-ifrHtmlEditor" scrolling="no" border="0" frameborder="0" style="width:100%;border: 1px solid #C5C5C5;" height="400"></iframe>
+			<textarea class="userData" name="body_template" id="uchome-ttHtmlEditor" style="height:100%;width:100%;">$feed[body_template]</textarea>
 		</td></tr>
 		<tr><th>动态备注</th><td><input type="text" name="body_general" value="$feed[body_general]" size="60"> (支持html)</td></tr>
 		<!--{else}-->
@@ -113,7 +112,7 @@
 		<input type="hidden" name="id" value="$feed[id]">
 		<input type="hidden" name="idtype" value="$feed[idtype]">
 		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-		<input type="submit" name="feedsubmit" value="提交保存" class="submit"<!--{if empty($feed[uid])}--> onclick="edit_save();"<!--{/if}-->>
+		<input type="submit" name="feedsubmit" value="提交保存" class="submit btn"<!--{if empty($feed[uid])}--> onclick="edit_save();"<!--{/if}-->>
 		<!--{if $feed[feedid]}-->
 		&nbsp; <a href="admincp.php?ac=feed&op=delete&feedid=$feed[feedid]" onclick="return confirm('确定要删除吗？');">删除此动态</a>
 		<!--{/if}-->
@@ -181,7 +180,7 @@
 		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选
 		<!--{/if}--> 
 		<input type="hidden" name="mpurl" value="$mpurl">
-		<input type="submit" name="deletesubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit">
+		<input type="submit" name="deletesubmit" value="批量删除" onclick="return confirm('本操作不可恢复，确认删除？');" class="submit btn">
 
 		<div class="pages">$multi</div>
 	</div>

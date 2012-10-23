@@ -4,7 +4,7 @@
 <div class="maininner">
 
 	<div class="tabs_header">
-		<ul class="tabs">
+		<ul class="tabs nav nav-tabs">
 			<li$actives[view]><a href="admincp.php?ac=block"><span>浏览全部模块</span></a></li>
 			<li class="null"><a href="admincp.php?ac=block&op=add">添加新模块</a></li>
 		</ul>
@@ -20,7 +20,7 @@
 	<br />
 	<div class="bdrcontent">
 
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr>
 			<th>名称</th>
 			<th width="220">调用代码</th>
@@ -45,7 +45,7 @@
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	<div class="bdrcontent">
 			<div class="tabs_header"id="sqlGuide" style="display:none;">
-		<ul class="tabs">
+		<ul class="tabs nav nav-tabs">
 			<li id="li_<!--{eval echo tname('blog');}-->"><a id="a_select_<!--{eval echo tname('blog');}-->" href="javascript:void(0);" onclick="javascript:showSQLDiv('<!--{eval echo tname('blog');}-->');"><span>日志</span></a></li>
 			<li id="li_<!--{eval echo tname('album');}-->"><a id="a_select_<!--{eval echo tname('album');}-->" href="javascript:void(0);" onclick="javascript:showSQLDiv('<!--{eval echo tname('album');}-->');"><span>相册</span></a></li>
 			<li id="li_<!--{eval echo tname('thread');}-->"><a id="a_select_<!--{eval echo tname('thread');}-->" href="javascript:void(0);" onclick="javascript:showSQLDiv('<!--{eval echo tname('thread');}-->');"><span>话题</span></a></li>
@@ -56,10 +56,10 @@
 			<li id="li_sqlDiy"><a id="a_select_sqlDiy" href="javascript:void(0);" onclick="javascript:showSQLDiv('sqlDiy');"><span>手写SQL</span></a></li>
 		</ul>
 		</div>
-		<table cellspacing="0" cellpadding="0" class="formtable">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 		<tr><th style="width:10em;">模块名称</th><td><input type="text" name="blockname" value="$block[blockname]"></td></tr>
 		</table>
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['blog']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['blog']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tr><th>指定日志blogid</th><td>
 			<input type="radio" name="sqluseid_{$sqlTables['blog']}" value="0" onclick="javascript:setRadioValue('{$sqlTables['blog']}_where', '{$sqlTables['blog']}_ids');" checked />不指定
@@ -128,7 +128,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['album']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['album']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tr><th>指定相册albumid</th><td>
 			<input type="radio" name="sqluseid_{$sqlTables['album']}" value="0" onclick="javascript:setRadioValue('{$sqlTables['album']}_where', '{$sqlTables['album']}_ids');" checked />不指定
@@ -207,7 +207,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['thread']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['thread']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tr><th>话题threadid</th><td>
 			<input type="radio" name="sqluseid_{$sqlTables['thread']}" value="0" onclick="javascript:setRadioValue('{$sqlTables['thread']}_where', '{$sqlTables['thread']}_ids');" checked />不指定
@@ -277,7 +277,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['feed']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['feed']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tbody id="{$sqlTables['feed']}_where">
 			<tr><th>动态feedid</th><td><input type="text" id="{$sqlTables['feed']}_where_feedid" value="" /> 多个动态的 feedid 请用“,”格开</td></tr>
@@ -302,7 +302,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['space']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['space']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tr><th>指定用户uid</th><td>
 			<input type="radio" name="sqluseid_{$sqlTables['space']}" value="0" onclick="javascript:setRadioValue('{$sqlTables['space']}_where', '{$sqlTables['space']}_ids');" checked />不指定
@@ -315,7 +315,7 @@
 		<tbody id="{$sqlTables['space']}_where">
 			<tr><th>积分数范围</th><td><input type="text" id="{$sqlTables['space']}_where_credit_min" value="" /> ~ <input type="text" id="{$sqlTables['space']}_where_credit_max" value="" /></td></tr>
 			<tr><th>指定用户组</th><td>
-				<table cellpadding="0" cellspacing="0" class="formtable"><tr>
+				<table cellpadding="0" cellspacing="0" class="formtable table table-striped table-bordered table-hover"><tr>
 				<!--{eval $i = 0;}-->
 				<!--{loop $usergrouparr $gid $value}-->
 				<!--{if !empty($i) && 0 == $i % 3}--></tr><tr><!--{/if}-->
@@ -406,7 +406,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['mtag']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['mtag']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tr><th>指定群组tagid</th><td>
 			<input type="radio" name="sqluseid_{$sqlTables['mtag']}" value="0" onclick="javascript:setRadioValue('{$sqlTables['mtag']}_where', '{$sqlTables['mtag']}_ids');" checked />不指定
@@ -419,7 +419,7 @@
 		<tbody id="{$sqlTables['mtag']}_where">
 			<tr><th>群组人数</th><td><input type="text" id="{$sqlTables['mtag']}_where_membernum_min" value="" /> ~ <input type="text" id="{$sqlTables['mtag']}_where_membernum_max" value="" /></td></tr>
 			<tr><th>群组分类</th><td>
-				<table cellpadding="0" cellspacing="0" class="formtable"><tr>
+				<table cellpadding="0" cellspacing="0" class="formtable table table-striped table-bordered table-hover"><tr>
 				<!--{eval $i = 0;}-->
 				<!--{loop $list $value}-->
 				<!--{if !empty($i) && 0 == $i % 3}--></tr><tr><!--{/if}-->
@@ -444,7 +444,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="{$sqlTables['pic']}" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="{$sqlTables['pic']}" style="display:none;">
 		<tr><th style="width:10em;">过滤设置</th><td></td></tr>
 		<tbody id="{$sqlTables['pic']}_where">
 			<tr><th>相册albumid</th><td><input type="text" id="{$sqlTables['pic']}_where_albumid" value="" /> 多个相册的 albumid 请用“,”格开</td></tr>
@@ -461,7 +461,7 @@
 			<option value="DESC">递减</option>
 			</select></td></tr></table>
 		
-		<table cellspacing="0" cellpadding="0" class="formtable" id="sqlDiy" style="display:none;">
+		<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover" id="sqlDiy" style="display:none;">
 		<tr><th style="width:10em;">数据调用SQL</th><td><textarea id="blocksql" name="blocksql" style="width:98%;" rows="6">$block[blocksql]</textarea>
 			<br />本功能需要你掌握一定的SQL编写知识。
 			<br />本数据调用只支持编写 SELECT 开头的查询SQL。
@@ -476,7 +476,7 @@
 	
 	<div class="footactions">
 		<input type="hidden" name="bid" value="$block[bid]">
-		<input type="submit" name="valuesubmit" value="提交" class="submit">
+		<input type="submit" name="valuesubmit" value="提交" class="submit btn">
 	</div>
 	
 	<script language="javascript" type="text/javascript">
@@ -671,7 +671,7 @@
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	<div class="bdrcontent">
 	
-	<table cellspacing="0" cellpadding="0" class="formtable">
+	<table cellspacing="0" cellpadding="0" class="formtable table table-striped table-bordered table-hover">
 	<tr><th style="width:10em;">查询SQL语句</th><td>
 	$block[blocksql]
 	<br />[<a href="$turl&op=blocksql&id=$block[bid]">编辑SQL</a>]
@@ -701,12 +701,12 @@
 	
 	<!--{if $colnames}-->
 	<tr><th>数据预览</th><td>
-		<input type="button" class="submit" id="preview" name="preview" value="预览" />
+		<input type="button" class="submit btn" id="preview" name="preview" value="预览" />
 		<div id="previewBlock" style="border:1px solid #BBB;padding:2px;margin-top:3px;">数据预览</div></td></tr>
 	
 	<tr><th>可调用字段实例</th>
 	<td>
-		<table cellspacing="1" cellpadding="0" bgcolor="#CCCCCC">
+		<table cellspacing="1" cellpadding="0" bgcolor="#CCCCCC" class=" table table-striped table-bordered table-hover">
 		<tr bgcolor="#F3F3F3"><th>&nbsp;字段名 </th><th>&nbsp;数据实例&nbsp;</th></tr>
 		<!--{loop $colnames $key $value}-->
 		<tr><td bgcolor="#F5F5F5">&nbsp;$key&nbsp;</td><td bgcolor="#FFFFFF">&nbsp;$value&nbsp;</td></tr>
@@ -720,7 +720,7 @@
 	
 	<div class="footactions">
 		<input type="hidden" name="bid" value="$block[bid]">
-		<input type="submit" name="codesubmit" value="提交" class="submit">
+		<input type="submit" name="codesubmit" value="提交" class="submit btn">
 	</div>
 	
 	</form>
@@ -789,7 +789,7 @@
 	<div class="bdrcontent">
 	<div class="title"><h3>模版调用代码</h3></div>
 
-	<table cellspacing="0" cellpadding="0" width="100%">
+	<table cellspacing="0" cellpadding="0" width="100%" class=" table table-striped table-bordered table-hover">
 	<tr><td>请将以下代码复制，放到站点模板的任意页面的指定位置即可。</td></tr>
 	<tr><td><input type="text" name="blockcode" value="$code" size="80"></td></tr>
 	</table>
@@ -800,7 +800,7 @@
 	<div class="bdrcontent">
 	<div class="title"><h3>Javascript调用代码</h3></div>
 
-	<table cellspacing="0" cellpadding="0" width="100%">
+	<table cellspacing="0" cellpadding="0" width="100%" class=" table table-striped table-bordered table-hover">
 	<tr><td><textarea name="blockcode" style="width:98%;" rows="5">$code</textarea></td></tr>
 	</table>
 	</div>

@@ -68,7 +68,7 @@
 							<!--{if $topic}-->
 							<p style="padding:5px 0;">
 								<img src="image/app/topic.gif" align="absmiddle">
-								<strong>发表话题</strong>：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
+								<strong>凑个热闹</strong>：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
 							<!--{/if}-->
 
 							<!--{if !$eventid && $thread[eventid] && $event}-->
@@ -117,7 +117,7 @@
 						<a href="cp.php?ac=thread&op=delete&pid=$thread[content][pid]&tagid=$thread[tagid]<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->" id="p_$thread[content][pid]_delete" onclick="ajaxmenu(event, this.id)">删除</a>
 						<!--{/if}-->
 						<!--{if $thread[uid]==$_SGLOBAL[supe_uid] || checkperm('managethread')}-->
-						<a href="cp.php?ac=topic&op=join&id=$thread[tid]&idtype=tid" id="a_topicjoin_$thread[tid]" onclick="ajaxmenu(event, this.id)">发表话题</a><span class="pipe">|</span>
+						<a href="cp.php?ac=topic&op=join&id=$thread[tid]&idtype=tid" id="a_topicjoin_$thread[tid]" onclick="ajaxmenu(event, this.id)">凑热闹</a><span class="pipe">|</span>
 						<!--{/if}-->
 						<!--{if checkperm('managethread')}-->
 						<a href="cp.php?ac=thread&tid=$thread[tid]&op=edithot" id="a_hot_$thread[tid]" onclick="ajaxmenu(event, this.id)">热度</a><span class="pipe">|</span>

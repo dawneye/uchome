@@ -1,0 +1,13 @@
+<script type="text/javascript" charset="utf-8" src="template/$_SCONFIG[template]/editor/kindeditor.js"></script>
+<script type="text/javascript" charset="utf-8" src="template/$_SCONFIG[template]/editor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('textarea[id="uchome-ttHtmlEditor"]', {
+	allowFileManager : false,
+	width: '670px',
+	resizeMode: 1,
+	filterMode : <!--{eval echo checkperm('allowhtml')}-->
+});
+});
+</script>

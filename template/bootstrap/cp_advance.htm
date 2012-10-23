@@ -1,0 +1,30 @@
+<!--{template header}-->
+<div class="span10">
+<!--{template cp_header}-->
+<h4>高级管理</h4>
+<p>通过高级管理，您可以对自己的日志、图片、留言等进行批量删除管理。为了保护您的数据安全，请再次输入您的账户密码以登录高级管理平台。</p>
+<form method="post" action="admincp.php" class="form-horizontal">
+<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+  <div class="control-group">
+    <label class="control-label">用户名</label>
+    <div class="controls">
+      <input type="text" value="$_SGLOBAL[username]" disabled="disabled" />
+	  <span class="help-inline"> <a href="cp.php?ac=common&op=logout">退出</a></span>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password">密码</label>
+    <div class="controls">
+      <input type="password" name="password" placeholder="密码" />
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" name="btnsubmit" value="进入管理平台" class="btn btn-primary" />
+    </div>
+  </div>
+<input type="hidden" name="loginsubmit" value="true" />
+<input type="hidden" name="refer" value="$_SGLOBAL[refer]" />
+</form>
+</div>
+<!--{template footer}-->
