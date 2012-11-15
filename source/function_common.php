@@ -1603,7 +1603,7 @@ function avatar($uid, $size='small', $returnsrc = FALSE) {
 	if(ckavatar($uid)){
 		$avatarfile = UC_API.'/data/avatar/'.avatar_file($uid, $size);
 	} else {
-		$avatarfile = "/images/noavatar_$size.jpg";
+		$avatarfile = UC_API."/images/noavatar_$size.gif";
 	}
 	return $returnsrc ? $avatarfile : '<img src="'.$avatarfile.'" onerror="this.onerror=null;this.src=\''.UC_API.'/images/noavatar_'.$size.'.gif\'">';
 }
