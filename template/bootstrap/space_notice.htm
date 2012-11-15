@@ -61,7 +61,7 @@
 			</table>
 		<!--{/loop}-->
 		</div>
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 		<!--{else}-->
 		<div class="c_form">
 			没有新的应用请求或邀请
@@ -90,13 +90,13 @@
 		</div>
 			
 		<!--{if $newnum}-->
-		<div class="mgs_list">
-			<!--{if $space[notenum]}--><div><img src="image/icon/notice.gif"><a href="space.php?do=notice"><strong>$space[notenum]</strong> 条新通知</a></div><!--{/if}-->
-			<!--{if $space[addfriendnum]}--><div><img src="image/icon/friend.gif" alt="" /><a href="cp.php?ac=friend&op=request"><strong>$space[addfriendnum]</strong> 个好友请求</a></div><!--{/if}-->
-			<!--{if $space[mtaginvitenum]}--><div><img src="image/icon/mtag.gif" alt="" /><a href="cp.php?ac=mtag&op=mtaginvite"><strong>$space[mtaginvitenum]</strong> 个群组邀请</a></div><!--{/if}-->
-			<!--{if $space[eventinvitenum]}--><div><img src="image/icon/event.gif" alt="" /><a href="cp.php?ac=event&op=eventinvite"><strong>$space[eventinvitenum]</strong> 个活动邀请</a></div><!--{/if}-->
-			<!--{if $space[myinvitenum]}--><div><img src="image/icon/userapp.gif" alt="" /><a href="space.php?do=notice&view=userapp"><strong>$space[myinvitenum]</strong> 个应用消息</a></div><!--{/if}-->
-			<!--{if $space[pokenum]}--><div><img src="image/icon/poke.gif" alt="" /><a href="cp.php?ac=poke"><strong> $space[pokenum]</strong> 个新招呼</a></div><!--{/if}-->
+		<div class="mgs_list alert alert-info">
+			<!--{if $space[notenum]}--><div><a href="space.php?do=notice"><strong>$space[notenum]</strong> 条新通知</a></div><!--{/if}-->
+			<!--{if $space[addfriendnum]}--><div><a href="cp.php?ac=friend&op=request"><strong>$space[addfriendnum]</strong> 个好友请求</a></div><!--{/if}-->
+			<!--{if $space[mtaginvitenum]}--><div><a href="cp.php?ac=mtag&op=mtaginvite"><strong>$space[mtaginvitenum]</strong> 个群组邀请</a></div><!--{/if}-->
+			<!--{if $space[eventinvitenum]}--><div><a href="cp.php?ac=event&op=eventinvite"><strong>$space[eventinvitenum]</strong> 个活动邀请</a></div><!--{/if}-->
+			<!--{if $space[myinvitenum]}--><div><a href="space.php?do=notice&view=userapp"><strong>$space[myinvitenum]</strong> 个应用消息</a></div><!--{/if}-->
+			<!--{if $space[pokenum]}--><div><a href="cp.php?ac=poke"><strong> $space[pokenum]</strong> 个新招呼</a></div><!--{/if}-->
 		</div>
 		<!--{/if}-->
 
@@ -153,7 +153,7 @@
 		</table>
 		
 
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 		<!--{else}-->
 		<div class="c_form">
 		没有新的通知。

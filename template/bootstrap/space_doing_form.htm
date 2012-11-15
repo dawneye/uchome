@@ -6,16 +6,16 @@
 	<!--{if $_SCONFIG['questionmode']}-->
 	回答提问：<!--{eval question();}--> 
 	<!--{else}-->
-	输入验证码：<script>seccode();</script> 
+	输入验证码：<span id="seccodewrap"></span>
 	<!--{/if}-->
 	<input type="text" id="seccode" name="seccode" value="" size="10" class="t_input">
 <!--{/if}-->
-<div class="">
-<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4" class="span6 pull-left"></textarea>
+<div class="input-append textarea-box">
+<textarea id="message" name="message" onkeyup="textCounter(this, 'maxlimit', 200)" onkeydown="ctrlEnter(event, 'add');" rows="4"></textarea>
 <input type="hidden" name="addsubmit" value="true" />
 <input type="hidden" name="refer" value="$theurl" />
 <input type="hidden" name="topicid" value="$topicid" />
 <input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-<button type="submit" id="add" name="add" class="post_button btn btn-primary span1 pull-right clear-margin-left">发布</button>
+<button type="submit" id="add" name="add" class="post_button btn btn-primary">发 布</button>
 </div>
 </form>

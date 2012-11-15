@@ -66,6 +66,10 @@ $latest_video = $_SGLOBAL['db']->fetch_array($_SGLOBAL['db']->query("SELECT * FR
 if(!empty($latest_video)) {
 	$latest_video = mkshare($latest_video);
 	$latest_video['title'] = getstr($latest_video['body_general'], 26, 0, 0, 0, 0, -1);
+	$latest_video['screenshot'] = @file_get_contents(S_ROOT.'./attachment/screenshot/'.$latest_video['body_data']['flashvar']);
+	if(empty($latest_video['screenshot'])){
+		$latest_video['screenshot'] = 'image/vd.gif';
+	}
 }
 
 //最新群组

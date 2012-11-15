@@ -12,11 +12,11 @@
 	</div>
 	<h3 class="index_name">
 		<div class="r_option pull-right normal">
-			<!--{if $_SGLOBAL[session][magichidden]}-->当前隐身<!--{else}-->当前在线<!--{/if}-->
+			<!--{if $_SGLOBAL[session][magichidden]}-->隐身<!--{else}-->在线<!--{/if}-->
 
 			<!--{if $_SGLOBAL[magic][invisible]}-->
 				<!--{if $_SGLOBAL[session][magichidden]}-->
-				<img src="image/magic/invisible.small.gif" class="magicicon"><a id="a_magic_appear" href="cp.php?ac=magic&op=appear" onclick="ajaxmenu(event,this.id)" class="gray">我要在线</a>
+				<img src="image/magic/invisible.small.gif" class="magicicon"><a id="a_magic_appear" href="cp.php?ac=magic&op=appear" onclick="ajaxmenu(event,this.id)" class="gray">在线</a>
 				<!--{else}-->
 				<img src="image/magic/invisible.small.gif" alt="{$_SGLOBAL[magic][invisible]}" class="magicicon"><a id="a_magic_invisible" href="magic.php?mid=invisible" onclick="ajaxmenu(event,this.id,1)" class="gray">我要隐身</a>
 				<!--{/if}-->
@@ -31,17 +31,17 @@
 </div>
 <div class="clearfix"></div>
 	<!--{if $space[allnum]}-->
-	<div class="mgs_list">
-		<!--{if $space[notenum]}--><div><img src="image/icon/notice.gif"><a href="space.php?do=notice"><strong>$space[notenum]</strong> 条新通知</a></div><!--{/if}-->
-		<!--{if $space[addfriendnum]}--><div><img src="image/icon/friend.gif" alt="" /><a href="cp.php?ac=friend&op=request"><strong>$space[addfriendnum]</strong> 个好友请求</a></div><!--{/if}-->
-		<!--{if $space[mtaginvitenum]}--><div><img src="image/icon/mtag.gif" alt="" /><a href="cp.php?ac=mtag&op=mtaginvite"><strong>$space[mtaginvitenum]</strong> 个群组邀请</a></div><!--{/if}-->
-		<!--{if $space[eventinvitenum]}--><div><img src="image/icon/event.gif" alt="" /><a href="cp.php?ac=event&op=eventinvite"><strong>$space[eventinvitenum]</strong> 个活动邀请</a></div><!--{/if}-->
-		<!--{if $space[myinvitenum]}--><div><img src="image/icon/userapp.gif" alt="" /><a href="space.php?do=notice&view=userapp"><strong>$space[myinvitenum]</strong> 个应用消息</a></div><!--{/if}-->
-		<!--{if $space[pmnum]}--><div><img src="image/icon/pm.gif" alt="" /><a href="space.php?do=pm"><strong>$space[pmnum]</strong> 条新短消息</a></div><!--{/if}-->
-		<!--{if $space[pokenum]}--><div><img src="image/icon/poke.gif" alt="" /><a href="cp.php?ac=poke"><strong> $space[pokenum]</strong> 个新招呼</a></div><!--{/if}-->
-		<!--{if $space[reportnum]}--><div><img src="image/icon/report.gif" alt="" /><a href="admincp.php?ac=report"><strong>$space[reportnum]</strong> 个举报</a></div><!--{/if}-->
-		<!--{if $space[namestatusnum]}--><div><img src="image/icon/profile.gif" alt="" /><a href="admincp.php?ac=space&perpage=20&namestatus=0&searchsubmit=1"><strong>$space[namestatusnum]</strong> 个待认证用户</a></div><!--{/if}-->
-		<!--{if $space[eventverifynum]}--><div><img src="image/icon/event.gif" alt="" /><a href="admincp.php?ac=event&perpage=20&grade=0&searchsubmit=1"><strong>$space[eventverifynum]</strong> 个待审核活动</a></div><!--{/if}-->
+	<div class="mgs_list alert alert-info">
+		<!--{if $space[notenum]}--><div><a href="space.php?do=notice"><strong>$space[notenum]</strong> 条新通知</a></div><!--{/if}-->
+		<!--{if $space[addfriendnum]}--><div><a href="cp.php?ac=friend&op=request"><strong>$space[addfriendnum]</strong> 个好友请求</a></div><!--{/if}-->
+		<!--{if $space[mtaginvitenum]}--><div><a href="cp.php?ac=mtag&op=mtaginvite"><strong>$space[mtaginvitenum]</strong> 个群组邀请</a></div><!--{/if}-->
+		<!--{if $space[eventinvitenum]}--><div><a href="cp.php?ac=event&op=eventinvite"><strong>$space[eventinvitenum]</strong> 个活动邀请</a></div><!--{/if}-->
+		<!--{if $space[myinvitenum]}--><div><a href="space.php?do=notice&view=userapp"><strong>$space[myinvitenum]</strong> 个应用消息</a></div><!--{/if}-->
+		<!--{if $space[pmnum]}--><div><a href="space.php?do=pm"><strong>$space[pmnum]</strong> 条新短消息</a></div><!--{/if}-->
+		<!--{if $space[pokenum]}--><div><a href="cp.php?ac=poke"><strong> $space[pokenum]</strong> 个新招呼</a></div><!--{/if}-->
+		<!--{if $space[reportnum]}--><div><a href="admincp.php?ac=report"><strong>$space[reportnum]</strong> 个举报</a></div><!--{/if}-->
+		<!--{if $space[namestatusnum]}--><div><a href="admincp.php?ac=space&perpage=20&namestatus=0&searchsubmit=1"><strong>$space[namestatusnum]</strong> 个待认证用户</a></div><!--{/if}-->
+		<!--{if $space[eventverifynum]}--><div><a href="admincp.php?ac=event&perpage=20&grade=0&searchsubmit=1"><strong>$space[eventverifynum]</strong> 个待审核活动</a></div><!--{/if}-->
 	</div>
 	<!--{/if}-->
 
@@ -92,7 +92,7 @@
 	<!--{if $hotlist}-->
 		<a href="space.php?do=home&view=hot" class="r_option pull-right">&raquo; 查看更多热点</a>
 		<h5 class="feedtime" style="margin-top:5px;">近期热点推荐</h5>
-		<ul class="nav nav-list nav-thumbnail">
+		<ul class="nav-list nav-thumbnail">
 		<!--{loop $hotlist $value}-->
 		<!--{eval $value = mkfeed($value);}-->
 		<!--{template space_feed_li}-->
@@ -113,7 +113,7 @@
 			<!--{/if}-->
 		</h5>
 		<!--{/if}-->
-		<ul class="nav nav-list nav-thumbnail">
+		<ul class="nav-list nav-thumbnail">
 		<!--{loop $values $value}-->
 			<!--{template space_feed_li}-->
 		<!--{/loop}-->
@@ -132,7 +132,7 @@
 	</div>
 	<div id="feed_filter_div_{$start}" class="enter-content" style="display:none;">
 		<h5 class="feedtime">以下是被屏蔽的动态</h5>
-		<ul class="nav nav-list nav-thumbnail">
+		<ul class="nav-list nav-thumbnail">
 		<!--{loop $filter_list $value}-->
 		<!--{eval $value = mkfeed($value);}-->
 		<!--{template space_feed_li}-->
@@ -170,14 +170,14 @@
 	<!--{/if}-->
 	
 	<!--{if $topiclist}-->
-	<div class="task_notice" style="width:230px;">
+	<div class="task_notice" >
 		<!--{loop $topiclist $key $value}-->
-		<div class="task_notice_body">
+		<div class="task_notice_body alert alert-info">
 			<!--{if $value[pic]}-->
 			<a href="space.php?do=topic&topicid=$value[topicid]"><img src="$value[pic]" alt="" class="icon" /></a>
 			<!--{/if}-->
-			<h3><a href="space.php?do=topic&topicid=$value[topicid]">$value[subject]</a></h3>
-			<div class="gray">已有 <span class="num">$value[joinnum]</span> 人参与</div>
+			<h5><a href="space.php?do=topic&topicid=$value[topicid]">$value[subject]</a></h5>
+			<div class="gray">已有 <strong>$value[joinnum]</strong> 人参与</div>
 		</div>
 		<!--{/loop}-->
 	</div>
@@ -185,18 +185,7 @@
 
 	<!--{if $newspacelist}-->
 	<div class="sidebox clearfix">
-		<h5 class="title">
-			<p class="r_option pull-right"><a href="space.php?do=top">排行</a></p>热烈欢迎新成员
-		</h5>
-		<ul class="avatar_list">
-			<!--{loop $newspacelist $key $value}-->
-			<li>
-				<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
-				<p<!--{if $ols[$value[uid]]}--> class="online_icon_p" title="在线"<!--{/if}-->><a href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a></p>
-				<p class="gray"><!--{date('n月j日',$value[dateline],1)}--></p>
-			</li>
-			<!--{/loop}-->
-		</ul>
+<!--{template new_space_list}-->
 	</div>
 	<!--{/if}-->
 	

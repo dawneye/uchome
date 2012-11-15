@@ -1,16 +1,14 @@
 
-<div class="digc">
-	<table>
-		<tr>
-		<!--{eval $clicknum = 0;}-->
-		<!--{loop $clicks $value}-->
-		<!--{eval $clicknum = $clicknum + $value['clicknum'];}-->
-		<!--{eval $value['height'] = $maxclicknum?intval($value['clicknum']*50/$maxclicknum):0;}-->
-			<td valign="bottom"><a href="cp.php?ac=click&op=add&clickid=$value[clickid]&idtype=$idtype&id=$id&hash=$hash" id="click_{$idtype}_{$id}_{$value[clickid]}" onclick="ajaxmenu(event, this.id, 0, 2000, 'show_click')"><!--{if $value[clicknum]}--><div class="digcolumn"><div class="digchart dc{$value[classid]}" style="height:{$value[height]}px;"><em>{$value[clicknum]}</em></div></div><!--{/if}--><div class="digface"><img src="image/click/$value[icon]" alt="" /><br />$value[name]</div></a></td>
-		<!--{/loop}-->
-		</tr>
-	</table>
-</div>
+<table class="table" style="width: 50%; margin: 10px auto;" >
+	<tr>
+	<!--{eval $clicknum = 0;}-->
+	<!--{loop $clicks $value}-->
+	<!--{eval $clicknum = $clicknum + $value['clicknum'];}-->
+	<!--{eval $value['height'] = $maxclicknum?intval($value['clicknum']*50/$maxclicknum):0;}-->
+		<td valign="bottom"><a href="cp.php?ac=click&op=add&clickid=$value[clickid]&idtype=$idtype&id=$id&hash=$hash" id="click_{$idtype}_{$id}_{$value[clickid]}" onclick="ajaxmenu(event, this.id, 0, 2000, 'show_click')"><!--{if $value[clicknum]}--><div class="digcolumn"><div class="digchart dc{$value[classid]}" style="height:{$value[height]}px;"><em>{$value[clicknum]}</em></div></div><!--{/if}--><div class="digface"><img src="image/click/$value[icon]" alt="" /><br />$value[name]</div></a></td>
+	<!--{/loop}-->
+	</tr>
+</table>
 
 <!--{if $clickuserlist}-->
 <div class="trace" style="padding-bottom: 10px;">
@@ -42,4 +40,4 @@
 </div>
 <!--{/if}-->
 
-<!--{if $click_multi}--><div class="page">$click_multi</div><!--{/if}-->
+<!--{if $click_multi}--><div class="page pagination pagination-centered">$click_multi</div><!--{/if}-->

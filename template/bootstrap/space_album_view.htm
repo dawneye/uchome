@@ -9,17 +9,17 @@
 </div>
 <h3 class="title">相册 - $album[albumname]</h3>
 <div class="tabs_header">
+	<!--{if $_SGLOBAL[refer]}-->
+	<div class="r_option pull-right">
+		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+	</div>
+	<!--{/if}-->
 	<ul class="tabs nav nav-tabs">
 		<li class="active"><a href="space.php?uid=$album[uid]&do=album&id=$album[albumid]"><span>查看图片列表</span></a></li>
 		<li><a href="space.php?uid=$space[uid]&do=album&view=me"><span>返回我的相册</span></a></li>
 		<li class="null"><a href="cp.php?ac=album&op=edit&albumid=$album[albumid]">管理相册</a></li>
 		<li class="null"><a href="cp.php?ac=upload&albumid=$album[albumid]">上传新图片</a></li>
 	</ul>
-	<!--{if $_SGLOBAL[refer]}-->
-	<div class="r_option pull-right">
-		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-	</div>
-	<!--{/if}-->
 </div>
 <!--{else}-->
 <!--{eval 
@@ -55,7 +55,7 @@
 		<!--{/loop}-->
 	</tr>
 </table>
-<div class="page">$multi</div>
+<div class="page pagination pagination-centered">$multi</div>
 <!--{else}-->
 <div class="c_form">该相册下还没有图片。</div>
 <!--{/if}-->

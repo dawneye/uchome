@@ -116,7 +116,7 @@
 <div style="padding-top:20px; width:100%; overflow:hidden;" id="pic_comment">
 
 	<h5>评论</h5>
-	<div class="page">$multi</div>
+	<div class="page pagination pagination-centered">$multi</div>
 	<div class="comments_list" id="comment">
 		<!--{if $cid}-->
 		<div class="notice">
@@ -124,13 +124,13 @@
 		</div>
 		<!--{/if}-->
 
-		<ul id="comment_ul" class="nav nav-list nav-thumbnail">
+		<ul id="comment_ul" class="nav-list nav-thumbnail">
 		<!--{loop $list $value}-->
 			<!--{template space_comment_li}-->
 		<!--{/loop}-->
 		</ul>
 	</div>
-	<div class="page">$multi</div>
+	<div class="page pagination pagination-centered">$multi</div>
 	<form id="quickcommentform_{$picid}" name="quickcommentform_{$picid}" action="cp.php?ac=comment" method="post" class="quickpost" style="padding-bottom: 1em;">
 		<table cellpadding="0" cellspacing="0">
 			<tr>

@@ -64,15 +64,13 @@
 
 	<h3 class="title">话题</h3>
 	<div class="tabs_header">
+		<!--{if $_SGLOBAL[refer]}-->
+			<a class="r_option pull-right" href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+		<!--{/if}-->
 		<ul class="tabs nav nav-tabs">
 			<li class="active"><a href="cp.php?ac=topic"><span>添加新话题</span></a></li>
 			<li><a href="space.php?do=topic"><span>返回话题列表</span></a></li>
 		</ul>
-		<!--{if $_SGLOBAL[refer]}-->
-		<div class="r_option pull-right">
-			<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-		</div>
-		<!--{/if}-->
 	</div>
 	
 	<div class="c_form">
@@ -81,7 +79,7 @@
 			<tr>
 				<th width="100">标题</th>
 				<td>
-					<input type="text" name="subject" value="$topic[subject]" size="80" />
+					<input type="text" class="span4" name="subject" value="$topic[subject]" size="80" />
 				</td>
 			</tr>
 			<tr>
@@ -89,7 +87,7 @@
 				<td>
 					<table><tr>
 					<!--{if $topic['pic']}-->
-					<td><img src="$topic[pic]" width="150"></td>
+					<td><img src="$topic[pic]"></td>
 					<!--{/if}-->
 					<td><input type="file" name="pic" value="" /></td>
 					</tr></table>
@@ -98,7 +96,7 @@
 			<tr>
 				<th>说明</th>
 				<td>
-					<textarea name="message" rows="8" cols="80">$topic[message]</textarea>
+					<textarea id="uchome-ttHtmlEditor" name="message" rows="8" cols="80">$topic[message]</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -130,19 +128,20 @@
 				<td>
 					<script type="text/javascript" src="template/bootstrap/script/script_calendar.js" charset="$_SC[charset]"></script>
 					<input type="text" name="endtime" value="$topic[endtime]" id="endtime" onclick="showcalendar(event,this,1,'$topic[endtime]', '$topic[endtime]')">
-					<br>为空则不限制。到期后，该话题将只能浏览，不再允许参与。
+					<span class="help-inline">为空则不限制。到期后，该话题将只能浏览，不再允许参与。</span>
 				</td>
 			</tr>
 
 
 			<tr>
 				<th>&nbsp;</th>
-				<td><input type="submit" name="topicsubmit" value="提交" class="submit btn" /></td>
+				<td><input type="submit" name="topicsubmit" value="提交" class="submit btn btn-primary" /></td>
 			</tr>
 		</table>
 		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 		</form>
 	</div>
+<!--{template editor}-->
 	
 	
 <!--{/if}-->

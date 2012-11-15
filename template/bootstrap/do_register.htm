@@ -42,7 +42,7 @@ function register(id, result) {
 		<label class="control-label" for="seccode">验证码</label>
 		<div class="controls">
 			<input type="text" id="seccode" name="seccode" value="" tabindex="1" class="span1 t_input"<!--{if empty($_SGLOBAL['input_seccode'])}--> onBlur="checkSeccode()"<!--{/if}--> />&nbsp;
-			<script type="text/javascript">seccode();</script>
+			<span id="seccodewrap"></span>
 			<span class="help-inline">4位字母或数字 <a href="javascript:updateseccode()">更换</a></span>
 			<span class="help-block" id="checkseccode"></span>
 		</div>

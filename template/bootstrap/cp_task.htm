@@ -11,14 +11,15 @@
 		<!--{/if}-->
 	</ul>
 </div>
+</div>
 
 <!--{if $task}-->
 
 <!--{if $_GET['view']=='member'}-->
-
+<div class="span10">
 	<div class="h_status">完成该任务的用户列表</div>
 	<!--{template space_list}-->
-
+</div>
 <!--{else}-->
 
 <div id="content" class="span7">
@@ -35,10 +36,8 @@
 		</tr>
 	</table>
 				
-	<div style="padding-top:20px;">
+	<div>
 	<!--{if $task['done']}-->
-		
-		
 
 		<!--{if $task['ignore']}-->
 			<table cellspacing="0" cellpadding="0" class="formtable table">
@@ -146,14 +145,14 @@
 <div id="content" class="span7">
 
 	<div class="h_status">
-		按任务优先级排序，参与任务有大奖，开始吧。
+		按任务优先级排序。参与任务有大奖，开始吧。
 	</div>
 
 
 	<!--{if $_GET['view'] != 'done'}-->
-	<div class="task_percent progress progress-success progress-striped active" style="margin-bottom: 9px;">
-		<div class="label bar normal" style="width: 40%">我当前的任务完成度 {$done_per}%</div>
-		<div class="percent" style="width: {$done_per}%;">&nbsp;</div>
+	<div class="task_percent progress progress-success progress-striped active" style="margin: 10px 0; color: red; height: 50px; position:relative">
+		<div class="label bar normal" style="width: {$done_per}%"> </div>
+		<span style="position:absolute; top: 15px; left: 15px">我当前的任务完成度 {$done_per}%</span>
 	</div>
 	<!--{/if}-->
 		
@@ -165,15 +164,15 @@
 			<tr>
 				<td width="64px"><img src="$value[image]" width="64" height="64" alt="Icon" class="icon" /></td>
 				<td>
-					<h5><a href="cp.php?ac=task&taskid=$value[taskid]">$value[name]</a></h5>
 					<!--{if $value[num]}-->
-						<p>
+						<p class="pull-right">
 							<a href="cp.php?ac=task&taskid=$value[taskid]&view=member">已参与人次： $value[num]</a>
 							<!--{if $value[maxnum]}-->
 							/ 本任务还可参与 <!--{eval echo $value[maxnum]-$value[num];}--> 人次
 							<!--{/if}-->
 						</p>
 					<!--{/if}-->
+					<h5><a href="cp.php?ac=task&taskid=$value[taskid]">$value[name]</a></h5>
 					<!--{if $value[starttime]}--><p>开始时间：<!--{date('Y-m-d H:i',$value[starttime])}--></p><!--{/if}-->
 					<!--{if $value[endtime]}--><p>结束时间：<!--{date('Y-m-d H:i',$value[endtime])}--></p><!--{/if}-->
 					$value[note]
@@ -217,5 +216,4 @@
 </div>
 
 <!--{/if}-->
-</div>
 <!--{template footer}-->

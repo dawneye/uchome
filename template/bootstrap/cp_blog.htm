@@ -37,8 +37,6 @@
 
 <!--{else}-->
 
-<script language="javascript" src="image/editor/editor_function.js"></script>
-<script language="javascript" src="template/bootstrap/script/script_blog.js"></script>
 
 <!--{if $topic}-->
 	<!--{template cp_topic_menu}-->
@@ -85,14 +83,24 @@
 				<td>
 				<a id="doodleBox" href="magic.php?mid=doodle&showid=blog_doodle&target=uchome-ttHtmlEditor&from=editor" style="display:none"></a>
 				<textarea class="userData" name="message" id="uchome-ttHtmlEditor" style="height:100%;width:100%;display:none;border:0px">$blog[message]</textarea>
-<!--{template editor}-->
 				</td>
 			</tr>
 		</table>
 		<table cellspacing="4" cellpadding="4" width="100%" class="infotable">
+		
+			<tr>
+				<th width="100">同步到群组</th>
+				<td><select class="t_input span2" id="mtag" name="mtag" value="$blog[tag]"> 
+				<!-- <input type="button" name="clickbutton[]" value="自动获取" class="button btn" onclick="relatekw();"> -->
+				</td>
+			</tr>
+		
+		
 			<tr>
 				<th width="100">标签</th>
-				<td class="input-append"><input type="text" class="t_input span3" size="40" id="tag" name="tag" value="$blog[tag]"> <input type="button" name="clickbutton[]" value="自动获取" class="button btn" onclick="relatekw();"></td>
+				<td class="input-append"><input type="text" class="t_input span3" size="40" id="tag" name="tag" value="$blog[tag]"> 
+				<!-- <input type="button" name="clickbutton[]" value="自动获取" class="button btn" onclick="relatekw();"> -->
+				</td>
 			</tr>
 			
 			<!--{if $blog['uid'] && $blog['uid']!=$_SGLOBAL['supe_uid']}-->
@@ -155,7 +163,7 @@
 			<tr>
 				<th style="vertical-align: top;">请填写验证码</th>
 				<td>
-					<script>seccode();</script>
+					<span id="seccodewrap"></span>
 					<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
 					<input type="text" id="seccode" name="seccode" value="" size="15" class="t_input span1" />
 				</td>
@@ -218,7 +226,6 @@
 								<!--{/loop}-->
 								<option value="addoption" style="color:red;">+新建相册</option>
 							</select>
-							<script src="template/bootstrap/script/script_upload.js" type="text/javascript"></script>
 							<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
 						</td>
 					</tr>
@@ -252,3 +259,9 @@
 </div>
 <!--{/if}-->
 <!--{template footer}-->
+<!--{if empty($_SGLOBAL['inajax'])}-->
+<script type="text/javascript" src="template/bootstrap/script/editor_function.js"></script>
+<script type="text/javascript" src="template/bootstrap/script/script_blog.js"></script>
+<script type="text/javascript" src="template/bootstrap/script/script_upload.js" ></script>
+<!--{template editor}-->
+<!--{/if}-->

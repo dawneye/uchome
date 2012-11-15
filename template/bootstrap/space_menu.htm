@@ -1,11 +1,13 @@
 <div class="c_header a_header">
-	<div class="avatar48"><a href="space.php?uid=$space[uid]"><!--{avatar($space[uid],small)}--></a></div>
-	<!--{if $_SGLOBAL[refer]}-->
+	<div class="avatar48"><a class="snail" href="space.php?uid=$space[uid]"><!--{avatar($space[uid],small)}--></a></div>
+	<h4>{$_SN[$space[uid]]}的$_TPL['spacetitle']</h4>
+	<!--{if $_SGLOBAL[refer] }-->
 		<a class="r_option pull-right" href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
 	<!--{/if}-->
-	<p style="font-size:14px">{$_SN[$space[uid]]}的$_TPL['spacetitle']</p>
-	<a href="space.php?uid=$space[uid]" class="spacelink">{$_SN[$space[uid]]}的主页</a>
+	<ul class="breadcrumb">
+		<li><a href="space.php?uid=$space[uid]" class="spacelink">{$_SN[$space[uid]]}的主页</a> <span class="divider">/</span></li>
 	<!--{if $_TPL['spacemenus']}-->
-		<!--{loop $_TPL['spacemenus'] $value}--> <span class="pipe">&raquo;</span> $value<!--{/loop}-->
+		<!--{loop $_TPL['spacemenus'] $value}--> <li>$value <span class="divider">/</span></li><!--{/loop}-->
 	<!--{/if}-->
+	</ul>
 </div>

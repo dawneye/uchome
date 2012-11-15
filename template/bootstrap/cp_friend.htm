@@ -153,9 +153,9 @@
 		<!--{/loop}-->
 		</ul>
 	</div>
-	<div class="page">$multi</div>
+	<div class="page pagination pagination-centered"">$multi</div>
 	<div style="padding:20px 0 0 0;">
-		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'fuids')" /><label for="chkall">全选</label></td>
+		<label for="chkall checkbox"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'fuids')" />全选</label></td>
 		设置用户组：<select name="group">
 			<!--{loop $groups $key $value}-->
 				<option value="$key">$value</option>
@@ -291,7 +291,7 @@
 <!--{/loop}-->
 </table>
 </div>
-<div class="page">$multi</div>
+<div class="page pagination pagination-centered">$multi</div>
 <!--{else}-->
 <div class="c_form">
 	没有新的好友请求。

@@ -3,9 +3,7 @@
 
 <!--{if $_GET['op'] == 'edit'}-->
 
-
-
-<h1>编辑</h1>
+<h3>编辑</h3>
 <a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 <div class="popupmenu_inner">
 
@@ -147,8 +145,8 @@
 
 <!--{else}-->
 
-<script language="javascript" src="image/editor/editor_function.js"></script>
-<script language="javascript" src="template/bootstrap/script/script_blog.js"></script>
+<script type="text/javascript" src="template/bootstrap/script/editor_function.js"></script>
+<script type="text/javascript" src="template/bootstrap/script/script_blog.js"></script>
 
 <!--{if $topic}-->
 	<!--{template cp_topic_menu}-->
@@ -211,7 +209,7 @@
 			</tr>
 		<!--{/if}-->
 			<tr>
-				<td><input type="text" class="t_input" id="subject" name="subject" value="$thread[subject]" size="60" /></td>
+				<td><input type="text" class="t_input span4" id="subject" name="subject" value="$thread[subject]" size="60" /></td>
 			</tr>
 			<tr>
 				<td>
@@ -234,7 +232,7 @@
 			<tr>
 				<td>
 					<p>请填写验证码</p>
-					<script>seccode();</script>
+					<span id="seccodewrap"></span>
 					<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
 					<input type="text" id="seccode" name="seccode" value="" size="15" class="t_input" />
 				</td>
@@ -244,7 +242,8 @@
 
 			<tr>
 				<td>
-					<input type="checkbox" name="makefeed" id="makefeed" value="1"<!--{if empty($mtag['viewperm']) && ckprivacy('thread', 1)}--> checked<!--{/if}-->> 产生动态 (<a href="cp.php?ac=privacy#feed" target="_blank">更改默认设置</a>)
+					<label class="checkbox inline"><input type="checkbox" name="makefeed" id="makefeed" value="1"<!--{if empty($mtag['viewperm']) && ckprivacy('thread', 1)}--> checked<!--{/if}--> /> 产生动态</label> 
+					<span class="help-inline"><a href="cp.php?ac=privacy#feed" target="_blank">更改默认设置</a></span>
 				</td>
 			</tr>
 
@@ -319,7 +318,7 @@
 	</table>
 	<table cellspacing="4" cellpadding="4" width="100%" class="infotable">
 		<tr>
-			<td><input type="button" id="issuance" onclick="document.getElementById('threadbutton').click();" value="保存发布" class="submit btn" /></td>
+			<td><input type="button" id="issuance" onclick="document.getElementById('threadbutton').click();" value="保存发布" class="submit btn btn-primary" /></td>
 		</tr>
 	</table>
 </div>

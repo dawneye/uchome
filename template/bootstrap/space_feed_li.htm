@@ -3,19 +3,22 @@
 		<!--{if $value[uid] && empty($_TPL[hidden_more])}-->
 		<em><a href="cp.php?ac=feed&op=menu&feedid=$value[feedid]" id="a_feed_menu_$value[feedid]"  onmouseover="feed_menu($value[feedid],1);" onmouseout="feed_menu($value[feedid],0);" onclick="ajaxmenu(event, this.id)" title="显示更多选项" >更多</a></em>
 		<!--{/if}-->
+		<a href="space.php?uid=$value[uid]" class="snail"><!--{avatar($value[uid],small)}--></a>
 		<a class="type" href="space.php?uid=$_GET[uid]&do=feed&view=$_GET[view]&appid=$value[appid]&icon=$value[icon]" title="只看此类动态"><img src="$value[icon_image]" class="hide" />[{$value[icon_text]}]</a>
 		$value[title_template] 
 		
 		<!--{if empty($_TPL[hidden_time])}-->
-		<span class="gray"><!--{date('m-d H:i',$value[dateline],1)}--></span>
+		<span class="gray"><br/><!--{date('m-d H:i',$value[dateline],1)}--></span>
 		<!--{/if}-->
 		
 		<!--{if empty($_TPL[hidden_menu])}-->
+		<span class="pull-right">
 		<!--{if $value['idtype']=='doid'}-->
-		(<a href="javascript:;" onclick="docomment_get('docomment_$value[id]', 1);" id="do_a_op_$value[id]">回复</a>)
+		<a href="javascript:;" onclick="docomment_get('docomment_$value[id]', 1);" id="do_a_op_$value[id]">回复</a>
 		<!--{elseif in_array($value['idtype'], array('blogid','picid','sid','pid','eventid'))}-->
-		(<a href="javascript:;" onclick="feedcomment_get($value[feedid]);" id="feedcomment_a_op_$value[feedid]">评论</a>)
+		<a href="javascript:;" onclick="feedcomment_get($value[feedid]);" id="feedcomment_a_op_$value[feedid]">评论</a>
 		<!--{/if}-->
+		</span>
 		<!--{/if}-->
 		
 		<div class="feed_content">
@@ -25,16 +28,16 @@
 			<!--{/if}-->	
 		
 			<!--{if $value['image_1']}-->
-			<a href="$value[image_1_link]"{$value[target]}><img src="$value[image_1]" class="summaryimg" /></a>
+			<a class="snail" href="$value[image_1_link]"{$value[target]}><img src="$value[image_1]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $value['image_2']}-->
-			<a href="$value[image_2_link]"{$value[target]}><img src="$value[image_2]" class="summaryimg" /></a>
+			<a class="snail" href="$value[image_2_link]"{$value[target]}><img src="$value[image_2]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $value['image_3']}-->
-			<a href="$value[image_3_link]"{$value[target]}><img src="$value[image_3]" class="summaryimg" /></a>
+			<a class="snail" href="$value[image_3_link]"{$value[target]}><img src="$value[image_3]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $value['image_4']}-->
-			<a href="$value[image_4_link]"{$value[target]}><img src="$value[image_4]" class="summaryimg" /></a>
+			<a class="snail" href="$value[image_4_link]"{$value[target]}><img src="$value[image_4]" class="summaryimg" /></a>
 			<!--{/if}-->
 			
 			<!--{if $value['body_template']}-->
@@ -79,16 +82,16 @@
 		$appvalue[title_template]
 		<div class="feed_content" style="width:100%;overflow:hidden;">
 			<!--{if $appvalue['image_1']}-->
-			<a href="$appvalue[image_1_link]"{$appvalue[target]}><img src="$appvalue[image_1]" class="summaryimg" /></a>
+			<a class="snail" href="$appvalue[image_1_link]"{$appvalue[target]}><img src="$appvalue[image_1]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $appvalue['image_2']}-->
-			<a href="$appvalue[image_2_link]"{$appvalue[target]}><img src="$appvalue[image_2]" class="summaryimg" /></a>
+			<a class="snail" href="$appvalue[image_2_link]"{$appvalue[target]}><img src="$appvalue[image_2]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $appvalue['image_3']}-->
-			<a href="$appvalue[image_3_link]"{$appvalue[target]}><img src="$appvalue[image_3]" class="summaryimg" /></a>
+			<a class="snail" href="$appvalue[image_3_link]"{$appvalue[target]}><img src="$appvalue[image_3]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $appvalue['image_4']}-->
-			<a href="$appvalue[image_4_link]"{$appvalue[target]}><img src="$appvalue[image_4]" class="summaryimg" /></a>
+			<a class="snail" href="$appvalue[image_4_link]"{$appvalue[target]}><img src="$appvalue[image_4]" class="summaryimg" /></a>
 			<!--{/if}-->
 			<!--{if $appvalue['body_template']}-->
 			<div class="detail"<!--{if $appvalue['image_3']}--> style="clear: both;"<!--{/if}-->>

@@ -63,7 +63,7 @@
 					<p><!--{eval question();}--></p>
 					<p><input type="text" id="seccode" name="seccode" value="" size="15" class="t_input"></p>
 			<!--{else}-->
-					<p><script>seccode();</script></p>
+					<p><span id="seccodewrap"></span></p>
 					<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
 					<p><input type="text" id="seccode" name="seccode" value="" size="15" class="t_input"></p>
 			<!--{/if}-->

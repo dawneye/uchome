@@ -6,11 +6,12 @@
 
 	<!--{if $dolist}-->
 	<div class="doing_list">
-		<ol class="nav nav-list nav-thumbnail">
+		<ol class="nav-list nav-thumbnail">
 		<!--{loop $dolist $dv}-->
 		<!--{eval $doid = $dv[doid];}-->
 			<li id="dl{$doid}">
 				<div class="doing">
+					<a href="space.php?uid=$value[uid]" class="snail"><!--{avatar($dv[uid],small)}--></a>
 					<div class="doingcontent"><a href="space.php?uid=$dv[uid]">{$_SN[$dv[uid]]}</a>: <span>$dv[message]</span>
 					<span class="gray">(<!--{date('m-d H:i',$dv[dateline],1)}-->)</span>
 					<!--{if $dv[uid]==$_SGLOBAL[supe_uid]}--> <a href="cp.php?ac=doing&op=delete&doid=$doid&id=$dv[id]" id="doing_delete_{$doid}_{$dv[id]}" onclick="ajaxmenu(event, this.id)" class="re gray">删除</a> &nbsp;<!--{/if}-->
@@ -27,7 +28,7 @@
 			</li>
 		<!--{/loop}-->
 		</ol>
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 	</div>
 	<!--{else}-->
 	<div class="c_form">现在还没有记录</div>

@@ -44,6 +44,9 @@ if(empty($topic)) {
 //添加编辑操作
 if(submitcheck('topicsubmit')) {
 
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
+
 	$setarr = array(
 		'subject' => getstr($_POST['subject'], 80, 1, 1, 1),
 		'message' => getstr($_POST['message'], 0, 1, 1, 1),

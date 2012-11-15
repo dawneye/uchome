@@ -4,6 +4,11 @@
 <!--{if $space[self]}-->
 <h3 class="title">投票</h3>
 <div class="tabs_header">
+	<!--{if $_SGLOBAL[refer]}-->
+	<div class="r_option pull-right">
+		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+	</div>
+	<!--{/if}-->
 	<ul class="tabs nav nav-tabs">
 		<li><a href="space.php?uid=$space[uid]&do=$do&view=new"><span>最新投票</span></a></li>
 		<li><a href="space.php?uid=$space[uid]&do=$do&view=hot"><span>最热投票</span></a></li>
@@ -12,11 +17,6 @@
 		<li class="active"><a href="space.php?uid=$space[uid]&do=$do&view=me"><span>我的投票</span></a></li>
 		<li class="null"><a href="cp.php?ac=poll">发表新投票</a></li>
 	</ul>
-	<!--{if $_SGLOBAL[refer]}-->
-	<div class="r_option pull-right">
-		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-	</div>
-	<!--{/if}-->
 </div>
 <!--{else}-->
 <!--{eval
@@ -198,7 +198,7 @@
 	<div class="comments" id="div_main_content" style="padding: 0 0 20px;">
 
 		<h5 class="feed_header"> <div class="r_option pull-right"><span id="comment_replynum">$poll[replynum]</span> 个评论</div>评论</h5>
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 		<div class="comments_list" id="comment">
 			<!--{if $cid}-->
 			<div class="notice">
@@ -211,7 +211,7 @@
 			<!--{/loop}-->
 			</ul>
 		</div>
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 
 		<form id="quickcommentform_{$pid}" name="quickcommentform_{$pid}" action="cp.php?ac=comment" method="post" class="quickpost">
 			<table cellpadding="0" cellspacing="0">

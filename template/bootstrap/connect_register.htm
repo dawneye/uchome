@@ -13,16 +13,14 @@
 	<tr><th>邮箱</th><td><input type="text" id="email" name="email" value="" class="t_input" tabindex="5" />
 		<br>请准确填入您的邮箱，在忘记密码，或者您使用邮件通知功能时，会发送邮件到该邮箱。</td></tr>
 	<tr><th>头像</th><td>
-		<img src="$params[x_figureurl_2]"></img>
-		<br>
-		<input type="checkbox" id="qzavatar" name="qzavatar" value="" checked="checked" class="t_input" tabindex="5" />使用空间头像
+		<img src="$params[x_figureurl_2]" />
+		<label><input type="checkbox" id="qzavatar" name="qzavatar" value="" checked="checked" class="t_input" tabindex="5" />使用空间头像</label>
 		</td></tr>
 	
 	<!--{if $register_rule}-->
 	<tr><th>服务条款</th>
 		<td><div name="rule" style="border:1px solid #C3C3C3;width:500px;height:100px;overflow:auto;padding:5px;">$register_rule</div>
-		<input type="checkbox" name="accede" id="accede" value="1">我已阅读，并同意以上服务条款
-
+		<label><input type="checkbox" name="accede" id="accede" value="1">我已阅读，并同意以上服务条款</label>
 		</td>
 	</tr>
 	<!--{/if}-->

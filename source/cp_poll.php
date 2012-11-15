@@ -105,6 +105,9 @@ if(submitcheck('pollsubmit')) {
 	if($_POST['percredit'] && $_POST['percredit'] > $_SCONFIG['maxreward']) {
 		showmessage('average_reward_can_not_exceed', '', 1, array($_SCONFIG['maxreward']));
 	}
+
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
 	
 	$_POST['message'] = getstr(trim($_POST['message']), 0, 1, 1, 1, 2);
 	$maxchoice = $_POST['maxchoice'] < $maxoption ? intval($_POST['maxchoice']) : $maxoption;

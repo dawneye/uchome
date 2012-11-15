@@ -1,6 +1,6 @@
 <!--{eval $_TPL['titles'] = array($thread['subject'], $mtag['tagname'], $mtag['title'], '话题');}-->
 <!--{template header}-->
-
+<div class="span10">
 <h3 class="title">
 	<!--{if $eventid}-->
 	活动 - <a href="space.php?do=event&id=$eventid">$event[title]</a>
@@ -8,9 +8,10 @@
 	<a href="space.php?do=mtag&tagid=$mtag[tagid]">$mtag[tagname]</a>
 	<!--{/if}-->
 </h3>
-
 <div class="tabs_header">
-
+	<!--{if $_SGLOBAL[refer]}-->
+	<a class="pull-right" href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+	<!--{/if}-->
 	<ul class="tabs nav nav-tabs">
 		<!--{if $eventid}-->
 		<li><a href="space.php?do=event&id=$eventid&view=thread"><span>返回讨论区</span></a></li>
@@ -27,11 +28,6 @@
 		<li class="null"><a href="cp.php?ac=thread&tagid=$mtag[tagid]">发起新话题</a></li>
 		<!--{/if}-->
 	</ul>
-	<!--{if $_SGLOBAL[refer]}-->
-	<div class="r_option pull-right">
-		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-	</div>
-	<!--{/if}-->
 </div>
 
 <div id="div_post">
@@ -39,109 +35,87 @@
 	<div class="board">
 		<!--{if $thread[content]}-->
 		<div id="post_$thread[content][pid]_li">
+			<div class="avatar48 snail"><a href="space.php?uid=$thread[uid]"><!--{avatar($thread[uid],small)}--></a></div>
+			<div class="r_option pull-right">
+				<a href="cp.php?ac=share&type=thread&id=$thread[tid]" id="a_share" onclick="ajaxmenu(event, this.id, 1)" class="a_share">分享</a> 
+				<a href="cp.php?ac=common&op=report&idtype=tid&id=$thread[tid]" id="a_report" onclick="ajaxmenu(event, this.id, 1)">举报</a>
+			</div>
+			<div class="title">
+				<!--{eval $magicegg = ""}-->
+				<!--{eval if($thread[magicegg]) for($i=0; $i<$thread[magicegg]; $i++) $magicegg .= '<img src="image/magic/egg/'.mt_rand(1,6).'.gif" />';}-->
+				<h1 <!--{if $thread[magiccolor]}--> class="magiccolor$thread[magiccolor]"<!--{/if}--> >$magicegg $thread[subject]</h1>
+				<!--{if $thread[hot]}--><span class="hot"><em>热</em>$thread[hot]</span><!--{/if}-->
+				<a href="space.php?uid=$thread[uid]">{$_SN[$thread[uid]]}</a>
+				<span class="gray"><!--{date('Y-m-d H:i',$thread[dateline],1)}--></span>
 
-			<ul class="line_list">
-				<li>
-				<table width="100%">
-				<tr>
-					<td width="70" valign="top">
-						<div class="avatar48">
-						<a href="space.php?uid=$thread[uid]"><!--{avatar($thread[uid],small)}--></a>
-						</div>
-					</td>
-					<td>
-						<div class="title">
-							<a href="cp.php?ac=share&type=thread&id=$thread[tid]" id="a_share" onclick="ajaxmenu(event, this.id, 1)" class="a_share">分享</a>
-							<div class="r_option pull-right">
-								<a href="cp.php?ac=common&op=report&idtype=tid&id=$thread[tid]" id="a_report" onclick="ajaxmenu(event, this.id, 1)">举报</a><span class="pipe">|</span>
-							</div>
+				<!--{if $topic}-->
+				<p style="padding:5px 0;"><strong>发表话题</strong>：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
+				<!--{/if}-->
 
-							<!--{eval $magicegg = ""}-->
-							<!--{eval if($thread[magicegg]) for($i=0; $i<$thread[magicegg]; $i++) $magicegg .= '<img src="image/magic/egg/'.mt_rand(1,6).'.gif" />';}-->
-							<h1 <!--{if $thread[magiccolor]}--> class="magiccolor$thread[magiccolor]"<!--{/if}--> >$magicegg $thread[subject]</h1>
-							<!--{if $thread[hot]}--><span class="hot"><em>热</em>$thread[hot]</span><!--{/if}-->
-							<a href="space.php?uid=$thread[uid]">{$_SN[$thread[uid]]}</a>
-							<span class="gray"><!--{date('Y-m-d H:i',$thread[dateline],1)}--></span>
+				<!--{if !$eventid && $thread[eventid] && $event}-->
+				<p style="padding:5px 0;"><strong>来自活动</strong>：<a href="space.php?do=event&id=$event[eventid]&view=thread">$event[title]</a></p>
+				<!--{/if}-->
+			</div>
 
+			<div class="detail" id="detail_0">
+				<!--{if $_SGLOBAL['ad']['rightside']}-->
+				<div style="float: right; padding:5px;"><!--{ad/rightside}--></div>
+				<!--{/if}-->
+				$thread[content][message]
+				<!--{if $thread[content][pic]}--><div><a href="$thread[content][pic]" target="_blank"><img src="$thread[content][pic]" alt="" class="resizeimg" /></a></div><!--{/if}-->
 
-							<!--{if $topic}-->
-							<p style="padding:5px 0;"><strong>发表话题</strong>：<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a></p>
-							<!--{/if}-->
-
-							<!--{if !$eventid && $thread[eventid] && $event}-->
-							<p style="padding:5px 0;"><strong>来自活动</strong>：<a href="space.php?do=event&id=$event[eventid]&view=thread">$event[title]</a></p>
-							<!--{/if}-->
-						</div>
-
-						<div class="detail" id="detail_0">
-							<!--{if $_SGLOBAL['ad']['rightside']}-->
-							<div style="float: right; padding:5px;"><!--{ad/rightside}--></div>
-							<!--{/if}-->
-							$thread[content][message]
-							<!--{if $thread[content][pic]}--><div><a href="$thread[content][pic]" target="_blank"><img src="$thread[content][pic]" alt="" class="resizeimg" /></a></div><!--{/if}-->
-
-						</div>
-
-					</td>
-				</tr>
-			</table>
-			
+			</div>
+	
 			<div id="click_div">
 				<!--{template space_click}-->
 			</div>
 
-			<table width="100%">			
-				<tr>
-					<td align="right">
-						<!--{if $thread[uid]==$_SGLOBAL[supe_uid]}-->
-							<!--{if $_SGLOBAL[magic][icon]}-->
-							<img src="image/magic/icon.small.gif" class="magicicon">
-							<a href="magic.php?mid=icon&idtype=tid&id=$thread[tid]" id="a_magic_icon" onclick="ajaxmenu(event,this.id,1)">{$_SGLOBAL[magic][icon]}</a>							
-							<span class="pipe">|</span>
-							<!--{/if}-->
-							<!--{if $_SGLOBAL[magic][icon]}-->
-							<img src="image/magic/color.small.gif" class="magicicon">
-								<!--{if $thread[magiccolor]}-->
-							<a href="cp.php?ac=magic&op=cancelcolor&idtype=tid&id=$thread[tid]" id="a_magic_color" onclick="ajaxmenu(event,this.id)">取消{$_SGLOBAL[magic][color]}</a>
-								<!--{else}-->
-							<a href="magic.php?mid=color&idtype=tid&id=$thread[tid]" id="a_magic_color" onclick="ajaxmenu(event,this.id,1)">{$_SGLOBAL[magic][color]}</a>
-								<!--{/if}-->
-							<span class="pipe">|</span>
-							<!--{/if}-->
-						<!--{/if}-->
-						<!--{if $mtag[grade]>=8 || $thread[uid]==$_SGLOBAL[supe_uid] || ($eventid && $userevent[status]>=3)}-->
-						<a href="cp.php?ac=thread&op=edit&pid=$thread[content][pid]&tagid=$thread[tagid]<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->">编辑</a>
-						<a href="cp.php?ac=thread&op=delete&pid=$thread[content][pid]&tagid=$thread[tagid]<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->" id="p_$thread[content][pid]_delete" onclick="ajaxmenu(event, this.id)">删除</a>
-						<!--{/if}-->
-						<!--{if $thread[uid]==$_SGLOBAL[supe_uid] || checkperm('managethread')}-->
-						<a href="cp.php?ac=topic&op=join&id=$thread[tid]&idtype=tid" id="a_topicjoin_$thread[tid]" onclick="ajaxmenu(event, this.id)">发表话题</a><span class="pipe">|</span>
-						<!--{/if}-->
-						<!--{if checkperm('managethread')}-->
-						<a href="cp.php?ac=thread&tid=$thread[tid]&op=edithot" id="a_hot_$thread[tid]" onclick="ajaxmenu(event, this.id)">热度</a><span class="pipe">|</span>
-						<!--{/if}-->
-						<!--{if (!$eventid && $mtag[allowpost]) || ($eventid && $userevent[status]>=2)}--><a href="#postform">回复</a>&nbsp;<!--{/if}-->
-						<!--{if $mtag[grade]>=8 && !$eventid}-->
-							<!--{if $thread[displayorder]}-->
-							<a href="cp.php?ac=thread&op=top&tagid=$thread[tagid]&tid=$thread[tid]&cancel" id="t_$thread[tid]_top" onclick="ajaxmenu(event, this.id, 0, 2000)">取消置顶</a>&nbsp;
-							<!--{else}-->
-							<a href="cp.php?ac=thread&op=top&tagid=$thread[tagid]&tid=$thread[tid]" id="t_$thread[tid]_top" onclick="ajaxmenu(event, this.id, 0, 2000)">置顶</a>&nbsp;
-							<!--{/if}-->
-							<!--{if $thread[digest]}-->
-							<a href="cp.php?ac=thread&op=digest&tagid=$thread[tagid]&tid=$thread[tid]&cancel" id="t_$thread[tid]_digest" onclick="ajaxmenu(event, this.id, 0, 2000)">取消精华</a>
-							<!--{else}-->
-							<a href="cp.php?ac=thread&op=digest&tagid=$thread[tagid]&tid=$thread[tid]" id="t_$thread[tid]_digest" onclick="ajaxmenu(event, this.id, 0, 2000)">精华</a>
-							<!--{/if}-->
-						<!--{/if}-->
-					</td>
-				</tr>
-				</table>
-				</li>
-			</ul>
-
+		<div class="pull-right">
+		<!--{if $thread[uid]==$_SGLOBAL[supe_uid]}-->
+			<!--{if $_SGLOBAL[magic][icon]}-->
+			<img src="image/magic/icon.small.gif" class="magicicon">
+			<a href="magic.php?mid=icon&idtype=tid&id=$thread[tid]" id="a_magic_icon" onclick="ajaxmenu(event,this.id,1)">{$_SGLOBAL[magic][icon]}</a>							
+			<span class="pipe">|</span>
+			<!--{/if}-->
+			<!--{if $_SGLOBAL[magic][icon]}-->
+			<img src="image/magic/color.small.gif" class="magicicon">
+				<!--{if $thread[magiccolor]}-->
+			<a href="cp.php?ac=magic&op=cancelcolor&idtype=tid&id=$thread[tid]" id="a_magic_color" onclick="ajaxmenu(event,this.id)">取消{$_SGLOBAL[magic][color]}</a>
+				<!--{else}-->
+			<a href="magic.php?mid=color&idtype=tid&id=$thread[tid]" id="a_magic_color" onclick="ajaxmenu(event,this.id,1)">{$_SGLOBAL[magic][color]}</a>
+				<!--{/if}-->
+			<span class="pipe">|</span>
+			<!--{/if}-->
+		<!--{/if}-->
+		<!--{if $mtag[grade]>=8 || $thread[uid]==$_SGLOBAL[supe_uid] || ($eventid && $userevent[status]>=3)}-->
+		<a href="cp.php?ac=thread&op=edit&pid=$thread[content][pid]&tagid=$thread[tagid]<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->">编辑</a>
+		<a href="cp.php?ac=thread&op=delete&pid=$thread[content][pid]&tagid=$thread[tagid]<!--{if $eventid}-->&eventid=$eventid<!--{/if}-->" id="p_$thread[content][pid]_delete" onclick="ajaxmenu(event, this.id)">删除</a>
+		<!--{/if}-->
+		<!--{if $thread[uid]==$_SGLOBAL[supe_uid] || checkperm('managethread')}-->
+		<a href="cp.php?ac=topic&op=join&id=$thread[tid]&idtype=tid" id="a_topicjoin_$thread[tid]" onclick="ajaxmenu(event, this.id)">发表话题</a><span class="pipe">|</span>
+		<!--{/if}-->
+		<!--{if checkperm('managethread')}-->
+		<a href="cp.php?ac=thread&tid=$thread[tid]&op=edithot" id="a_hot_$thread[tid]" onclick="ajaxmenu(event, this.id)">热度</a><span class="pipe">|</span>
+		<!--{/if}-->
+		<!--{if (!$eventid && $mtag[allowpost]) || ($eventid && $userevent[status]>=2)}--><a href="#postform">回复</a>&nbsp;<!--{/if}-->
+		<!--{if $mtag[grade]>=8 && !$eventid}-->
+			<!--{if $thread[displayorder]}-->
+			<a href="cp.php?ac=thread&op=top&tagid=$thread[tagid]&tid=$thread[tid]&cancel" id="t_$thread[tid]_top" onclick="ajaxmenu(event, this.id, 0, 2000)">取消置顶</a>&nbsp;
+			<!--{else}-->
+			<a href="cp.php?ac=thread&op=top&tagid=$thread[tagid]&tid=$thread[tid]" id="t_$thread[tid]_top" onclick="ajaxmenu(event, this.id, 0, 2000)">置顶</a>&nbsp;
+			<!--{/if}-->
+			<!--{if $thread[digest]}-->
+			<a href="cp.php?ac=thread&op=digest&tagid=$thread[tagid]&tid=$thread[tid]&cancel" id="t_$thread[tid]_digest" onclick="ajaxmenu(event, this.id, 0, 2000)">取消精华</a>
+			<!--{else}-->
+			<a href="cp.php?ac=thread&op=digest&tagid=$thread[tagid]&tid=$thread[tid]" id="t_$thread[tid]_digest" onclick="ajaxmenu(event, this.id, 0, 2000)">精华</a>
+			<!--{/if}-->
+		<!--{/if}-->
+		</div>
+		
 		</div>
 
 		<!--{/if}-->
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 		<div id="post_ul">
 
 			<!--{if $pid}-->
@@ -155,7 +129,7 @@
 			<!--{/loop}-->
 		</div>
 
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 
 		<!--{if (!$eventid && $mtag[allowpost]) || ($eventid && $userevent[status]>1)}-->
 
@@ -215,9 +189,9 @@
 		<!--{/if}-->
 	</div>
 </div>
+</div>
 
+<!--{template footer}-->
 <script type="text/javascript">
 	resizeImg('div_post','600');
 </script>
-
-<!--{template footer}-->

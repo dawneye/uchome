@@ -34,18 +34,24 @@ function delAttach(id) {
 }
 
 function addAttach() {
-	if(typeof $('attachbodyhidden').rows === 'undefined'){
-		newnode = $('attachbodyhidden').firstElementChild.cloneNode(true);
-	} else {
-		newnode = $('attachbodyhidden').rows[0].cloneNode(true);
+	if(!$('attachbodyhidden')){
+		return;
 	}
 	var id = aid;
 	var tags;
-	tags = newnode.getElementsByTagName('form');
-	for(i in tags) {
-		if(tags[i].id == 'upload') {
-			tags[i].id = 'upload_' + id;
+	if(typeof $('attachbodyhidden').rows === 'undefined'){
+		newnode = $('attachbodyhidden').firstElementChild.cloneNode(true);
+		if(newnode.id == 'upload') {
+			newnode.id = 'upload_' + id;
 		}
+	} else {
+		newnode = $('attachbodyhidden').rows[0].cloneNode(true);
+		tags = newnode.getElementsByTagName('form');
+		for(i in tags) {
+			if(tags[i].id == 'upload') {
+				tags[i].id = 'upload_' + id;
+			}
+		} 
 	}
 	tags = newnode.getElementsByTagName('input');
 	for(i in tags) {

@@ -1097,20 +1097,67 @@ function topic_join($topicid, $uid, $username) {
 	}
 }
 
-//检查头像是否上传
-function ckavatar($uid) {
-	global $_SC, $_SCONFIG;
+//处理微博提到某人@功能
+function filterAtUsername($txt) {
+	$txt = $txt . " ";
+	if (strstr($txt, '@')) {
+		//$txt = preg_replace("/[\[|\{|\(|,]/", " \\0", $txt);
+		$end = array('[', ']', '(', ')', '{', '}', '<', '>', ',', ':', '.', ';', '!', '@',
+					'【', '】', '（', '）', '『', '』', '《', '》', '，', '：', '。', '；', '！');
+		$txt = str_replace($end, addprefix($end, ' '), $txt);
+		$txt = str_replace('  ', ' ', $txt);
+		$txt = preg_replace_callback('/@([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\.]*)[\s|\:]/', 
+			'wrapUsernameLink', 
+			$txt);
+	}
+	return $txt;
+}
 
-	$type = empty($_SCONFIG['avatarreal'])?'virtual':'real';
-	if(empty($_SCONFIG['uc_dir'])) {
-		include_once(S_ROOT.'./uc_client/client.php');
-		$file_exists = uc_check_avatar($uid, 'middle', $type);
-		return $file_exists;
-	} else {
-		$file = $_SCONFIG['uc_dir'].'./data/avatar/'.avatar_file($uid, 'middle');
-		return file_exists($file)?1:0;
+function wrapUsernameLink($mat){
+	global $_GET;
+	if($mat[1] && ($atid=getuid($mat[1])) > 0){
+		$_GET['AtUsername'][$atid] = '';
+		return '<a class="usertips" href="space.php?uid='.$atid.'" target="_blank">@'.$mat[1].'</a> ';
+	}else{
+		//return '@'.$mat[1].' '; 
+		return '<a class="usertips" href="space.php?username='.$mat[1].'" target="_blank">@'.$mat[1].'</a> ';
 	}
 }
 
+function addprefix($arr, $prefix){
+	foreach($arr as $key => $val){
+		$arr[$key] = $prefix.$val;
+	}
+	return $arr;
+}
+
+function check_content($message, $len=2){
+	if(empty($message) || mb_strlen($message) < $len) {
+		showmessage('content_is_too_short');
+	}
+}
+
+function sendAtNotification($n_url='', $type='动态'){
+	global $_GET, $_SGLOBAL;
+	$subject = '有一条'.$type.'提到了您';
+	$n_url = getsiteurl().$n_url;
+	$message = '<span style="margin: 20px 0; display: inline-block; padding-left: 60px; background: url('.avatar($_SGLOBAL['supe_uid'], 'small', TRUE).') no-repeat 0 0;">'.$subject.'，查看：<br/><a href="'.$n_url.'" class="view-atme">'.$n_url.'</a></span>';
+	$sendtime = $_SGLOBAL['timestamp'] + $_SCONFIG['sendmailday'] * 86400;
+	foreach($_GET['AtUsername'] as $uid => $val){
+		if($uid != $_SGLOBAL['supe_uid']){
+			runlog('sendmail', "$message sendmail 1111.");
+			//获得空间
+			$tospace = getspace($uid);
+			if(empty($tospace)) continue;
+			notification_add($uid, 'atme', $message);
+			$sendmail = addslashes($tospace['email']);
+			if(empty($sendmail) || !isemail($sendmail)) continue;
+			//runlog('sendmail', "$message $sendmail failed.");
+			smail($uid, $sendmail, '有一条'.$type.'提到了您', $message);
+			$cid = inserttable('mailcron', array('touid'=>$uid, 'email'=>$sendmail, 'sendtime'=>$sendtime), 1);
+			inserttable('mailqueue', array('cid' => $cid, 'subject' => $subject, 'message' => $message, 'dateline' => $sendtime));
+		}
+	}
+}
 
 ?>

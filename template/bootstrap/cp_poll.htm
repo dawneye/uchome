@@ -191,7 +191,7 @@
 		<li>暂时没有相关<!--{if $_GET[filtrate]=='we'}-->好友<!--{/if}-->投票记录</li>
 	<!--{/if}-->
 	</ul>
-	<!--{if $multi}--><div class="page">$multi</div><br/><!--{/if}-->
+	<!--{if $multi}--><div class="page pagination pagination-centered">$multi</div><br/><!--{/if}-->
 	
 <!--{elseif $op == 'invite'}-->
 
@@ -218,17 +218,17 @@
 				<p>
 				<a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}">{$_SN[$value[fuid]]}</a>
 				</p>
-				<p><!--{if empty($invitearr[$value[fuid]])}--><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></p>
+				<p><label class="checkbox"><!--{if empty($invitearr[$value[fuid]])}--><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></label></p>
 			</li>
 		<!--{/loop}-->
 		</ul>
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 		<!--{else}-->
 		<div class="c_form">还没有好友。</div>
 		<!--{/if}-->
 	</div>
 	<p>
-		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 &nbsp;
+		<label class="checkbox"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选</label> &nbsp;
 		<input type="submit" name="invitesubmit" value="邀请" class="submit btn" />
 	</p>
 </div>
@@ -367,7 +367,7 @@
 				<tr>
 					<th style="vertical-align: top;" width="90">请填写验证码</th>
 					<td>
-						<script>seccode();</script>
+						<span id="seccodewrap"></span>
 						<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
 						<input type="text" id="seccode" name="seccode" value="" size="15" class="t_input" />
 					</td>

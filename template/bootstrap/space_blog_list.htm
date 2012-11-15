@@ -26,7 +26,7 @@
 <!--{else}-->
 <!--{eval 
 	$_TPL['spacetitle'] = "日志";
-	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">TA的所有日志</a>";
+	$_TPL['spacemenus'][] = "<a href=\"space.php?uid=$space[uid]&do=$do&view=me\">{$_SN[$space[uid]]}的所有日志</a>";
 }-->
 <!--{template space_menu}-->
 <div class="h_status">按照发布时间排序</div>
@@ -50,7 +50,7 @@
 	<!--{/if}-->
 	
 	<!--{if $count}-->
-	<ul class="nav nav-list nav-thumbnail">
+	<ul class="nav-list nav-thumbnail">
 	<!--{loop $list $value}-->
 		<li>
 			<div class="avatardiv media">
@@ -75,9 +75,11 @@
 				$value[message]
 			</div>
 			<div class="gray">
-				<!--{if $classarr[$value[classid]]}-->分类: <a href="space.php?uid=$value[uid]&do=blog&classid=$value[classid]">{$classarr[$value[classid]]}</a><span class="pipe"> | </span><!--{/if}-->
-				<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[viewnum] 次阅读</a><span class="pipe"> | </span><!--{/if}-->
+				<!--{if $classarr[$value[classid]]}-->分类: <a href="space.php?uid=$value[uid]&do=blog&classid=$value[classid]">{$classarr[$value[classid]]}</a><!--{/if}-->
+				<span class="pull-right">
+				<!--{if $value[viewnum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]">$value[viewnum] 次阅读</a> <!--{/if}--> 
 				<!--{if $value[replynum]}--><a href="space.php?uid=$value[uid]&do=$do&id=$value[blogid]#comment">$value[replynum] 个评论</a><!--{else}-->没有评论<!--{/if}-->
+				</span>
 			</div>
 		</li>
 	<!--{/loop}-->
@@ -88,7 +90,7 @@
 	<!--{/if}-->
 	</ul>
 	
-	<div class="page">$multi</div>
+	<div class="page pagination pagination-centered">$multi</div>
 	
 	<!--{else}-->
 	<div class="c_form">还没有相关的日志。</div>

@@ -39,6 +39,10 @@ if(submitcheck('commentsubmit')) {
 		showmessage('content_is_too_short');
 	}
 
+	//pauli，微博@功能
+	$_GET['AtUsername'] = array();
+	$message = filterAtUsername($message);
+
 	//摘要
 	$summay = getstr($message, 150, 1, 1, 0, 0, -1);
 
@@ -462,6 +466,9 @@ if(submitcheck('commentsubmit')) {
 			getreward($becomment, 1, $tospace['uid'], $needle, 0);
 		}
 	}
+	
+	//pauli，微博@功能
+	sendAtNotification($n_url, '评论');
 
 	showmessage($msg, $_POST['refer'], 0, $magvalues);
 }

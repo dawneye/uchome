@@ -25,26 +25,27 @@ jQuery(function(){
 		var _this = jQuery(this);
 		var plus = _this.find('i');
 		if(plus.length < 1){
-			plus = _this.append('<i class="icon-plus"></i>').find('i');
+			plus = _this.append('<i class="icon-plus-sign"></i>').find('i');
 		}
 		plus.click(function(e){
 			var num = hottags_box.data('num');
-			if(jQuery(this).hasClass('icon-plus')){				
+			if(jQuery(this).hasClass('icon-plus-sign')){
 				if(num > 2){
 					alert('最多三个组合标签');
 					//jQuery('#globaltips').html();
 				} else {
 					hottags_box.val(hottags_box.val() + ' ' + _this.text()).data('num', num + 1);
-					jQuery(this).removeClass('icon-plus').addClass('icon-minus');
+					jQuery(this).removeClass('icon-plus-sign').addClass('icon-minus-sign');
 				}
 			} else {
 				hottags_box.val(hottags_box.val().replace(' ' + _this.text(), '')).data('num', num - 1);
-				jQuery(this).removeClass('icon-minus').addClass('icon-plus');
+				jQuery(this).removeClass('icon-minus-sign').addClass('icon-plus-sign');
 			}
 			e.preventDefault();
 		});
 	});
 	
+	jQuery('#seccodewrap').html('<img id="img_seccode" src="do.php?ac=seccode&rand='+Math.random()+'" align="absmiddle">');
 })
 
 }(window.jQuery)

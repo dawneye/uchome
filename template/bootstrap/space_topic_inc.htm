@@ -4,14 +4,22 @@
 	<tr>
 		<!--{if $topic[pic]}-->
 		<td width="160" id="event_icon" valign="top">
-			<img src="$topic[pic]" width="150">
+			<img src="$topic[pic]">
 		</td>
 		<!--{/if}-->
 		<td valign="top">
 			<h5>
 				<a href="space.php?do=topic&topicid=$topic[topicid]">$topic[subject]</a>
 			</h5>
-		
+
+<!--{eval
+	//处理标签
+	if($_GET['do']!=topic) {$topic['message'] = getstr($topic['message'], 300, 0, 0, 0, 0, -1).'......';}
+	$topic['message'] = str_replace('&amp;amp;', '&amp;', $topic['message']);
+	$topic['message'] = str_replace('&lt;', '<', $topic['message']);
+	$topic['message'] = str_replace('&gt;', '>', $topic['message']);
+}-->
+
 			<div style="padding:5px 0;">$topic[message]</div>
 			<ul>
 				<li class="gray">发起作者: <a href="space.php?uid=$topic[uid]">{$_SN[$topic[uid]]}</a></li>
@@ -24,8 +32,9 @@
 			</ul>
 			
 			<!--{if $topic[allowjoin]}-->
-			<a href="$topic[joinurl]" class="feed_po" id="hot_add" onmouseover="showMenu(this.id)">发表话题</a>
-			<ul id="hot_add_menu" class="dropmenu_drop" style="display:none;">
+			<div class="btn-group dropdown pull-right">
+			<a href="$topic[joinurl]" class="btn dropdown-toggle" data-toggle="dropdown"> 发表话题 <span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu" >
 				<!--{if in_array('blog', $topic['jointype'])}-->
 				<li><a href="cp.php?ac=blog&topicid=$topicid">发表日志</a></li>
 				<!--{/if}-->
@@ -45,6 +54,7 @@
 				<li><a href="cp.php?ac=share&topicid=$topicid">添加分享</a></li>
 				<!--{/if}-->
 			</ul>
+			</div>
 			<!--{else}-->
 			<p class="r_option pull-right">该话题已经截止</p>
 			<!--{/if}-->

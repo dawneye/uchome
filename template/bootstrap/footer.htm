@@ -18,7 +18,7 @@
 	<a href="#uchome_debug" title="页面运行调试信息" class="btn btn-mini" data-toggle="modal"><i class="icon-eye-open"></i></a>
 	<!--{/if}-->
 	<a href="javascript:;" onclick="window.scrollTo(0,0);" class="btn btn-mini" id="a_top" title="返回顶部"><i class="icon-circle-arrow-up"></i></a>
-	<!--{if $_TPL['templates']}-->
+	<!--{if $_TPL['templates'] && ckfounder($_SGLOBAL['supe_uid'])}-->
 	<span class="dropdown-toggle btn btn-mini" data-toggle="dropdown" title="切换风格"><img id="chostlp" src="{$_TPL['default_template']['icon']}" alt="{$_TPL['default_template']['name']}" /></span>
 	<ul class="dropdown-menu hide">
 	<!--{loop $_TPL['templates'] $value}-->
@@ -53,33 +53,20 @@
 <!--/wrap-->
 
 
-
-<!--{if $_SGLOBAL[supe_uid]}-->
-<ul id="membernotemenu_menu" class="dropmenu_drop" style="display:none;">
-	<!--{eval $member = $_SGLOBAL['member'];}-->
-	<!--{if $member[notenum]}--><li><img src="image/icon/notice.gif" width="16" alt="" /> <a href="space.php?do=notice"><strong>$member[notenum]</strong> 个新通知</a></li><!--{/if}-->
-	<!--{if $member[pokenum]}--><li><img src="image/icon/poke.gif" alt="" /> <a href="cp.php?ac=poke"><strong>$member[pokenum]</strong> 个新招呼</a></li><!--{/if}-->
-	<!--{if $member[addfriendnum]}--><li><img src="image/icon/friend.gif" alt="" /> <a href="cp.php?ac=friend&op=request"><strong>$member[addfriendnum]</strong> 个好友请求</a></li><!--{/if}-->
-	<!--{if $member[mtaginvitenum]}--><li><img src="image/icon/mtag.gif" alt="" /> <a href="cp.php?ac=mtag&op=mtaginvite"><strong>$member[mtaginvitenum]</strong> 个群组邀请</a></li><!--{/if}-->
-	<!--{if $member[eventinvitenum]}--><li><img src="image/icon/event.gif" alt="" /> <a href="cp.php?ac=event&op=eventinvite"><strong>$member[eventinvitenum]</strong> 个活动邀请</a></li><!--{/if}-->
-	<!--{if $member[myinvitenum]}--><li><img src="image/icon/userapp.gif" alt="" /> <a href="space.php?do=notice&view=userapp"><strong>$member[myinvitenum]</strong> 个应用消息</a></li><!--{/if}-->
-</ul>
-<!--{/if}-->
-
 <!--{if $_SGLOBAL[supe_uid]}-->
 <!--{if !isset($_SCOOKIE['checkpm'])}-->
-<script language="javascript"  type="text/javascript" src="cp.php?ac=pm&op=checknewpm&rand=$_SGLOBAL[timestamp]"></script>
+<script type="text/javascript" src="cp.php?ac=pm&op=checknewpm&rand=$_SGLOBAL[timestamp]"></script>
 <!--{/if}-->
 <!--{if !isset($_SCOOKIE['synfriend'])}-->
-<script language="javascript"  type="text/javascript" src="cp.php?ac=friend&op=syn&rand=$_SGLOBAL[timestamp]"></script>
+<script type="text/javascript" src="cp.php?ac=friend&op=syn&rand=$_SGLOBAL[timestamp]"></script>
 <!--{/if}-->
 <!--{/if}-->
 <!--{if !isset($_SCOOKIE['sendmail'])}-->
-<script language="javascript"  type="text/javascript" src="do.php?ac=sendmail&rand=$_SGLOBAL[timestamp]"></script>
+<script type="text/javascript" src="do.php?ac=sendmail&rand=$_SGLOBAL[timestamp]"></script>
 <!--{/if}-->
 
 <!--{if $_SGLOBAL['ad']['couplet']}-->
-<script language="javascript" type="text/javascript" src="template/bootstrap/script/script_couplet.js"></script>
+<script type="text/javascript" src="template/bootstrap/script/script_couplet.js"></script>
 <div id="uch_couplet" style="z-index: 10; position: absolute; display:none">
 	<div id="couplet_left" style="position: absolute; left: 2px; top: 60px; overflow: hidden;">
 		<div style="position: relative; top: 25px; margin:0.5em;" onMouseOver="this.style.cursor='hand'" onClick="closeBanner('uch_couplet');"><img src="image/advclose.gif"></div>

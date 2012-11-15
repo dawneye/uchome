@@ -1,6 +1,7 @@
 <!--{eval $_TPL['titles'] = array($tpl_title, '分享');}-->
 <!--{template header}-->
 
+<div class="span10">
 <!--{if $space[self]}-->
 <h3 class="title">分享</h3>
 <div class="tabs_header">
@@ -36,9 +37,7 @@
 			<!--{/if}-->
 			<a href="cp.php?ac=common&op=report&idtype=sid&id=$share[sid]" id="a_report" onclick="ajaxmenu(event, this.id, 1)">举报</a>
 		</div>
-		<h1>
-			$share[title_template]
-		</h1>
+		<h4>$share[title_template]</h4>
 		<p style="padding:5px 0;">
 			<!--{if $share[hot]}--><span class="hot"><em>热</em>$share[hot]</span><!--{/if}-->
 			<!--{date('Y-m-d H:i',$share[dateline],1)}-->
@@ -80,7 +79,7 @@
 	</div>
 	<div class="quote"><span class="q">$share[body_general]</span></div>
 </div>
-<div class="page">$multi</div>
+<div class="page pagination pagination-centered">$multi</div>
 <div class="comments_list" id="comment">
 
 	<!--{if $cid}-->
@@ -95,7 +94,7 @@
 	<!--{/loop}-->
 	</ul>
 </div>
-<div class="page">$multi</div>
+<div class="page pagination pagination-centered">$multi</div>
 
 <!--{if !$share[noreply]}-->
 <form id="quickcommentform_{$id}" name="quickcommentform_{$id}" action="cp.php?ac=comment" method="post" class="quickpost">
@@ -137,5 +136,5 @@ for(var i=0; i<elems.length; i++){
 
 </script>
 
-
+</div>
 <!--{template footer}-->

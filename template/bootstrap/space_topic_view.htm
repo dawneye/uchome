@@ -1,12 +1,8 @@
 <!--{eval $_TPL['titles'] = array($topic[subject],'话题');}-->
 <!--{template header}-->
-
-<h5 class="title">话题 - <a href="space.php?do=topic&topicid=$topicid">$topic[subject]</a></h5>
+<div class="span10">
+<h3 class="title">话题 - <a href="space.php?do=topic&topicid=$topicid">$topic[subject]</a></h3>
 <div class="tabs_header">
-	<ul class="tabs nav nav-tabs">
-		<li class="active"><a href="space.php?do=topic&topicid=$topicid"><span>查看话题</span></a></li>
-		<li><a href="space.php?do=topic"><span>话题列表</span></a></li>
-	</ul>
 	<!--{if checkperm('managetopic') || $topic['uid']==$_SGLOBAL[supe_uid]}-->
 	<div class="r_option pull-right">
 		<a href="cp.php?ac=topic&op=edit&topicid=$topic[topicid]">编辑</a> | 
@@ -14,9 +10,14 @@
 		</p>
 	</div>
 	<!--{/if}-->
+	<ul class="tabs nav nav-tabs">
+		<li class="active"><a href="space.php?do=topic&topicid=$topicid"><span>查看话题</span></a></li>
+		<li><a href="space.php?do=topic"><span>话题列表</span></a></li>
+	</ul>
+</div>
 </div>
 
-<div id="content">
+<div id="content" class="span7">
 	<!--{template space_topic_inc}-->
 	
 	<!--{if in_array($_GET[view], array('pic','index')) && in_array('pic', $topic['jointype'])}-->
@@ -246,12 +247,12 @@
 		<!--{/if}-->
 		
 	<!--{else}-->
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 	<!--{/if}-->
 
 </div>
 
-<div id="sidebar">
+<div id="sidebar" class="span3">
 
 	<div class="sidebox">
 	<h5 class="title">分类查看</h5>

@@ -69,7 +69,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>归属栏目</th><td colspan="3">
+			<th>归属栏目</th><td>
 			<select name="fieldid">
 			<option value="">全部</option>
 			<!--{loop $_SGLOBAL[profield] $value}-->
@@ -77,39 +77,38 @@
 			<!--{/loop}-->
 			</select>
 			</td>
-		</tr>
-		<tr><th>用户数</th><td colspan="3">
-			<input type="text" name="membernum1" value="$_GET[membernum1]" size="10"> ~
-			<input type="text" name="membernum2" value="$_GET[membernum2]" size="10">
+			<th>用户数</th><td>
+			<input type="text" class="span2" name="membernum1" value="$_GET[membernum1]" size="10"> ~
+			<input type="text" class="span2" name="membernum2" value="$_GET[membernum2]" size="10">
 		</td></tr>
-		<tr><th>话题数</th><td colspan="3">
-			<input type="text" name="threadnum1" value="$_GET[threadnum1]" size="10"> ~
-			<input type="text" name="threadnum2" value="$_GET[threadnum2]" size="10">
-		</td></tr>
-		<tr><th>回帖数</th><td colspan="3">
-			<input type="text" name="postnum1" value="$_GET[postnum1]" size="10"> ~
-			<input type="text" name="postnum2" value="$_GET[postnum2]" size="10">
+		<tr><th>话题数</th><td>
+			<input type="text" class="span2" name="threadnum1" value="$_GET[threadnum1]" size="10"> ~
+			<input type="text" class="span2" name="threadnum2" value="$_GET[threadnum2]" size="10">
+		</td>
+		<th>回帖数</th><td>
+			<input type="text" class="span2" name="postnum1" value="$_GET[postnum1]" size="10"> ~
+			<input type="text" class="span2" name="postnum2" value="$_GET[postnum2]" size="10">
 		</td></tr>
 	
 		<tr><th>结果排序</th>
 		<td colspan="3">
-		<select name="orderby">
+		<select name="orderby" class="span2">
 		<option value="">默认排序</option>
 		<option value="membernum"$orderby[membernum]>成员数</option>
 		<option value="threadnum"$orderby[threadnum]>话题数</option>
 		<option value="postnum"$orderby[postnum]>回帖数</option>
 		</select>
-		<select name="ordersc">
+		<select name="ordersc" class="span2">
 		<option value="desc"$ordersc[desc]>递减</option>
 		<option value="asc"$ordersc[asc]>递增</option>
 		</select>
-		<select name="perpage">
+		<select name="perpage" class="span2">
 		<option value="20"$perpages[20]>每页显示20个</option>
 		<option value="50"$perpages[50]>每页显示50个</option>
 		<option value="100"$perpages[100]>每页显示100个</option>
 		</select>
 		<input type="hidden" name="ac" value="mtag">
-		<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
+		<input type="submit" name="searchsubmit" value="搜索" class="submit btn btn-primary">
 		</td>
 		</tr>
 		</table>
@@ -152,22 +151,21 @@
 	<div class="footactions" style="text-align:left;line-height:2.5em;">
 		<input type="hidden" name="mpurl" value="$mpurl">
 		<!--{if $managebatch}-->
-		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 &nbsp; 请选择操作类型：<br>
+		<label class="checkbox"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 </label>&nbsp; 请选择操作类型：<br/>
 		<!--{/if}-->
-		<input type="radio" name="optype" value="delete"> 删除(群组里面的帖子也会删除)<br>
-		<input type="radio" name="optype" value="close"> 锁定
-		<input type="radio" name="optype" value="open"> 取消锁定<br>
-		<input type="radio" name="optype" value="recommend"> 推荐
-		<input type="radio" name="optype" value="unrecommend"> 取消推荐
-		<br>
-		<input type="radio" name="optype" value="move"> 转移到新分类:
+		<label class="radio"><input type="radio" name="optype" value="delete"> 删除(群组里面的帖子也会删除) </label><br>
+		<label class="radio"><input type="radio" name="optype" value="close"> 锁定 </label>
+		<label class="radio"><input type="radio" name="optype" value="open"> 取消锁定 </label><br>
+		<label class="radio"><input type="radio" name="optype" value="recommend"> 推荐 </label>
+		<label class="radio"><input type="radio" name="optype" value="unrecommend"> 取消推荐 </label><br>
+		<label class="radio inline"><input type="radio" name="optype" value="move"> 转移到新分类： </label>
 			<select name="move_newfieldid">
 			<!--{loop $_SGLOBAL[profield] $value}-->
 			<option value="$value[fieldid]">$value[title]</option>
 			<!--{/loop}-->
 			</select>
 		<br>
-		<input type="radio" name="optype" value="merge"> 合并到其他群组:
+		<label class="radio inline"><input type="radio" name="optype" value="merge"> 合并到其他群组： </label>
 			<select name="merge_newfieldid">
 			<!--{loop $_SGLOBAL[profield] $value}-->
 			<option value="$value[fieldid]">$value[title]</option>
@@ -175,7 +173,7 @@
 			</select>
 			群组名：<input type="text" name="newtagname" value="" size="5">
 		<br>
-		<input type="submit" name="opsubmit" value="执行操作" onclick="return confirm('本操作不可恢复，确认继续？');" class="submit btn">
+		<input type="submit" name="opsubmit" value="执行操作" onclick="return confirm('本操作不可恢复，确认继续？');" class="submit btn btn-primary">
 	
 		<div class="pages">$multi</div>
 	</div>

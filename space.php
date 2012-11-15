@@ -30,7 +30,7 @@ if($_SCONFIG['allowrewrite'] && isset($_GET['rewrite'])) {
 include_once('./source/inc_landing.php');
 
 //允许动作
-$dos = array('feed', 'doing', 'mood', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'share', 'topic', 'home', 'pm', 'event', 'poll', 'top', 'info', 'videophoto');
+$dos = array('landing', 'feed', 'doing', 'mood', 'blog', 'album', 'thread', 'mtag', 'friend', 'wall', 'tag', 'notice', 'share', 'topic', 'home', 'pm', 'event', 'poll', 'top', 'info', 'videophoto');
 
 //获取变量
 $isinvite = 0;
@@ -38,9 +38,6 @@ $uid = empty($_GET['uid'])?0:intval($_GET['uid']);
 $username = empty($_GET['username'])?'':$_GET['username'];
 $domain = empty($_GET['domain'])?'':$_GET['domain'];
 $do = (!empty($_GET['do']) && in_array($_GET['do'], $dos))?$_GET['do']:'index';
-
-//pauli
-$side_actives = array($do => ' class="active"');
 
 if($do == 'home') {
 	$do = 'feed';
@@ -65,6 +62,8 @@ if(empty($isinvite) && empty($_SCONFIG['networkpublic'])) {
 if($uid) {
 	$space = getspace($uid, 'uid');
 } elseif ($username) {
+	//pauli
+	$uid = getuid($username);
 	$space = getspace($username, 'username');
 } elseif ($domain) {
 	$space = getspace($domain, 'domain');
@@ -147,9 +146,14 @@ if(!empty($_SCONFIG['cronnextrun']) && $_SCONFIG['cronnextrun'] <= $_SGLOBAL['ti
 	runcron();
 }
 
-if ($_SCONFIG['template'] == 'bootstrap' && in_array($do, array('feed', 'home', 'index')) && !isset($_GET['uid'])){
+/*
+if ($_SCONFIG['template'] == 'bootstrap' && in_array($do, array('feed', 'home', 'index')) && !isset($_GET['uid']) && !isset($_GET['username'])){
 	$do = 'landing';
 }
+*/
+
+//pauli
+$side_actives = array($do => ' class="active"');
 
 //处理
 include_once(S_ROOT."./source/space_{$do}.php");

@@ -1578,13 +1578,34 @@ function ckstart($start, $perpage) {
 	}
 }
 
+
+//检查头像是否上传
+function ckavatar($uid) {
+	global $_SC, $_SCONFIG;
+
+	$type = empty($_SCONFIG['avatarreal'])?'virtual':'real';
+	if(empty($_SCONFIG['uc_dir'])) {
+		include_once(S_ROOT.'./uc_client/client.php');
+		$file_exists = uc_check_avatar($uid, 'middle', $type);
+		return $file_exists;
+	} else {
+		$file = $_SCONFIG['uc_dir'].'./data/avatar/'.avatar_file($uid, 'middle');
+		return file_exists($file)?1:0;
+	}
+}
+
 //处理头像
 function avatar($uid, $size='small', $returnsrc = FALSE) {
 	global $_SCONFIG, $_SN;
 	
 	$size = in_array($size, array('big', 'middle', 'small')) ? $size : 'small';
-	$avatarfile = avatar_file($uid, $size);
-	return $returnsrc ? UC_API.'/data/avatar/'.$avatarfile : '<img src="'.UC_API.'/data/avatar/'.$avatarfile.'" onerror="this.onerror=null;this.src=\''.UC_API.'/images/noavatar_'.$size.'.gif\'">';
+	//pauli
+	if(ckavatar($uid)){
+		$avatarfile = UC_API.'/data/avatar/'.avatar_file($uid, $size);
+	} else {
+		$avatarfile = "/images/noavatar_$size.jpg";
+	}
+	return $returnsrc ? $avatarfile : '<img src="'.$avatarfile.'" onerror="this.onerror=null;this.src=\''.UC_API.'/images/noavatar_'.$size.'.gif\'">';
 }
 
 //得到头像
@@ -2198,4 +2219,5 @@ function qqconnect() {
 
 	
 }
+
 ?>

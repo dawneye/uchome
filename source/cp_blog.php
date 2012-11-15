@@ -69,7 +69,14 @@ if(submitcheck('blogsubmit')) {
 	if(checkperm('seccode') && !ckseccode($_POST['seccode'])) {
 		showmessage('incorrect_code');
 	}
-	
+
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
+
+	//pauli，微博@功能
+	$_GET['AtUsername'] = array();
+	$message = filterAtUsername($message);
+
 	include_once(S_ROOT.'./source/function_blog.php');
 	if($newblog = blog_post($_POST, $blog)) {
 		if(empty($blog) && $newblog['topicid']) {
@@ -81,6 +88,9 @@ if(submitcheck('blogsubmit')) {
 	} else {
 		showmessage('that_should_at_least_write_things');
 	}
+
+	//pauli，微博@功能
+	sendAtNotification($url, '日志');
 }
 
 if($_GET['op'] == 'delete') {
@@ -127,6 +137,10 @@ if($_GET['op'] == 'delete') {
 	//获取相册
 	$albums = getalbums($_SGLOBAL['supe_uid']);
 	
+	//pauli，同步到群组，关联群组 TODO
+	
+	//pauli，关联群组 TODO
+
 	$tags = empty($blog['tag'])?array():unserialize($blog['tag']);
 	$blog['tag'] = implode(' ', $tags);
 	

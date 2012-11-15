@@ -1,12 +1,81 @@
 <!--{eval $_TPL['nosidebar']=1;}-->
 <!--{template header}-->
 
+<div class="span12">
+<span class="pull-right">
+个人网址：<a href="$space[domainurl]" onclick="javascript:setCopy('$space[domainurl]');return false;" class="spacelink domainurl">$space[domainurl]</a>
+</span>
+
+<h3 id="spaceindex_name" style="display:inline; margin-right:20px">
+<!--{if $_SCONFIG[realname]}-->
+	<!--{if $space[name]}--><a href="space.php?uid=$space[uid]"<!--{eval g_color($space[groupid]);}-->>$space[name]</a><!--{else}-->未填写实名<!--{/if}-->
+	&nbsp;<em>(用户名: $space[username])</em>
+<!--{else}-->
+	<a href="space.php?uid=$space[uid]"<!--{eval g_color($space[groupid]);}-->>$space[username]</a>
+	<!--{if $space[name]}-->&nbsp;<em>($space[name])</em><!--{/if}-->
+<!--{/if}-->
+
+<!--{if $_SCONFIG[realname]}-->
+	<!--{if $space[namestatus]}-->
+		&nbsp;<img src="image/realname_yes.gif" align="absmiddle" alt="已通过实名认证">
+	<!--{else}-->
+		&nbsp;<img src="image/realname_no.gif" align="absmiddle" alt="未通过实名认证"> <span class="gray">实名未认证</span>
+	<!--{/if}-->
+<!--{/if}-->
+	
+<!--{if $_SCONFIG[videophoto]}-->	
+	<!--{if $space[videostatus]}-->
+		&nbsp;<img src="image/videophoto_yes.gif" align="absmiddle" alt="已通过视频认证"> <a id="a_space_videophoto" href="space.php?uid=$space[uid]&do=videophoto" onclick="ajaxmenu(event, this.id, 1)"><span style="color:red;font-weight:bold;font-size:12px;">查看视频认证照</span></a>
+	<!--{else}-->
+		&nbsp; <img src="image/videophoto_no.gif" align="absmiddle" alt="未通过视频认证"> <span class="gray"><a href="cp.php?ac=videophoto">视频未认证</a></span>
+	<!--{/if}-->
+<!--{/if}-->
+</h3>
+	
+<a href="cp.php?ac=credit&op=usergroup">{$_SGLOBAL[grouptitle][$space[groupid]][grouptitle]}</a> <!--{eval g_icon($space[groupid]);}-->
+已有 $space[viewnum] 人次访问, $space[credit] 个积分, $space[experience] 个经验 $space[star]
+<!--{if !$space[self] && $space[spacenote]}-->
+$space[spacenote] <a href="space.php?uid=$space[uid]&do=doing">&raquo;</a></li>
+<!--{/if}-->
+</div>
+
+<ul class="span12 clearfix nav nav-tabs">
+<li class="active">
+	<a href="space.php?uid=$space[uid]" >个人主页</a>
+</li>
+<li>
+	<a href="javascript:;" onclick="getindex('doing');">记录
+	<!--{if $space[doingnum]}--><i class="label">$space[doingnum]</i><!--{/if}--></a>
+</li>
+<li>
+	<a href="javascript:;" onclick="getindex('blog');">日志
+	<!--{if $space[blognum]}--><i class="label">$space[blognum]</i><!--{/if}--></a></li>
+<li>
+	<a href="javascript:;" onclick="getindex('album');">相册
+	<!--{if $space[albumnum]}--><i class="label">$space[albumnum]</i><!--{/if}--></a></li>
+<li>
+	<a href="javascript:;" onclick="getindex('thread');">话题
+	<!--{if $space[threadnum]}--><i class="label">$space[threadnum]</i><!--{/if}--></a></li>
+<li>
+	<a href="javascript:;" onclick="getindex('poll');">投票
+	<!--{if $space[pollnum]}--><i class="label">$space[pollnum]</i><!--{/if}--></a></li>
+<li>
+	<a href="javascript:;" onclick="getindex('event');">活动
+	<!--{if $space[eventnum]}--><i class="label">$space[eventnum]</i><!--{/if}--></a></li>
+<li>
+	<a href="javascript:;" onclick="getindex('share');">分享
+	<!--{if $space[sharenum]}--><i class="label">$space[sharenum]</i><!--{/if}--></a></li>
+<li>
+	<a href="javascript:;" onclick="getindex('friend');">好友
+	<!--{if $space[friendnum]}--><i class="label">$space[friendnum]</i><!--{/if}--></a></li>
+</ul>
+
 <!--{if $narrowlist || $widelist}-->
 <script type="text/javascript" src="template/bootstrap/script/script_swfobject.js"></script>
 <!--{/if}-->
 
-<div id="space_page">
-	<div id="ubar" class="span2">
+<div id="space_page" class="clearfix">
+	<div id="ubar" class="span2 sidebox">
 		<div id="space_avatar">
 			<!--{if $space[magicstar] && $space[magicexpire]>$_SGLOBAL[timestamp]}-->
 			<div class="magicstar">
@@ -39,50 +108,87 @@
 
 		<!--{template space_menu_cp}-->
 
+		<div id="space_info" class="clearfix">
+			<h4 class="feed_header">
+				<!--{if $space[self]}-->
+				<a href="cp.php?ac=profile" class="r_option pull-right">完善</a>
+				<!--{else}-->
+				<a class="info_more pull-right" href="javascript:;" style="margin-bottom:30px" onclick="getindex('info');">全部</a>
+				<!--{/if}-->
+				个人资料
+			</h4>
+			<ul class="spacemenu_list unstyled">
+				<li><em>创建：</em><!--{date('Y-m-d',$space[dateline],1)}--></li>
+				<li><em>登录：</em><!--{if $space[lastlogin]}--><!--{date('Y-m-d',$space[lastlogin],1)}--><!--{/if}--></li>
+				<!--{if $isonline}-->
+				<li><em>活跃：</em>$isonline (在线)</li>
+				<!--{/if}-->
+			<!--{if $space[sex]}-->
+				<li><em>性别：</em>$space[sex]</li>
+			<!--{/if}-->
+			<!--{if $space[birth]}-->
+				<li><em>生日：</em>$space[birth]</li>
+			<!--{/if}-->
+			<!--{if $space[blood]}-->
+				<li><em>血型：</em>$space[blood]</li>
+			<!--{/if}-->
+			<!--{if $space[marry]}-->
+				<li><em>婚恋：</em>$space[marry]</li>
+			<!--{/if}-->
+			<!--{if $space[residecity]}-->
+				<li><em>居住：</em>$space[residecity]</li>
+			<!--{/if}-->
+			<!--{if $space[birthcity]}-->
+				<li><em>家乡：</em>$space[birthcity]</li>
+			<!--{/if}-->
+			<!--{if $space[mobile]}-->
+				<li><em>手机：</em>$space[mobile]</li>
+			<!--{/if}-->
+			<!--{if $space[qq]}-->
+				<li><em>QQ：</em>$space[qq]</li>
+			<!--{/if}-->
+			<!--{if $space[msn]}-->
+				<li><em>MSN：</em>$space[msn]</li>
+			<!--{/if}-->
+			</ul>
+		</div>
+
 		<div id="space_mymenu" class="hide">
-			<h5>个人菜单</h5>
-			<ul class="line_list">
+			<h4>个人菜单</h4>
+			<ul class="line_list nav-list nav-side">
 				<li>
-					<!--{if $space[self]}-->
-					<a href="cp.php?ac=profile" class="r_option pull-right" target="_blank">完善</a>
-					<!--{/if}-->
-					<img src="image/icon/profile.gif"><a href="javascript:;" onclick="getindex('info');">个人资料</a>
+					<!--{if $space[self]}--><em><a href="space.php?do=doing&view=me" target="_blank">发表</a></em><!--{/if}-->
+					<!--{if $space[doingnum]}--><i class="label">$space[doingnum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('doing');">记录</a>
 				</li>
 				<li>
-					<!--{if $space[self]}-->
-					<a href="space.php?do=doing&view=me" class="r_option pull-right" target="_blank">记录</a>
-					<!--{/if}-->
-					<img src="image/icon/doing.gif"><a href="javascript:;" onclick="getindex('doing');">记录</a><!--{if $space[doingnum]}--><em>($space[doingnum])</em><!--{/if}-->
-				</li>
+					<!--{if $space[self]}--><em><a href="cp.php?ac=blog" target="_blank">发表</a></em><!--{/if}-->
+					<!--{if $space[blognum]}--><i class="label">$space[blognum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('blog');">日志</a></li>
 				<li>
-					<!--{if $space[self]}-->
-					<a href="cp.php?ac=blog" class="r_option pull-right" target="_blank">发表</a>
-					<!--{/if}-->
-					<img src="image/icon/blog.gif"><a href="javascript:;" onclick="getindex('blog');">日志</a><!--{if $space[blognum]}--><em>($space[blognum])</em><!--{/if}--></li>
-				<li><!--{if $space[self]}-->
-					<a href="cp.php?ac=upload" class="r_option pull-right" target="_blank">上传</a>
-					<!--{/if}-->
-					<img src="image/icon/album.gif"><a href="javascript:;" onclick="getindex('album');">相册</a><!--{if $space[albumnum]}--><em>($space[albumnum])</em><!--{/if}--></li>
-				<li><!--{if $space[self]}-->
-					<a href="cp.php?ac=thread" class="r_option pull-right" target="_blank">发表</a>
-					<!--{/if}-->
-					<img src="image/icon/thread.gif"><a href="javascript:;" onclick="getindex('thread');">话题</a><!--{if $space[threadnum]}--><em>($space[threadnum])</em><!--{/if}--></li>
-				<li><!--{if $space[self]}-->
-					<a href="cp.php?ac=poll" class="r_option pull-right" target="_blank">发起</a>
-					<!--{/if}-->
-					<img src="image/icon/poll.gif"><a href="javascript:;" onclick="getindex('poll');">投票</a><!--{if $space[pollnum]}--><em>($space[pollnum])</em><!--{/if}--></li>
-				<li><!--{if $space[self]}-->
-					<a href="cp.php?ac=event" class="r_option pull-right" target="_blank">发起</a>
-					<!--{/if}-->
-					<img src="image/icon/event.gif"><a href="javascript:;" onclick="getindex('event');">活动</a><!--{if $space[eventnum]}--><em>($space[eventnum])</em><!--{/if}--></li>
-				<li><!--{if $space[self]}-->
-					<a href="space.php?do=share&view=me" class="r_option pull-right" target="_blank">添加</a>
-					<!--{/if}-->
-					<img src="image/icon/share.gif"><a href="javascript:;" onclick="getindex('share');">分享</a><!--{if $space[sharenum]}--><em>($space[sharenum])</em><!--{/if}--></li>
-				<li><!--{if $space[self]}-->
-					<a href="cp.php?ac=friend&op=search" class="r_option pull-right" target="_blank">寻找</a>
-					<!--{/if}-->
-					<img src="image/icon/friend.gif"><a href="javascript:;" onclick="getindex('friend');">好友</a><!--{if $space[friendnum]}--><em>($space[friendnum])</em><!--{/if}--></li>
+					<!--{if $space[self]}--><em><a href="cp.php?ac=upload" target="_blank">上传</a></em><!--{/if}-->
+					<!--{if $space[albumnum]}--><i class="label">$space[albumnum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('album');">相册</a></li>
+				<li>
+					<!--{if $space[self]}--><em><a href="cp.php?ac=thread" target="_blank">发表</a></em><!--{/if}-->
+					<!--{if $space[threadnum]}--><i class="label">$space[threadnum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('thread');">话题</a></li>
+				<li>
+					<!--{if $space[self]}--><em><a href="cp.php?ac=poll" target="_blank">发起</a></em><!--{/if}-->
+					<!--{if $space[pollnum]}--><i class="label">$space[pollnum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('poll');">投票</a></li>
+				<li>
+					<!--{if $space[self]}--><em><a href="cp.php?ac=event" target="_blank">发起</a></em><!--{/if}-->
+					<!--{if $space[eventnum]}--><i class="label">$space[eventnum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('event');">活动</a></li>
+				<li>
+					<!--{if $space[self]}--><em><a href="space.php?do=share&view=me" target="_blank">添加</a></em><!--{/if}-->
+					<!--{if $space[sharenum]}--><i class="label">$space[sharenum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('share');">分享</a></li>
+				<li>
+					<!--{if $space[self]}--><em><a href="cp.php?ac=friend&op=search" target="_blank">寻找</a></em><!--{/if}-->
+					<!--{if $space[friendnum]}--><i class="label">$space[friendnum]</i><!--{/if}-->
+					<a href="javascript:;" onclick="getindex('friend');">好友</a></li>
 			</ul>
 		</div>
 
@@ -122,13 +228,13 @@
 
 	<div id="content" class="span7">
 			
-		<h3 id="spaceindex_name">
+		<h3 id="spaceindex_name" class="hide">
 		<!--{if $_SCONFIG[realname]}-->
 			<!--{if $space[name]}--><a href="space.php?uid=$space[uid]"<!--{eval g_color($space[groupid]);}-->>$space[name]</a><!--{else}-->未填写实名<!--{/if}-->
 			&nbsp;<em>(用户名: $space[username])</em>
 		<!--{else}-->
 			<a href="space.php?uid=$space[uid]"<!--{eval g_color($space[groupid]);}-->>$space[username]</a>
-			<!--{if $space[name]}-->&nbsp;<em>(姓名: $space[name])</em><!--{/if}-->
+			<!--{if $space[name]}-->&nbsp;<em>($space[name])</em><!--{/if}-->
 		<!--{/if}-->
 
 		<!--{if $_SCONFIG[realname]}-->
@@ -150,13 +256,14 @@
 
 
 		<div id="spaceindex_note">
-			<span class="pull-right">
+			<span class="pull-right" style="margin-bottom: 10px;">
 				<!--{if !$space[self]}-->
+				<a class="submit btn" href="cp.php?ac=pm&uid=$space[uid]" id="a_pm" onclick="ajaxmenu(event, this.id, 1)">给TA发消息</a>
 				<a href="cp.php?ac=share&type=space&id=$space[uid]" class="a_share btn " id="a_share" onclick="ajaxmenu(event, this.id, 1)">分享 <i class="icon-share"></i></a>
 				<!--{/if}-->
 				<a href="rss.php?uid=$space[uid]" id="i_rss" title="订阅 RSS" class="btn">订阅 <i class="icon-plus"></i></a>
 			</span>
-			<ul class="note_list">
+			<ul class="note_list hide">
 				<li>已有 $space[viewnum] 人次访问, $space[credit] 个积分, $space[experience] 个经验 $space[star]</li>
 				<li>用户组别：<a href="cp.php?ac=credit&op=usergroup">{$_SGLOBAL[grouptitle][$space[groupid]][grouptitle]}</a> <!--{eval g_icon($space[groupid]);}--></li>
 				<li>主页地址：<a href="$space[domainurl]" onclick="javascript:setCopy('$space[domainurl]');return false;" class="spacelink domainurl">$space[domainurl]</a></li>
@@ -171,61 +278,16 @@
 			<!--{/if}-->
 		</div>
 
-		<div id="maincontent">
-
+		<div id="maincontent" class="clearfix">
 		<!--{if !$space['isfriend']}-->
 		<div class="borderbox "><a href="cp.php?ac=friend&op=add&uid=$space[uid]" id="a_friend_notice" onclick="ajaxmenu(event, this.id, 1)" class="submit btn pull-left" style="margin-right: 20px;">加为好友</a>
 			如果您认识{$_SN[$space[uid]]}，可以给TA留个言，或者打个招呼，或者添加为好友。<br />成为好友后，您就可以第一时间关注到TA的更新动态。
 		</div>
 		<!--{/if}-->
 
-		<div id="space_info" class="">
-			<h5 class="feed_header">
-				<!--{if $space[self]}-->
-				<a href="cp.php?ac=profile" class="r_option pull-right">完善资料</a>
-				<!--{/if}-->
-				个人资料
-			</h5>
-			<ul class="spacemenu_list">
-				<li><em>创建：</em><!--{date('Y-m-d',$space[dateline],1)}--></li>
-				<li><em>登录：</em><!--{if $space[lastlogin]}--><!--{date('Y-m-d',$space[lastlogin],1)}--><!--{/if}--></li>
-				<!--{if $isonline}-->
-				<li><em>活跃：</em>$isonline (当前在线)</li>
-				<!--{/if}-->
-			<!--{if $space[sex]}-->
-				<li><em>性别：</em>$space[sex]</li>
-			<!--{/if}-->
-			<!--{if $space[birth]}-->
-				<li><em>生日：</em>$space[birth]</li>
-			<!--{/if}-->
-			<!--{if $space[blood]}-->
-				<li><em>血型：</em>$space[blood]</li>
-			<!--{/if}-->
-			<!--{if $space[marry]}-->
-				<li><em>婚恋：</em>$space[marry]</li>
-			<!--{/if}-->
-			<!--{if $space[residecity]}-->
-				<li><em>居住：</em>$space[residecity]</li>
-			<!--{/if}-->
-			<!--{if $space[birthcity]}-->
-				<li><em>家乡：</em>$space[birthcity]</li>
-			<!--{/if}-->
-			<!--{if $space[mobile]}-->
-				<li><em>手机：</em>$space[mobile]</li>
-			<!--{/if}-->
-			<!--{if $space[qq]}-->
-				<li><em>QQ：</em>$space[qq]</li>
-			<!--{/if}-->
-			<!--{if $space[msn]}-->
-				<li><em>MSN：</em>$space[msn]</li>
-			<!--{/if}-->
-			</ul>
-			<p class="info_more"><a href="javascript:;" onclick="getindex('info');">&raquo; 查看全部个人资料</a></p>
-		</div>
-
 		<!--{if $feedlist}-->
 		<!--{eval $_TPL['hidden_hot']=1;}-->
-		<div id="space_feed" class="feed ">
+		<div id="space_feed" class="feed clearfix">
 			<h5 class="feed_header">
 				<span class="r_option pull-right">
 				<a href="space.php?uid=$space[uid]&do=feed&view=me" class="action">全部</a>
@@ -233,7 +295,7 @@
 				<span class="entry-title">个人动态</span>
 			</h5>
 			<div class="box_content">
-				<ul class="nav nav-list nav-thumbnail">
+				<ul class="nav-list nav-thumbnail">
 				<!--{loop $feedlist $value}-->
 					<!--{template space_feed_li}-->
 				<!--{/loop}-->
@@ -254,8 +316,8 @@
 				<td width="85" align="center"><a href="space.php?uid=$space[uid]&do=album&id=$value[albumid]" target="_blank"><img src="$value[pic]" alt="$value[albumname]" width="70" /></a></td>
 				<td width="165">
 					<h6><a href="space.php?uid=$space[uid]&do=album&id=$value[albumid]" target="_blank" title="$value[albumname]">$value[albumname]</a></h6>
+					<p class="gray pull-right">更新于 <!--{date('m-d',$value[dateline],1)}--></p>
 					<p class="gray">$value[picnum] 张照片</p>
-					<p class="gray">更新于 <!--{date('m-d',$value[dateline],1)}--></p>
 				</td>
 				<!--{if $key%2==1}--></tr><tr><!--{/if}-->
 				<!--{/loop}-->
@@ -270,7 +332,7 @@
 				<a href="space.php?uid=$space[uid]&do=blog&view=me" class="r_option pull-right">全部</a>
 				日志
 			</h5>
-			<ul class="line_list nav nav-list nav-thumbnail">
+			<ul class="line_list nav-list nav-thumbnail">
 			<!--{loop $bloglist $value}-->
 				<li>
 					
@@ -331,7 +393,7 @@
 			</div>
 
 			<div class="box_content">
-				<ul class="post_list a_list justify_list nav nav-list nav-thumbnail" id="comment_ul">
+				<ul class="post_list a_list justify_list nav-list nav-thumbnail" id="comment_ul">
 				<!--{loop $walllist $value}-->
 					<!--{template space_comment_li}-->
 				<!--{/loop}-->

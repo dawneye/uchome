@@ -116,7 +116,7 @@ foreach ($newdoids as $cdoid) {
 	foreach ($values as $key => $id) {
 		$one = $tree->getValue($id);
 		$one['layer'] = $tree->getLayer($id) * 2 - 2;
-		$one['style'] = "padding-left:{$one['layer']}em;";
+		$one['style'] = "margin-left:{$one['layer']}em;";
 		if($_GET['highlight'] && $one['id'] == $_GET['highlight']) {
 			$one['style'] .= 'color:red;font-weight:bold;';
 		}

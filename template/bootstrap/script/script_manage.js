@@ -314,6 +314,7 @@ function docomment_form(doid, id) {
 	if($(divid)) {
 		$(divid).style.display = '';
 	}
+	$(divid).className = 'clearfix';
 }
 
 function docomment_form_close(doid, id) {

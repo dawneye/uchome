@@ -97,7 +97,7 @@
 		<!--{/if}-->
 		<!--{if $multi}-->
 		<tr>
-			<td colspan="6"><div class="page">$multi</div></td>
+			<td colspan="6"><div class="page pagination pagination-centered"">$multi</div></td>
 		</tr>
 		<!--{/if}-->
 	</table>
@@ -140,25 +140,6 @@
 	</table>
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	</form>
-	<script type="text/javascript">
-		function calcredit() {
-			tocredit = $('tocredits')[$('tocredits').selectedIndex];
-			$('descreditunit').innerHTML = tocredit.getAttribute('unit');
-			$('descredittitle').innerHTML = tocredit.getAttribute('title');
-			$('descreditamount').innerHTML = Math.round(1/tocredit.getAttribute('ratio') * 100) / 100;
-			$('amount').value = $('amount').value.toInt();
-			if($('amount').value != 0) {
-				$('desamount').value = Math.floor(1/tocredit.getAttribute('ratio') * $('amount').value);
-			} else {
-				$('desamount').value = $('amount').value;
-			}
-		}
-		String.prototype.toInt = function() {
-			var s = parseInt(this);
-			return isNaN(s) ? 0 : s;
-		}
-		calcredit();
-	</script>
 
 <!--{elseif $_GET['op'] == 'rule'}-->
 
@@ -246,3 +227,23 @@
 </div>
 </div>
 <!--{template footer}-->
+
+<script type="text/javascript">
+	function calcredit() {
+		tocredit = $('tocredits')[$('tocredits').selectedIndex];
+		$('descreditunit').innerHTML = tocredit.getAttribute('unit');
+		$('descredittitle').innerHTML = tocredit.getAttribute('title');
+		$('descreditamount').innerHTML = Math.round(1/tocredit.getAttribute('ratio') * 100) / 100;
+		$('amount').value = $('amount').value.toInt();
+		if($('amount').value != 0) {
+			$('desamount').value = Math.floor(1/tocredit.getAttribute('ratio') * $('amount').value);
+		} else {
+			$('desamount').value = $('amount').value;
+		}
+	}
+	String.prototype.toInt = function() {
+		var s = parseInt(this);
+		return isNaN(s) ? 0 : s;
+	}
+	calcredit();
+</script>

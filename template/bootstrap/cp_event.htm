@@ -291,7 +291,7 @@
 					</li>
 				<!--{/loop}-->
 				</ul>
-				<div class="page">$multi</div>
+				<div class="page pagination pagination-centered"">$multi</div>
 				<!--{else}-->
 				<div class="c_form">还没有好友。</div>
 				<!--{/if}-->
@@ -345,7 +345,7 @@
 					<!--{/loop}-->
 					</tbody>
 				</table>
-				<div class="page">$multi</div>
+				<div class="page pagination pagination-centered"">$multi</div>
 				<!--{else}-->
 				<div class="c_form">还没有相关成员。</div>
 				<!--{/if}-->
@@ -455,7 +455,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="page">$multi</div>
+				<div class="page pagination pagination-centered"">$multi</div>
 				<p>
 					<label for="chkall" class="checkbox inline"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选</label> &nbsp;
 					<input type="submit" name="deletepicsubmit" value="删除选定" class="submit btn" />
@@ -532,13 +532,7 @@
 					</tr>
 					<tr>
 						<th>活动城市 *</th>
-						<td id="citybox">
-							<script type="text/javascript" src="template/bootstrap/script/script_city.js" charset="$_SC[charset]"></script>
-                            <script type="text/javascript" charset="$_SC[charset]">
-								showprovince('province', 'city', '$event[province]', 'citybox');
-                                showcity('city', '$event[city]', 'province', 'citybox');
-                            </script>
-						</td>
+						<td id="citybox"> </td>
 					</tr>
 					<tr>
 						<th>活动地点</th>
@@ -549,7 +543,6 @@
 					<tr>
 						<th>活动时间 *</th>
 						<td>
-							<script type="text/javascript" src="template/bootstrap/script/script_calendar.js" charset="$_SC[charset]"></script>
 							<input type="text" name="starttime" id="starttime" value="<!--{eval echo sgmdate('Y-m-d H:i', $event[starttime])}-->"  onclick="showcalendar(event,this,1,'<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp])}-->', '<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp] + 3600 * 24 * 60)}-->')" />
 						 至
 							<input type="text" name="endtime" id="endtime" value="<!--{eval echo sgmdate('Y-m-d H:i', $event[endtime])}-->"  onclick="showcalendar(event,this,1,'<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp])}-->', '<!--{eval echo sgmdate('Y-m-d H:i', $_SGLOBAL[timestamp] + 3600 * 24 * 60)}-->')" />
@@ -579,7 +572,6 @@
 						<td colspan="2">
 						<a id="doodleBox" href="magic.php?mid=doodle&showid=blog_doodle&target=uchome-ttHtmlEditor&from=editor" style="display:none"></a>
 						<textarea class="userData" name="detail" id="uchome-ttHtmlEditor" style="height:100%;width:100%;">$event[detail]</textarea>
-<!--{template editor}-->
 						</td>
 					</tr>
 					<tr>
@@ -691,7 +683,7 @@
 				<tr>
 					<th width="100" style="vertical-align: top;">请填写验证码</th>
 					<td>
-						<script type="text/javascript" charset="$_SC[charset]">seccode();</script>
+						<span id="seccodewrap"></span>
 						<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
 						<input type="text" id="seccode" name="seccode" value="" size="15" class="t_input" />
 					</td>
@@ -724,7 +716,7 @@
 		</form>
 	</div>
 
-	<script type="text/javascript" src="image/editor/editor_function.js" charset="$_SC[charset]"></script>
+	<script type="text/javascript" src="template/bootstrap/script/editor_function.js" charset="$_SC[charset]"></script>
 	<script type="text/javascript" charset="$_SC[charset]">
 		//活动分类
 		var eventclass = [];
@@ -861,3 +853,12 @@
 <!--{/if}-->
 </div>
 <!--{template footer}-->
+<script type="text/javascript" src="template/bootstrap/script/script_city.js" charset="$_SC[charset]"></script>
+<script type="text/javascript" charset="$_SC[charset]">
+	showprovince('province', 'city', '$event[province]', 'citybox');
+	showcity('city', '$event[city]', 'province', 'citybox');
+</script>
+<script type="text/javascript" src="template/bootstrap/script/script_calendar.js" charset="$_SC[charset]"></script>
+<!--{if empty($_SGLOBAL['inajax'])}-->
+<!--{template editor}-->
+<!--{/if}-->

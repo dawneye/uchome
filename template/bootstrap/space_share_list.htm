@@ -36,12 +36,12 @@
 </ul>
 </div>
 <div id="content" class="span7">
-	<ul id="share_ul" class="nav nav-list nav-thumbnail">
+	<ul id="share_ul" class="nav-list nav-thumbnail">
 		<!--{if $list}-->
 			<!--{loop $list $value}-->
 				<!--{template space_share_li}-->
 			<!--{/loop}-->
-			<div class="page">$multi</div>
+			<div class="page pagination pagination-centered">$multi</div>
 		<!--{else}-->
 			<li><div class="c_form">现在还没有分享。</div></li>
 		<!--{/if}-->
@@ -69,7 +69,7 @@
 					<p><!--{eval question();}--></p>
 					<p><input type="text" id="seccode" name="seccode" value="" size="15" class="t_input"></p>
 			<!--{else}-->
-					<p><script>seccode();</script></p>
+					<p><span id="seccodewrap"></span></p>
 					<p>请输入上面的4位字母或数字，看不清可<a href="javascript:updateseccode()">更换一张</a></p>
 					<p><input type="text" id="seccode" name="seccode" value="" size="15" class="t_input"></p>
 			<!--{/if}-->

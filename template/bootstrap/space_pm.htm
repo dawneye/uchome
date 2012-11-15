@@ -34,7 +34,7 @@
 <!--{if $_GET['subop'] == 'view'}-->
 
 <!--{if $list}-->
-<ul class="pm_list" id="pm_ul">
+<ul class="pm_list nav-list nav-thumbnail" id="pm_ul">
 	<!--{loop $list $key $value}-->
 	<li class="s_clear">
 		<div class="avatar48">
@@ -60,7 +60,7 @@
 <!--{/if}-->
 
 <!--{if $touid && $list}-->
-<ul class="pm_list" id="pm_ul_post">
+<ul class="pm_list nav-list nav-thumbnail" id="pm_ul_post">
 	<li class="s_clear">
 		<div class="avatar48">
 			<a href="space.php?uid=$space[uid]"><!--{avatar($space[uid],small)}--></a>
@@ -104,39 +104,32 @@
 <!--{else}-->
 
 <!--{if $count}-->
-	<ol class="pm_list">
+	<ol class="pm_list nav-list nav-thumbnail nav-half">
 	<!--{loop $list $key $value}-->
-		<li<!--{if $key%2==1}--> class="alt"<!--{/if}-->>
-		<div class="avatar48">
+		<li>
+			<a href="space.php?uid=$value[touid]" class="snail">
 			<!--{if $value[touid]}-->
-			<a href="space.php?uid=$value[touid]"><!--{avatar($value[touid],small)}--></a>
+				<!--{avatar($value[touid],small)}-->
 			<!--{else}-->
-			<img src="image/systempm.gif" width="48" height="48" />
+				<img src="image/systempm.gif" width="48" height="48" />
 			<!--{/if}-->
-		</div>
-		<div class="pm_body"><div class="pm_h"><div class="pm_f">
-			<p>
-			<!--{if $value[touid]}-->
-			<a href="space.php?uid=$value[touid]">{$_SN[$value[touid]]}</a> 
-			<!--{/if}-->
-			<span class="gray"><!--{date('n-j H:i',$value[dateline],1)}--></span></p>		
-			<div class="pm_c">
-				$value[message]
-				<p>
+			</a>
+			<span class="pm_c pull-right">
 				<!--{if $value[touid]}-->
 				<a href="space.php?do=pm&subop=view&pmid=$value[pmid]&touid=$value[touid]&daterange=$value[daterange]">查看详情</a>
 				<!--{else}-->
 				<a href="space.php?do=pm&subop=view&pmid=$value[pmid]">查看详情</a>
 				<!--{/if}-->
-				</p>
-			</div>
-			<a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id)">删除</a>
-		</div></div></div>
+				<a href="cp.php?ac=pm&op=delete&folder=inbox&pmid=$value[pmid]" id="a_delete_$value[pmid]" class="float_del" onclick="ajaxmenu(event, this.id)">删除</a>
+				<!--{date('n-j H:i',$value[dateline],1)}-->
+			</span>
+			<a href="space.php?uid=$value[touid]" class="snail">{$_SN[$value[touid]]}</a> 	
+			<p>$value[message]</p>
 		</li>
 	<!--{/loop}-->
 	</ol>
 	
-	<div class="page">$multi</div>
+	<div class="page pagination pagination-centered">$multi</div>
 	
 <!--{else}-->
 <div class="c_form">

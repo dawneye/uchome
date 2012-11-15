@@ -29,9 +29,10 @@
 <a class="title ellipsis" title="$latest_video[title]" href="space.php?do=share&id=$latest_video[sid]">$latest_video[title]</a>
 </h5>
 <!--{if !empty($latest_video)}-->
-<div class="media">
-<img src="image/vd.gif" alt="点击播放" onclick="javascript:showFlash('{$latest_video['body_data']['host']}', '{$latest_video['body_data']['flashvar']}', this, '{$latest_video['sid']}');" style="cursor:pointer;" />
-</div>
+<a class="snail media" href="space.php?do=share&id=$latest_video[sid]">
+<img src="$latest_video[screenshot]" alt="视频" onerror="this.onerror=null;this.src='image/vd.gif'" />
+<img src="./extend/video-play.gif" alt="点击播放" title="点击播放" class="video-play" onclick="video_play(this)" />
+</a>
 $latest_video[body_general]<br/>
 $latest_video[body_template]<br/>
 <a class="pull-right" href="space.php?do=share&id=$latest_video[sid]">查看&gt;&gt;</a>
@@ -40,16 +41,7 @@ $latest_video[body_template]<br/>
 	</li>
 	<li class="span3 ">
 	  <div class="thumbnail">
-<h5><a href="space.php?do=top" class="r_option pull-right">排行</a>热烈欢迎新成员</h5>
-<ul class="avatar_list">
-	<!--{loop $newspacelist $value}-->
-	<li>
-		<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
-		<p<!--{if $ols[$value[uid]]}--> class="online_icon_p" title="在线"<!--{/if}-->><a class="ellipsis" href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a></p>
-		<p class="gray"><!--{date('n月j日',$value[dateline],1)}--></p>
-	</li>
-	<!--{/loop}-->
-</ul>
+<!--{template new_space_list}-->
 	  </div>
 	</li>
 	<li class="span3 row2">
@@ -74,7 +66,7 @@ $latest_video[body_template]<br/>
 			<div class="carousel-inner">
 <!--{loop $pic_list $value}-->
 <div class="item $value[active]">
-<img src="$value[pic]" alt="$value[title]" />
+<a title="$value[title]" href="space.php?uid=$value[uid]&do=album&picid=$value[picid]"><img src="$value[pic]" alt="$value[title]" /></a>
 <div class="carousel-caption">
 <a class="pull-right" style="margin-top:-5px" href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a>
 <h4><a class="ellipsis" title="$value[title]" href="space.php?uid=$value[uid]&do=album&picid=$value[picid]">$value[title]</a></h4>

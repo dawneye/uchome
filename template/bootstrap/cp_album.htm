@@ -80,44 +80,34 @@
 	<table cellspacing="6" cellpadding="0" class="table table-bordered">
 		<!--{loop $list $value}-->
 		<tr>
-			<td class="album">
-				<table cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="20"><input type="checkbox" name="ids[{$value[picid]}]" value="{$value[picid]}"></td>
-						<td class="image">
-							<a href="$value[bigpic]" target="_blank"><img src="$value[pic]" alt="" /></a>
-							<!--{if $album[albumname]}--><p style="text-align: center;"><a href="cp.php?ac=album&op=setpic&picid=$value[picid]" id="a_picid_$value[picid]" onclick="ajaxmenu(event, this.id, 0, 2000)">设为封面</a></p><!--{/if}-->
-						</td>
-						<td>
-							<textarea name="title[{$value[picid]}]" rows="4" cols="70">$value[title]</textarea>
-						</td>
-					</tr>
-				</table>
-			</td>
+			<td width="20"><input type="checkbox" name="ids[{$value[picid]}]" value="{$value[picid]}"></td>
+			<td class="image"><a href="$value[bigpic]" target="_blank"><img src="$value[pic]" alt="" /></a></td>
+			<!--{if $album[albumname]}-->
+			<td><a href="cp.php?ac=album&op=setpic&picid=$value[picid]" id="a_picid_$value[picid]" onclick="ajaxmenu(event, this.id, 0, 2000)">设为封面</a></td>
+			<!--{/if}-->
+			<td><textarea name="title[{$value[picid]}]" class="fill-textarea" rows="4" cols="70">$value[title]</textarea></td>
 		</tr>
 		<!--{/loop}-->
-		<tr>
-			<td style="padding:10px;">
-				<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"><label for="chkall"> 全选</label>
-				<input type="submit" name="editpicsubmit" value="更新说明" class="submit btn" onclick="this.form.action+='&subop=update';">
-				<input type="submit" name="editpicsubmit" value="删除" class="submit btn" onclick="this.form.action+='&subop=delete';return ischeck('theform', 'ids')">
-				<input type="submit" name="editpicsubmit" value="转移到:" class="submit btn" onclick="this.form.action+='&subop=move';return ischeck('theform', 'ids')">
-				<select name="newalbumid">
-				<!--{loop $albumlist $key $value}-->
-				<!--{if $albumid != $value[albumid]}--><option value="$value[albumid]">$value[albumname]</option><!--{/if}-->
-				<!--{/loop}-->
-				<!--{if $albumid>0}--><option value="0">默认相册</option><!--{/if}-->
-				</select>
-				<br>删除图片提示：如果你要删除的图片出现在你的日志、话题中，删除后，会导致内容里面的图片同时无法显示。
-			</td>
-		</tr>
-	</table>
+		</table>
+		<div class="well">
+			<label for="chkall" class="checkbox"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"> 全选 </label> 
+			<input type="submit" name="editpicsubmit" value="更新说明" class="submit btn" onclick="this.form.action+='&subop=update';">
+			<input type="submit" name="editpicsubmit" value="删除" class="submit btn" onclick="this.form.action+='&subop=delete';return ischeck('theform', 'ids')">
+			<input type="submit" name="editpicsubmit" value="转移到:" class="submit btn" onclick="this.form.action+='&subop=move';return ischeck('theform', 'ids')">
+			<select name="newalbumid">
+			<!--{loop $albumlist $key $value}-->
+			<!--{if $albumid != $value[albumid]}--><option value="$value[albumid]">$value[albumname]</option><!--{/if}-->
+			<!--{/loop}-->
+			<!--{if $albumid>0}--><option value="0">默认相册</option><!--{/if}-->
+			</select>
+			<br>删除图片提示：如果你要删除的图片出现在你的日志、话题中，删除后，会导致内容里面的图片同时无法显示。
+		</div>
 	<input type="hidden" name="page" value="$page" />
 	<input type="hidden" name="editpicsubmit" value="true" />
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	</form>
 </div>
-<div class="page">$multi</div>
+<div class="page pagination pagination-centered"">$multi</div>
 <!--{else}-->
 <div class="c_form">该相册下还没有图片。</div>
 <!--{/if}-->

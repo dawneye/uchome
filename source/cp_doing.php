@@ -68,7 +68,15 @@ if(submitcheck('addsubmit')) {
 	preg_match("/\[em\:(\d+)\:\]/s", $_POST['message'], $ms);
 	$mood = empty($ms[1])?0:intval($ms[1]);
 
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
+
 	$message = getstr($_POST['message'], 200, 1, 1, 1);
+
+	//pauli，微博@功能
+	$_GET['AtUsername'] = array();
+	$message = filterAtUsername($message);
+
 	//替换表情
 	$message = preg_replace("/\[em:(\d+):]/is", "<img src=\"image/face/\\1.gif\" class=\"face\">", $message);
 	$message = preg_replace("/\<br.*?\>/is", ' ', $message);
@@ -139,10 +147,14 @@ if(submitcheck('addsubmit')) {
 			'id' => $newdoid,
 			'idtype' => 'doid'
 		);
+		
 		$feedarr['hash_template'] = md5($feedarr['title_template']."\t".$feedarr['body_template']);//喜好hash
 		$feedarr['hash_data'] = md5($feedarr['title_template']."\t".$feedarr['title_data']."\t".$feedarr['body_template']."\t".$feedarr['body_data']);//合并hash
 		inserttable('feed', $feedarr);
 	}
+
+	//pauli，微博@功能
+	sendAtNotification('space.php?do=doing&doid='.$newdoid, '评论');
 
 	//统计
 	updatestat('doing');
@@ -167,8 +179,16 @@ if(submitcheck('addsubmit')) {
 	if($waittime > 0) {
 		showmessage('operating_too_fast', '', 1, array($waittime));
 	}
+
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
 	
 	$message = getstr($_POST['message'], 200, 1, 1, 1);
+
+	//pauli，微博@功能
+	$_GET['AtUsername'] = array();
+	$message = filterAtUsername($message);
+
 	//替换表情
 	$message = preg_replace("/\[em:(\d+):]/is", "<img src=\"image/face/\\1.gif\" class=\"face\">", $message);
 	$message = preg_replace("/\<br.*?\>/is", ' ', $message);
@@ -226,6 +246,9 @@ if(submitcheck('addsubmit')) {
 		getreward('comment',1, 0, 'doing'.$updo['doid']);
 	}
 	
+	//pauli，微博@功能
+	sendAtNotification('space.php?do=doing&doid='.$updo[doid].'&highlight=$newid');
+
 	//统计
 	updatestat('docomment');
 		

@@ -56,14 +56,32 @@
 
 	<!--{if $list}-->
 	<div class="thumb_list" id="friend_ul">
-		<ul class="nav nav-list nav-thumbnail">
+		<ul class="nav-list nav-thumbnail">
 		<!--{loop $list $key $value}-->
 			<li id="friend_{$value[uid]}_li">
+				<!--{if $_GET['view']=='blacklist'}-->
+					<div class="gray pull-right"><a href="cp.php?ac=friend&op=blacklist&subop=delete&uid=$value[uid]&start=$_GET[start]">黑名单除名</a></div>
+				<!--{elseif $_GET['view']=='visitor' || $_GET['view'] == 'trace'}-->
+					<div class="gray pull-right"><!--{date('n月j号',$value[dateline],1)}--></div>
+				<!--{elseif $_GET['view']=='online'}-->
+					<div class="gray pull-right"><!--{date('H:i',$ols[$value[uid]],1)}--></div>
+				<!--{else}-->
+					<!--{if $ols[$value[uid]]}--><div class="gray pull-right"><!--{date('H:i',$ols[$value[uid]],1)}--></div><!--{/if}-->
+					<div class="gray pull-right">
+						<!--{if $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a> <!--{/if}-->
+						<!--{if !$value['isfriend']}-->
+						<a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
+						<!--{else}-->
+						<a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a> 
+						<a href="cp.php?ac=friend&op=ignore&uid=$value[uid]" id="a_ignore_$key" onclick="ajaxmenu(event, this.id)">删除 </a> 
+						<!--{/if}-->
+					</div>
+				<!--{/if}-->
 				<!--{if $value[username] == ''}-->
-				<div class="avatar48" class="snail" ><img src="image/magic/hidden.gif" alt="匿名" /></div>
+				<div class="avatar48 snail"><img src="image/magic/hidden.gif" alt="匿名" /></div>
 				<div class="thumbTitle"><p>匿名</p></div>
 				<!--{else}-->
-				<div class="avatar48" class="snail" ><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+				<div class="avatar48 snail"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
 				<div class="thumbTitle">
 				<p<!--{if $ols[$value[uid]]}--> class="online_icon_p"<!--{/if}-->>
 					<a href="space.php?uid=$value[uid]"<!--{eval g_color($value[groupid]);}-->>{$_SN[$value[uid]]}</a> 
@@ -74,30 +92,11 @@
 				</p></div>
 				<!--{if $value[note]}--><div>$value[note]</div><!--{/if}-->
 				<!--{/if}-->
-
-				<!--{if $_GET['view']=='blacklist'}-->
-					<div class="gray pull-right"><a href="cp.php?ac=friend&op=blacklist&subop=delete&uid=$value[uid]&start=$_GET[start]">黑名单除名</a></div>
-				<!--{elseif $_GET['view']=='visitor' || $_GET['view'] == 'trace'}-->
-					<div class="gray pull-right"><!--{date('n月j号',$value[dateline],1)}--></div>
-				<!--{elseif $_GET['view']=='online'}-->
-					<div class="gray pull-right"><!--{date('H:i',$ols[$value[uid]],1)}--></div>
-				<!--{else}-->
-					<!--{if $ols[$value[uid]]}--><div class="gray"><!--{date('H:i',$ols[$value[uid]],1)}--></div><!--{/if}-->
-					<div class="gray pull-right">
-					<!--{if $value['num']}--><a href="cp.php?ac=friend&op=changenum&uid=$value[uid]" id="friendnum_$value[uid]" onclick="ajaxmenu(event, this.id)">热度(<span id="spannum_$value[uid]">$value[num]</span>)</a><span class="pipe">|</span><!--{/if}-->
-					<!--{if !$value['isfriend']}-->
-					<a href="cp.php?ac=friend&op=add&uid=$value[uid]" id="a_friend_$key" onclick="ajaxmenu(event, this.id, 1)">加为好友</a>
-					<!--{else}-->
-					<a href="cp.php?ac=friend&op=changegroup&uid=$value[uid]" id="friend_group_$value[uid]" onclick="ajaxmenu(event, this.id)">分组</a><span class="pipe">|</span>
-					<a href="cp.php?ac=friend&op=ignore&uid=$value[uid]" id="a_ignore_$key" onclick="ajaxmenu(event, this.id)">删除</a>
-					<!--{/if}-->
-					</div>
-				<!--{/if}-->
 			</li>
 		<!--{/loop}-->
 		</ul>
 	</div>
-	<div class="page">$multi</div>
+	<div class="page pagination pagination-centered">$multi</div>
 
 	<!--{else}-->
 	<div class="c_form">没有相关用户列表。</div>
@@ -157,11 +156,14 @@
 			<li><a href="space.php?do=friend&group=-1">全部好友</a></li>
 			<!--{loop $groups $key $value}-->
 			<li{$groupselect[$key]}>
+				<span class="pull-right">
 				<a href="cp.php?ac=friend&op=groupignore&group=$key" id="c_ignore_$key" onclick="ajaxmenu(event, this.id)" title="屏蔽用户组动态" class="c_delete">屏蔽</a>
 				<!--{if $key}-->
 				<a href="cp.php?ac=friend&op=groupname&group=$key" id="c_edit_$key" onclick="ajaxmenu(event, this.id, 1)" title="编辑用户组名" class="c_edit">编辑</a>
 				<!--{/if}-->
-				<!--{if isset($space['privacy']['filter_gid'][$key])}--><span class="gray">[屏蔽]</span><!--{/if}--> <a href="space.php?do=friend&group=$key"><span id="friend_groupname_$key">$value</span></a>
+				<!--{if isset($space['privacy']['filter_gid'][$key])}--><span class="gray">[屏蔽]</span><!--{/if}-->
+				</span>
+				<a href="space.php?do=friend&group=$key"><span id="friend_groupname_$key">$value</span></a>
 			</li>
 			<!--{/loop}-->
 		</ul>

@@ -67,36 +67,34 @@
 		</tr>
 		<tr>
 			<th>用户经验值</th><td>
-			<input type="text" name="experience1" value="$_GET[experience1]" size="10"> ~
-			<input type="text" name="experience2" value="$_GET[experience2]" size="10">
+			<input type="text" class="span2" name="experience1" value="$_GET[experience1]" size="10"> ~
+			<input type="text" class="span2" name="experience2" value="$_GET[experience2]" size="10">
 			</td>
-		</tr>
-		<tr>
 			<th>用户积分</th><td>
-			<input type="text" name="credit1" value="$_GET[credit1]" size="10"> ~
-			<input type="text" name="credit2" value="$_GET[credit2]" size="10">
+			<input type="text" class="span2" name="credit1" value="$_GET[credit1]" size="10"> ~
+			<input type="text" class="span2" name="credit2" value="$_GET[credit2]" size="10">
 			</td>
 		</tr>
-		<tr><th>空间创建时间</th><td colspan="3">
-			<input type="text" name="dateline1" value="$_GET[dateline1]" size="10"> ~
-			<input type="text" name="dateline2" value="$_GET[dateline2]" size="10"> (YYYY-MM-DD)
-		</td></tr>
-		<tr><th>最后更新时间</th><td colspan="3">
-			<input type="text" name="updatetime1" value="$_GET[updatetime1]" size="10"> ~
-			<input type="text" name="updatetime2" value="$_GET[updatetime2]" size="10"> (YYYY-MM-DD)
+		<tr><th>空间创建时间</th><td>
+			<input type="text" class="span2" name="dateline1" value="$_GET[dateline1]" size="10"> ~
+			<input type="text" class="span2" name="dateline2" value="$_GET[dateline2]" size="10"> (YYYY-MM-DD)
+		</td>
+		<th>最后更新时间</th><td>
+			<input type="text" class="span2" name="updatetime1" value="$_GET[updatetime1]" size="10"> ~
+			<input type="text" class="span2" name="updatetime2" value="$_GET[updatetime2]" size="10"> (YYYY-MM-DD)
 		</td></tr>
 		
-		<tr><th>最后访问时间</th><td colspan="3">
-			<input type="text" name="lastlogin1" value="$_GET[lastlogin1]" size="10"> ~
-			<input type="text" name="lastlogin2" value="$_GET[lastlogin2]" size="10"> (YYYY-MM-DD)
-		</td></tr>
-		<tr><th>最后发信息时间</th><td colspan="3">
-			<input type="text" name="lastpost1" value="$_GET[lastpost1]" size="10"> ~
-			<input type="text" name="lastpost2" value="$_GET[lastpost2]" size="10"> (YYYY-MM-DD)
+		<tr><th>最后访问时间</th><td>
+			<input type="text" class="span2" name="lastlogin1" value="$_GET[lastlogin1]" size="10"> ~
+			<input type="text" class="span2" name="lastlogin2" value="$_GET[lastlogin2]" size="10"> (YYYY-MM-DD)
+		</td>
+		<th>最后发信息时间</th><td>
+			<input type="text" class="span2" name="lastpost1" value="$_GET[lastpost1]" size="10"> ~
+			<input type="text" class="span2" name="lastpost2" value="$_GET[lastpost2]" size="10"> (YYYY-MM-DD)
 		</td></tr>
 		<tr><th>结果排序</th>
 		<td colspan="3">
-		<select name="orderby">
+		<select name="orderby" class="span2">
 		<option value="">默认排序</option>
 		<option value="dateline"$orderby[dateline]>建立时间</option>
 		<option value="updatetime"$orderby[updatetime]>更新时间</option>
@@ -105,11 +103,11 @@
 		<option value="credit"$orderby[credit]>积分数</option>
 		<option value="friendnum"$orderby[friendnum]>好友数</option>
 		</select>
-		<select name="ordersc">
+		<select name="ordersc" class="span2">
 		<option value="desc"$ordersc[desc]>递减</option>
 		<option value="asc"$ordersc[asc]>递增</option>
 		</select>
-		<select name="perpage">
+		<select name="perpage" class="span2">
 		<option value="20"$perpages[20]>每页显示20个</option>
 		<option value="50"$perpages[50]>每页显示50个</option>
 		<option value="100"$perpages[100]>每页显示100个</option>
@@ -118,7 +116,7 @@
 		<!--{if isset($_GET[tab])}-->
 		<input type="hidden" name="tab" value="$_GET[tab]">
 		<!--{/if}-->
-		<input type="submit" name="searchsubmit" value="搜索" class="submit btn">
+		<input type="submit" name="searchsubmit" value="搜索" class="submit btn btn-primary">
 		</td>
 		</tr>
 		</table>

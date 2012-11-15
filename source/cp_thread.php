@@ -91,6 +91,9 @@ if(submitcheck('threadsubmit')) {
 
 	$subject = getstr($_POST['subject'], 80, 1, 1, 1);
 	if(strlen($subject) < 2) showmessage('title_not_too_little');
+
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
 	
 	$_POST['message'] = checkhtml($_POST['message']);
 	$_POST['message'] = getstr($_POST['message'], 0, 1, 0, 1, 0, 1);
@@ -291,7 +294,10 @@ if(submitcheck('threadsubmit')) {
 	if(empty($mtag['allowpost'])) {
 		showmessage('no_privilege');
 	}
-		
+
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
+
 	$message = $_POST['message'];
 	//处理网络图片
 	if(!empty($_POST['pics'])) {
@@ -415,6 +421,9 @@ if(submitcheck('threadsubmit')) {
 	if($mtag['grade']<8 && $post['uid']!=$_SGLOBAL['supe_uid'] && $userevent['status']<3) {
 		showmessage('no_privilege');
 	}
+
+	//pauli, 少于两个字符
+	check_content($_POST['message']);
 	
 	$message = $_POST['message'];
 	//处理网络图片

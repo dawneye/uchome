@@ -273,13 +273,9 @@ function ajaxpost(formid, func, timeout) {
 	var ajaxframeid = 'ajaxframe';
 	var ajaxframe = $(ajaxframeid);
 	if(ajaxframe == null) {
-		if (is_ie && !is_opera) {
-			ajaxframe = document.createElement("<iframe name='" + ajaxframeid + "' id='" + ajaxframeid + "'></iframe>");
-		} else {
-			ajaxframe = document.createElement("iframe");
-			ajaxframe.name = ajaxframeid;
-			ajaxframe.id = ajaxframeid;
-		}
+		ajaxframe = document.createElement("iframe");
+		ajaxframe.name = ajaxframeid;
+		ajaxframe.id = ajaxframeid;
 		ajaxframe.style.display = 'none';
 		$('append_parent').appendChild(ajaxframe);
 	}
@@ -308,12 +304,8 @@ function ajaxpost_load() {
 	var formstatus = '__' + formid;
 	
 	showloading('none');
-	
-	if(is_ie) {
-		var s = $('ajaxframe').contentWindow.document.XMLDocument.text;
-	} else {
-		var s = $('ajaxframe').contentWindow.document.documentElement.firstChild.nodeValue;
-	}
+
+	var s = $('ajaxframe').contentWindow.document.documentElement.firstChild.nodeValue;
 	evaled = false;
 	if(s.indexOf('ajaxerror') != -1) {
 		evalscript(s);

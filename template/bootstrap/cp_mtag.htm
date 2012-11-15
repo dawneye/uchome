@@ -1,11 +1,24 @@
 <!--{template header}-->
-<div class="span10">
 
 <!--{if $_GET[op]=='manage'}-->
 
 	<!--{if $_GET['subop'] != 'member'}-->
+<div class="span10">
 	<h3 class="title">群组 - $mtag[tagname]</h3>
 	<div class="tabs_header">
+		<!--{if ($actives[members] || $mtag['allowinvite']) && ($_GET['subop'] == 'invite' || $_GET['subop'] == 'members')}-->
+		<form class="pull-right input-append" name="searchform" id="searchform" method="get" action="cp.php">
+			<input type="text" id="key" name="key" value="搜索成员" onfocus="if(this.value=='搜索成员')this.value='';" class="t_input" tabindex="1" style="width: 160px; border-right: none;" />
+			<input type="hidden" name="ac" value="mtag">
+			<input type="hidden" name="op" value="manage">
+			<input type="hidden" name="tagid" value="$mtag[tagid]">
+			<input type="hidden" name="subop" value="$_GET[subop]">
+			<input type="hidden" name="uid" value="$_GET[uid]">
+			<input type="hidden" name="grade" value="$_GET[grade]">
+			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
+			<button class="btn" type="submit">搜索</button>
+		</form>
+		<!--{/if}-->
 		<ul class="tabs nav nav-tabs">
 		<!--{if $mtag['grade'] >= 8}-->
 			<li$actives[base]><a href="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=base"><span>基本设置</span></a></li>
@@ -19,38 +32,15 @@
 		<!--{/if}-->
 		<li><a href="space.php?do=mtag&tagid=$mtag[tagid]"><span>返回群组首页</span></a></li>
 		</ul>
-		<!--{if ($actives[members] || $mtag['allowinvite']) && ($_GET['subop'] == 'invite' || $_GET['subop'] == 'members')}-->
-		<script>
-			function searchUser() {
-				$('searchform').submit();
-			}
-		</script>
-		<form name="searchform" id="searchform" method="get" action="cp.php">
-			<div style="float:right;margin:0 6px 5px 0;">
-				<table cellspacing="0" cellpadding="0">
-					<tr>
-						<td style="padding: 0;"><input type="text" id="key" name="key" value="搜索成员" onfocus="if(this.value=='搜索成员')this.value='';" class="t_input" tabindex="1" style="width: 160px; border-right: none;" /></td>
-						<td style="padding: 0;"><a href="javascript:searchUser();"><img src="image/search_btn.gif" alt="搜索" /></a></td>
-					</tr>
-				</table>
-			</div>
-			<input type="hidden" name="ac" value="mtag">
-			<input type="hidden" name="op" value="manage">
-			<input type="hidden" name="tagid" value="$mtag[tagid]">
-			<input type="hidden" name="subop" value="$_GET[subop]">
-			<input type="hidden" name="uid" value="$_GET[uid]">
-			<input type="hidden" name="grade" value="$_GET[grade]">
-			<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
-		</form>
-		<!--{/if}-->
 	</div>
+</div>
 	<!--{/if}-->
 	
 	<form id="manageform" name="manageform" method="post" action="cp.php?ac=mtag&op=manage&tagid=$mtag[tagid]&subop=$_GET[subop]&uid=$_GET[uid]&grade=$_GET[grade]&group=$_GET[group]&page=$_GET[page]&start=$_GET[start]">
 	
 	<!--{if $_GET['subop'] == 'base'}-->
 	
-	<table cellspacing="4" cellpadding="4" class="formtable table">
+	<table cellspacing="4" cellpadding="4" class="formtable table span10">
 	<tr>
 		<th width="100">群组名</th>
 		<td>$mtag[tagname]</td>
@@ -135,7 +125,7 @@
 	
 	<!--{elseif $_GET['subop'] == 'thread'}-->
 	
-	<table cellspacing="0" cellpadding="0" class="formtable table">
+	<table cellspacing="0" cellpadding="0" class="formtable table span10">
 	<tr>
 		<td>
 		请登录管理平台，来对群组的话题、回帖进行批量删除、精华、置顶等操作。<br>
@@ -147,7 +137,7 @@
 	
 	<!--{elseif $_GET['subop'] == 'invite'}-->
 	
-	<div id="content" style="width: 640px;">
+	<div id="content" class="span7">
 		<div class="h_status">
 			您可以给未加入本群组的好友们发送邀请。
 		</div>
@@ -158,15 +148,15 @@
 			<!--{loop $list $value}-->
 				<li><div class="avatar48"><a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}"><!--{avatar($value[fuid],small)}--></a></div>
 					<p><a href="space.php?uid=$value[fuid]" title="{$_SN[$value[fuid]]}">{$_SN[$value[fuid]]}</a></p>
-					<p><!--{if empty($joins[$value[fuid]])}--><input type="checkbox" name="ids[]" value="$value[fuid]">选定<!--{else}-->已邀请<!--{/if}--></p>
+					<p><!--{if empty($joins[$value[fuid]])}--><label class="checkbox inline"><input type="checkbox" name="ids[]" value="$value[fuid]"> 选定 </label><!--{else}-->已邀请<!--{/if}--></p>
 				</li>
 			<!--{/loop}-->
 			</ul>
-			<div class="page">$multi</div>
+			<div class="page pagination pagination-centered">$multi</div>
 		</div>
-		<p>
-			<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 &nbsp;
-			<input type="submit" name="invitesubmit" value="邀请" class="submit btn" />
+		<p class="clearfix">
+			<label class="checkbox"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"> 全选 </label>
+			<input type="submit" name="invitesubmit" value="邀请" class="submit btn btn-primary" />
 		</p>
 	
 	<!--{else}-->
@@ -175,7 +165,7 @@
 
 	</div>
 	
-	<div id="sidebar" style="width: 150px;">
+	<div id="sidebar" class="span3">
 	<div class="cat">
 		<h3>好友分类</h3>
 		<ul class="post_list line_list">
@@ -189,7 +179,7 @@
 		
 	<!--{elseif $_GET['subop'] == 'members'}-->
 	
-	<div id="content" style="width: 640px;">
+	<div id="content" class="span7">
 	
 	<div class="h_status">
 		选择相应的用户进行用户等级变更。
@@ -201,17 +191,17 @@
 		<!--{loop $list $value}-->
 			<li><div class="avatar48"><a href="space.php?uid=$value[uid]" target="_blank"><!--{avatar($value[uid],small)}--></a></div>
 				<p><a href="space.php?uid=$value[uid]">{$_SN[$value[uid]]}</a></p>
-				<p><input type="checkbox" name="ids[]" value="$value[uid]">选定</p>
+				<p><label class="checkbox"><input type="checkbox" name="ids[]" value="$value[uid]"> 选定 </label></p>
 			</li>
 		<!--{/loop}-->
 		</ul>
-		<div class="page">$multi</div>
+		<div class="page pagination pagination-centered">$multi</div>
 		<!--{else}-->
 		<div class="c_form">还没有相关成员。</div>
 		<!--{/if}-->
 	</div>
-	<p>
-		<input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')">全选 &nbsp;
+	<p class="clearfix">
+		<label class="checkbox"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'ids')"> 全选 </label> &nbsp;
 		设为：
 		<select name="newgrade">
 			<!--{if $mtag[grade]==9}-->
@@ -224,11 +214,11 @@
 			<option value="-2">待审核成员</option>
 			<option value="-9">踢出群组</option>
 		</select>  &nbsp;
-		<input type="submit" name="memberssubmit" value="提交" class="submit btn" />
+		<input type="submit" name="memberssubmit" value="提交" class="submit btn btn-primary" />
 	</p>
 	</div>
 	
-	<div id="sidebar" style="width: 150px;">
+	<div id="sidebar" class="span3">
 	<div class="cat">
 		<h3>成员级别</h3>
 		<ul class="post_list line_list">
@@ -243,7 +233,7 @@
 	</div>
 	
 	<!--{elseif $_GET['subop'] == 'member'}-->
-	
+	<div class="span10">
 	<h1>管理成员</h1>
 	<a href="javascript:hideMenu();" title="关闭" class="float_del">关闭</a>
 	<div id="$_GET[uid]" class="popupmenu_inner">
@@ -264,14 +254,14 @@
 		<button name="membersubmit" type="submit" class="submit btn" value="true">确定</button>
 	</p>
 	</div>
-	
+	</div>
 	<!--{/if}-->
 
 	<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	</form>
 
 <!--{elseif $_GET[op]=='mtaginvite'}-->
-	
+	<div class="span10">
 	<h3 class="title">群组邀请</h3>
 	<div class="tabs_header">
 		<ul class="tabs nav nav-tabs">
@@ -315,9 +305,10 @@
 		<!--{/if}-->
 	
 	</div>	
+	</div>	
 
 <!--{elseif $_GET[op]=='join'}-->
-	
+	<div class="span10">
 	<h1>加入群组</h1>
 	<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 	<div class="popupmenu_inner" id="__joinform_{$tagid}">
@@ -330,9 +321,10 @@
 		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	</form>
 	</div>
+	</div>
 
 <!--{elseif $_GET[op]=='out'}-->
-	
+	<div class="span10">
 	<h1>退出群组</h1>
 	<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 	<div class="popupmenu_inner" id="__outform">
@@ -345,9 +337,10 @@
 		<input type="hidden" name="formhash" value="<!--{eval echo formhash();}-->" />
 	</form>
 	</div>
+	</div>
 
 <!--{elseif $_GET[op]=='apply'}-->
-	
+	<div class="span10">
 	<h1>申请群主</h1>
 	<a href="javascript:hideMenu();" class="float_del" title="关闭">关闭</a>
 	<div class="popupmenu_inner" id="__pmapplyform_{$tagid}">
@@ -372,10 +365,11 @@
 		</table>
 	</form>
 	</div>
+	</div>
 
 
 <!--{else}-->
-	
+	<div class="span10">
 	<h3 class="title">群组</h3>
 	<div class="tabs_header">
 		<ul class="tabs nav nav-tabs">
@@ -562,6 +556,7 @@
 
 	<!--{/if}-->
 
+</div>
 <!--{/if}-->
 </div>
 <!--{template footer}-->

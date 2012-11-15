@@ -1,0 +1,10 @@
+<h5><a href="space.php?do=top" class="r_option pull-right">排行</a>热烈欢迎新成员</h5>
+<ul class="avatar_list">
+	<!--{loop $newspacelist $value}-->
+	<li>
+		<div class="avatar48"><a href="space.php?uid=$value[uid]"><!--{avatar($value[uid],small)}--></a></div>
+		<p<!--{if $ols[$value[uid]]}--> class="online_icon_p" title="在线"<!--{/if}-->><a class="ellipsis" href="space.php?uid=$value[uid]" title="{$_SN[$value[uid]]}">{$_SN[$value[uid]]}</a></p>
+		<p class="gray ellipsis" title="注册时间：<!--{date('n月j日',$value[dateline],1)}-->"><!--{date('n月j日',$value[dateline],1)}--></p>
+	</li>
+	<!--{/loop}-->
+</ul>

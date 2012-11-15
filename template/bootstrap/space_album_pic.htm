@@ -14,17 +14,17 @@
 </div>
 <h3 class="title">相册 - $album[albumname]</h3>
 <div class="tabs_header">
+	<!--{if $_SGLOBAL[refer]}-->
+	<div class="r_option pull-right">
+		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+	</div>
+	<!--{/if}-->
 	<ul class="tabs nav nav-tabs">
 		<li class="active"><a href="space.php?uid=$pic[uid]&do=album&id=$pic[albumid]"><span>查看图片</span></a></li>
 		<li><a href="space.php?uid=$space[uid]&do=album&id=$pic[albumid]"><span>返回列表</span></a></li>
 		<li><a href="space.php?uid=$space[uid]&do=album&view=me"><span>返回我的相册</span></a></li>
 		<li class="null"><a href="cp.php?ac=upload&albumid=$pic[albumid]">上传新图片</a></li>
 	</ul>
-	<!--{if $_SGLOBAL[refer]}-->
-	<div class="r_option pull-right">
-		<a  href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-	</div>
-	<!--{/if}-->
 </div>
 <!--{else}-->
 <!--{eval 

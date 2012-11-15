@@ -12,7 +12,7 @@
 		<!--{/loop}-->
 		</ul>
 	</div>
-	<!--{if $multi}--><div class="page">$multi</div><!--{/if}-->
+	<!--{if $multi}--><div class="page pagination pagination-centered"">$multi</div><!--{/if}-->
 
 	<form id="feedform_{$feedid}" method="post" action="cp.php?ac=feed&feedid=$feedid" style="padding:0.5em;">
 		<a href="###" id="face_{$feedid}" title="插入表情" onclick="showFace(this.id, 'feedmessage_{$feedid}');return false;"><img src="image/facelist.gif" align="absmiddle" /></a>
@@ -40,7 +40,7 @@
 			</ul>
 		</div>
 	</div>
-	<!--{if $feed_multi}--><div class="page">$feed_multi</div><!--{/if}-->
+	<!--{if $feed_multi}--><div class="page pagination pagination-centered"">$feed_multi</div><!--{/if}-->
 	
 <!--{elseif $_GET['op'] == 'menu'}-->
 

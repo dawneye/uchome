@@ -5,6 +5,11 @@
 <!--{if $space[self]}-->
 <h3 class="title">日志</h3>
 <div class="tabs_header">
+	<!--{if $_SGLOBAL[refer]}-->
+	<div class="r_option pull-right">
+		<a href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
+	</div>
+	<!--{/if}-->
 	<ul class="tabs nav nav-tabs">
 		<!--{if $space[friendnum]}--><li$actives[we]><a href="space.php?uid=$space[uid]&do=$do&view=we"><span>好友最新日志</span></a></li><!--{/if}-->
 		<li class="active"><a href="space.php?uid=$space[uid]&do=$do&view=me"><span>我的日志</span></a></li>
@@ -12,11 +17,6 @@
 		<li><a href="space.php?uid=$space[uid]&do=$do&view=all"><span>大家的日志</span></a></li>
 		<li class="null"><a href="cp.php?ac=blog">发表新日志</a></li>
 	</ul>
-	<!--{if $_SGLOBAL[refer]}-->
-	<div class="r_option pull-right">
-		<a href="$_SGLOBAL[refer]">&laquo; 返回上一页</a>
-	</div>
-	<!--{/if}-->
 </div>
 <!--{else}-->
 <!--{eval
@@ -27,12 +27,10 @@
 <!--{template space_menu}-->
 <!--{/if}-->
 
-<script type="text/javascript" charset="$_SC[charset]" src="template/bootstrap/script/script_calendar.js"></script>
-
-<div class="entry" style="padding:0 0 10px;">
+<div class="entry clearfix" style="padding:0 0 10px;">
 
 	<div class="title">
-		<h4<!--{if $blog[magiccolor]}--> class="magiccolor$blog[magiccolor]"<!--{/if}-->>$blog[subject]</h4>
+		<h3<!--{if $blog[magiccolor]}--> class="magiccolor$blog[magiccolor]"<!--{/if}-->>$blog[subject]</h3>
 		<!--{if $blog['friend']}-->
 		<span class="r_option pull-right locked gray">{$friendsname[$blog[friend]]}</span>
 		<!--{/if}-->
@@ -54,18 +52,8 @@
 
 
 	<div id="blog_article" class="article <!--{if $blog[magicpaper]}--> magicpaper$blog[magicpaper]<!--{/if}-->">
-		<div class="resizeimg">
-			<div class="resizeimg2">
-			<div class="resizeimg3">
-			<div class="resizeimg4">
-			<!--{if $_SGLOBAL['ad']['rightside']}-->
-			<div style="float: right; padding:5px;"><!--{ad/rightside}--></div>
-			<!--{/if}-->
-			$blog[message]
-			</div>
-			</div>
-			</div>
-		</div>
+		<!--{if $_SGLOBAL['ad']['rightside']}--><div style="float: right; padding:5px;"><!--{ad/rightside}--></div><!--{/if}-->
+		$blog[message]
 	</div>
 </div>
 
@@ -133,21 +121,26 @@
 			<!--{if !$blog[noreply]}-->
 			<a href="#quickcommentform_{$id}" class="hide r_option pull-right">发表评论</a>
 			<!--{/if}-->
-			评论 (<span id="comment_replynum">$blog[replynum]</span> 个评论)</h5>
-		<div class="page">$multi</div>
+			评论 (<span id="comment_replynum">$blog[replynum]</span> 个评论)
+		</h5>
+		<!--{if $multi}-->
+		<div class="page pagination pagination-centered">$multi</div>
+		<!--{/if}-->
 		<div class="comments_list" id="comment">
 			<!--{if $cid}-->
 			<div class="notice">
 				当前只显示与你操作相关的单个评论，<a href="space.php?uid=$blog[uid]&do=blog&id=$blog[blogid]">点击此处查看全部评论</a>
 			</div>
 			<!--{/if}-->
-			<ul id="comment_ul nav nav-list nav-thumbnail">
+			<ul id="comment_ul nav-list nav-thumbnail">
 			<!--{loop $list $value}-->
 				<!--{template space_comment_li}-->
 			<!--{/loop}-->
 			</ul>
 		</div>
-		<div class="page">$multi</div>
+		<!--{if $multi}-->
+		<div class="page pagination pagination-centered">$multi</div>
+		<!--{/if}-->
 
 		<!--{if !$blog[noreply]}-->
 		<form id="quickcommentform_{$id}" name="quickcommentform_{$id}" action="cp.php?ac=comment" method="post" class="quickpost">
@@ -169,7 +162,7 @@
 						<input type="hidden" name="id" value="$id">
 						<input type="hidden" name="idtype" value="blogid">
 						<input type="hidden" name="commentsubmit" value="true" />
-						<input type="button" id="commentsubmit_btn" name="commentsubmit_btn" class="submit btn" value="评论" onclick="ajaxpost('quickcommentform_{$id}', 'comment_add')" />
+						<input type="button" id="commentsubmit_btn" name="commentsubmit_btn" class="submit btn btn-primary" value="评论" onclick="ajaxpost('quickcommentform_{$id}', 'comment_add')" />
 						<div id="__quickcommentform_{$id}"></div>
 					</td>
 				</tr>
@@ -232,6 +225,9 @@
 </div>
 
 
+
+<!--{template footer}-->
+
 <script type="text/javascript">
 <!--
 function closeSide2(oo) {
@@ -266,5 +262,4 @@ for(var i=0; i<elems.length; i++){
 
 -->
 </script>
-
-<!--{template footer}-->
+<script type="text/javascript" charset="$_SC[charset]" src="template/bootstrap/script/script_calendar.js"></script>
